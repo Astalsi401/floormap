@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { zoomCalculator, dragCalculator, manualToggleElement, toggleElement, setSearchCondition, setElementStatus } from "../assets/store";
+import { zoomCalculator, dragCalculator, manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, langChange, searchChange } from "../assets/store";
 
 export const Advanced = () => {
   console.count("Advanced rendered");
@@ -20,12 +20,18 @@ export const Advanced = () => {
 export const Search = () => {
   console.count("Search rendered");
   const dispatch = useDispatch();
-  const searchCondition = useSelector((state) => state.searchCondition);
+  const string = useSelector((state) => state.searchCondition.string);
+  const regex = useSelector((state) => state.searchCondition.regex);
+  const tag = useSelector((state) => state.searchCondition.tag);
+  const floor = useSelector((state) => state.searchCondition.floor);
+  const lang = useSelector((state) => state.searchCondition.lang);
   const sidebar = useSelector((state) => state.elementStatus.sidebar);
   const advanced = useSelector((state) => state.elementStatus.advanced);
   const colors = useSelector((state) => state.elementStatus.colors);
   const mapText = useSelector((state) => state.mapText);
-  const searched = searchCondition.string.length === 0 && searchCondition.tag.length === 0;
+  const data = useSelector((state) => state.floorData.data);
+  const types = useSelector((state) => state.types);
+  const searched = string.length === 0 && tag.length === 0;
   const [inputTimer, setInputTimer] = useState(null);
   const handleInput = ({ target: { name, value } }) => {
     clearTimeout(inputTimer);
@@ -34,22 +40,51 @@ export const Search = () => {
     dispatch(manualToggleElement({ name: "advanced", value: false }));
     dispatch(setSearchCondition({ [name]: value }));
   };
+  const checkText = (targetElements) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace("臺", "台"));
+  const getFilterData = () =>
+    data.reduce((res, d) => {
+      const tags = d.tag[lang];
+      const corps = d.corps ? d.corps.map((corp) => corp.org[lang]) : [];
+      const infos = d.corps ? d.corps.map((corp) => corp.info[lang]) : [];
+      const text = d.text[lang];
+      const cat = d.cat[lang];
+      const topic = d.topic[lang];
+      const targets = [d.id, text.join(""), cat, topic, ...tags];
+      const isType = types.includes(d.type);
+      const hasTag = isType && tag.length === 0 ? true : [d.id, cat, topic, ...tags].includes(tag);
+      let hasText = isType && checkText([...targets, ...infos, ...corps]);
+      const opacity = (hasText && hasTag) || d.type === "icon" ? 0.8 : 0.1;
+      const events = d.event ? d.event.map((e) => ({ ...e, title: e.title[lang], topic: e.topic[lang] })) : [];
+      if (d.corps.length > 0) {
+        d.corps.forEach((corp, i) => {
+          hasText = checkText([...targets, corp.info[lang], corp.org[lang]]);
+          res.push({ ...d, ...corp, text: text, size: d.size[lang], cat: d.cat[lang], topic: d.topic[lang], corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity: opacity, draw: i === 0, sidebar: hasText && hasTag });
+        });
+      } else {
+        res.push({ ...d, text: text, size: d.size[lang], cat: d.cat[lang], topic: d.topic[lang], tag: tags, event: events, opacity: opacity, draw: true, sidebar: isType });
+      }
+      return res;
+    }, []);
   useEffect(() => {
     if (inputTimer) return;
-    dispatch(setSearchCondition({ regex: "update" }));
-  }, [searchCondition.string, inputTimer]);
+    dispatch(regexAsync());
+  }, [string, inputTimer]);
+  useEffect(() => {
+    dispatch(langChange());
+    dispatch(searchChange({ data: getFilterData() }));
+  }, [tag, floor, lang, regex]);
   return (
     <div className="fp-search d-flex align-items-center justify-content-center">
       <div className={`fp-filter px-1 ${advanced ? "active" : ""}`} onClick={() => dispatch(toggleElement({ name: "advanced" }))}>
         <FilterIcon />
       </div>
       <div className="fp-input d-flex flex-wrap align-items-center px-1">
-        {searchCondition.tag.length !== 0 && (
-          <div className="fp-input-tag shadow text-small" title={mapText.remove} onClick={() => dispatch(setSearchCondition({ tag: "" }))} style={{ "--cat": colors.scale(searchCondition.tag) }}>
-            {searchCondition.tag}
+        {tag.length !== 0 && (
+          <div className="fp-input-tag shadow text-small" title={mapText.remove} onClick={() => dispatch(setSearchCondition({ tag: "" }))} style={{ "--cat": colors.scale(tag) }}>
+            {tag}
           </div>
         )}
-        <input className="fp-input-text d-block text-large" name="string" type="text" value={searchCondition.string} onChange={handleInput} placeholder={mapText.searchPlaceholder} />
+        <input className="fp-input-text d-block text-large" name="string" type="text" value={string} onChange={handleInput} placeholder={mapText.searchPlaceholder} />
       </div>
       <div
         className={`fp-toggle d-flex align-items-center justify-content-center ${searched ? "" : "active"}`}

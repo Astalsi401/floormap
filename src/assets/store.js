@@ -52,6 +52,7 @@ const counterSlice = createSlice({
   },
   reducers: {
     fetchData: (state, { payload: { data } }) => {
+      console.count("run fetchData()");
       const params = new URLSearchParams(window.location.search);
       state.searchCondition = {
         string: params.get("string") || state.searchCondition.string,
@@ -60,15 +61,15 @@ const counterSlice = createSlice({
         floor: params.get("floor") || state.searchCondition.floor,
         lang: params.get("lang") || (/^zh/i.test(navigator.language) ? "tc" : "en"),
       };
-      const memoData = data.map((d, i) => {
-        let tags = d.tag ? d.tag[state.searchCondition.lang] : [],
-          eventTime = [];
+      state.floorData.data = data.map((d, i) => {
+        let eventTime = [],
+          textFormat = { tc: [], en: [] },
+          tags = d.tag ? d.tag : textFormat;
         if (d.event) {
           const now = new Date();
           eventTime = d.event.map((e) => ({
+            ...e,
             timeList: e.timeList.map((time) => ({ start: new Date(time.start), end: new Date(time.end) })),
-            title: e.title[state.searchCondition.lang],
-            topic: e.topic[state.searchCondition.lang],
             active: e.timeList.some((time) => {
               const start = new Date(time.start);
               const end = new Date(time.end);
@@ -77,51 +78,14 @@ const counterSlice = createSlice({
               const endDate = new Date(`${end.getFullYear()}-${end.getMonth() + 1}-${end.getDate()} 23:59:59`);
               const startTime = new Date(`${nowDate} ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}`);
               const endTime = new Date(`${nowDate} ${end.getHours()}:${end.getMinutes()}:${end.getSeconds()}`);
-              return startDate < now && now < endDate && startTime < now && now < endTime && e.title[state.searchCondition.lang].length > 0;
+              return startDate < now && now < endDate && startTime < now && now < endTime && (e.title.tc.length > 0 || e.title.en.length > 0);
             }),
           }));
-          tags = eventTime.some((e) => e.active) ? tags.concat([mapText.event[state.searchCondition.lang]]) : tags;
+          tags = eventTime.some((e) => e.active) ? { tc: [...tags.tc, mapText.event.tc], en: [...tags.en, mapText.event.en] } : tags;
         }
-        return {
-          ...d,
-          id: d.id ? d.id : `${d.type}-${d.floor}-${i}`,
-          floor: d.floor.toString(),
-          cat: d.cat ? d.cat[state.searchCondition.lang] : false,
-          topic: d.topic ? d.topic[state.searchCondition.lang] : false,
-          tag: tags,
-          text: d.text ? d.text[state.searchCondition.lang] : [],
-          size: d.size ? d.size[state.searchCondition.lang] : 1,
-          event: eventTime,
-          corps: d.corps
-            ? d.corps.map((corp, i) => ({
-                corpId: `${d.id}-${i}`,
-                org: corp.org[state.searchCondition.lang],
-                info: corp.info[state.searchCondition.lang],
-              }))
-            : false,
-          draw: true,
-        };
+        return { ...d, id: d.id ? d.id : `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat ? d.cat : textFormat, topic: d.topic ? d.topic : textFormat, tag: tags, text: d.text ? d.text : textFormat, size: d.size ? d.size : { tc: 1, en: 1 }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${d.id}-${i}` })) : [] };
       });
-      const checkText = (targetElements) => state.searchCondition.regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace("臺", "台"));
-      const filterData = memoData.reduce((res, d) => {
-        const corps = d.corps ? d.corps.map((corp) => corp.org) : [];
-        const infos = d.corps ? d.corps.map((corp) => corp.info) : [];
-        const targets = [d.id, d.text.join(""), d.cat, d.topic, ...d.tag];
-        const isType = state.types.includes(d.type);
-        const hasTag = isType && state.searchCondition.tag.length === 0 ? true : [d.id, d.cat, d.topic, ...d.tag].includes(state.searchCondition.tag);
-        let hasText = isType && checkText([...targets, ...infos, ...corps]);
-        const opacity = (hasText && hasTag) || d.type === "icon" ? 0.8 : 0.1;
-        if (d.corps) {
-          d.corps.forEach((corp, i) => {
-            hasText = checkText([...targets, corp.info, corp.org]);
-            res.push({ ...d, ...corp, opacity: opacity, draw: i === 0, sidebar: hasText && hasTag });
-          });
-        } else {
-          res.push({ ...d, opacity: opacity, draw: true, sidebar: isType });
-        }
-        return res;
-      }, []);
-      state.floorData = { loaded: true, data: data, memoData: memoData, filterData: filterData };
+      state.floorData.loaded = true;
       state.mapText = Object.keys(defaultMapText).reduce((acc, key) => {
         acc[key] = defaultMapText[key][state.searchCondition.lang];
         return acc;
@@ -132,7 +96,6 @@ const counterSlice = createSlice({
         height: window.innerHeight - state.elementStatus.tagsHeight,
         colors: new ColorPicker(["rgba(237,125,49,0.6)", "rgba(153,204,255,1)", "rgba(255,255,0,0.6)", "rgba(0,112,192,0.6)", "rgba(112,48,160,0.6)", "rgb(128, 0, 75, 0.2)"], state.mapText.categories, "rgba(255,255,255)"),
       };
-      console.count("run fetchData()");
     },
     setSearchCondition: (state, { payload }) => {
       Object.keys(payload).forEach((key) => {
@@ -152,6 +115,9 @@ const counterSlice = createSlice({
         }
       });
     },
+    searchChange: (state, { payload: { data } }) => {
+      state.floorData.filterData = data;
+    },
     langChange: (state) => {
       state.mapText = Object.keys(defaultMapText).reduce((acc, key) => {
         acc[key] = defaultMapText[key][state.searchCondition.lang];
@@ -159,7 +125,7 @@ const counterSlice = createSlice({
       }, {});
       state.elementStatus = {
         ...state.elementStatus,
-        boothInfoData: Object.keys(state.elementStatus.boothInfoData).length === 0 ? {} : filterFloorData.find((d) => d.id === state.elementStatus.boothInfoData.id && d.corpId === state.elementStatus.boothInfoData.corpId),
+        boothInfoData: Object.keys(state.elementStatus.boothInfoData).length === 0 ? {} : state.floorData.filterData.find((d) => d.id === state.elementStatus.boothInfoData.id && d.corpId === state.elementStatus.boothInfoData.corpId),
         colors: state.elementStatus.colors.categories(state.mapText.categories),
       };
       document.title = state.mapText.title;
@@ -168,7 +134,7 @@ const counterSlice = createSlice({
       console.count("run resize()");
       const smallScreen = window.innerWidth < 768;
       const sidebar = state.elementStatus.load ? (smallScreen ? state.elementStatus.sidebar : !smallScreen) : smallScreen ? false : true;
-      const { innerWidth: width, innerHeight: height } = window;
+      const { innerHeight: height } = window;
       const sidebarWidth = smallScreen ? (sidebar ? height * 0.6 : height - 117) : sidebar ? 300 : 30;
       const tagsHeight = smallScreen ? 100 : 80;
       state.elementStatus = {
@@ -227,12 +193,13 @@ const store = configureStore({
 });
 
 export default store;
-export const { langChange, resize, resetViewbox, zoom, fetchData, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
+export const { langChange, resize, resetViewbox, zoom, fetchData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
 export const resizeAsync = () => (dispatch) => setTimeout(() => dispatch(resize()), 50);
 export const fetchDataAsync = () => async (dispatch) => {
   const data = await fetch("https://astalsi401.github.io/warehouse/show/floormap.json").then((res) => res.json());
   dispatch(fetchData({ data }));
 };
+export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
 export const zoomCalculator =
   (clientX, clientY, graphRef, svgRef, r, rMax = 10) =>
   (dispatch) => {

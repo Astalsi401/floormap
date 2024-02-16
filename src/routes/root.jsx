@@ -1,6 +1,6 @@
 import { useRef, useState, useMemo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { langChange, resizeAsync, fetchDataAsync, manualToggleElement } from "../assets/store";
+import { langChange, resizeAsync, fetchDataAsync, manualToggleElement, setSearchCondition, searchChange } from "../assets/store";
 import { Loading } from "./../components/loading";
 import { Header } from "./../components/header";
 import { Sidebar } from "./../components/sidebar";
@@ -9,7 +9,6 @@ import { Floormap } from "./../components/map";
 export default function Root() {
   console.count("Root rendered");
   const dispatch = useDispatch();
-  const searchCondition = useSelector((state) => state.searchCondition);
   const sidebarWidth = useSelector((state) => state.elementStatus.sidebarWidth);
   const tagsHeight = useSelector((state) => state.elementStatus.tagsHeight);
   const smallScreen = useSelector((state) => state.elementStatus.smallScreen);
@@ -31,9 +30,6 @@ export default function Root() {
   useEffect(() => {
     dispatch(resizeAsync());
   }, [sidebar, smallScreen]);
-  //   useEffect(() => {
-  //     dispatch(langChange());
-  //   }, [searchCondition.lang]);
   //   useEffect(() => {
   //     const url = new URL(window.location.href);
   //     const searchParams = new URLSearchParams(url.search);

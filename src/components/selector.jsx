@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchCondition, zoomCalculator, resetViewbox } from "../assets/store";
 
-export const Selector = ({ graphRef, animation }) => {
+export const Selector = ({ graphRef, svgRef, animation }) => {
   const dispatch = useDispatch();
   const searchCondition = useSelector((state) => state.searchCondition);
   const handleClickZoom = (r) => {
     animation();
     const { offsetLeft: x, offsetTop: y, offsetWidth: w, offsetHeight: h } = graphRef.current;
-    zoomCalculator(w / 2 + x, h / 2 + y, r);
+    dispatch(zoomCalculator(w / 2 + x, h / 2 + y, graphRef, svgRef, r));
   };
   return (
     <>
@@ -31,7 +31,13 @@ export const Selector = ({ graphRef, animation }) => {
             <path d="M12 6V18M6 12H18" stroke="black" strokeWidth="2" />
           </svg>
         </span>
-        <span className="d-flex justify-content-center align-items-center text-xx-large shadow" onClick={() => dispatch(resetViewbox())}>
+        <span
+          className="d-flex justify-content-center align-items-center text-xx-large shadow"
+          onClick={() => {
+            animation();
+            dispatch(resetViewbox());
+          }}
+        >
           <svg width="26" height="26" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
             <g transform="translate(0,512) scale(0.1,-0.1)" fill="#000000" stroke="none">
               <path d="M555 4673 c-44 -23 -84 -63 -106 -105 -18 -35 -19 -64 -19 -513 0 -407 2 -481 15 -513 64 -152 273 -172 370 -34 l30 44 3 206 3 206 577 -576 c317 -317 591 -583 608 -592 87 -43 175 -28 245 43 71 70 86 158 43 245 -9 17 -275 291 -592 608 l-576 577 206 3 206 3 44 30 c138 97 118 306 -34 370 -56 23 -978 22 -1023 -2z" />
