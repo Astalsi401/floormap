@@ -19,6 +19,7 @@ export function Floormap({ graphRef, svgRef, animation }) {
     dispatch(setDragStatus({ moving: true, distance }));
   };
   const handleEnd = (e) => {
+    if (!dragStatus.moving) return;
     let distance = e.changedTouches ? e.changedTouches[0].clientX + e.changedTouches[0].clientY : e.clientX + e.clientY;
     dispatch(setDragStatus({ moving: false, previousTouch: null, previousTouchLength: null, distance: distance - dragStatus.distance }));
   };
