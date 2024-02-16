@@ -1,0 +1,55 @@
+.fp-graph {
+  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
+  text {
+    cursor: inherit;
+  }
+}
+
+.fp-floormap {
+  position: relative;
+  justify-content: flex-end;
+  padding-top: var(--tags-height);
+  padding-left: var(--sidebar-width);
+  width: 100%;
+  -webkit-user-select: none; /* Safari */
+  user-select: none; /* Standard syntax */
+}
+
+.fp-viewBox {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  &.moving {
+    cursor: move;
+  }
+}
+
+@media (max-width: 768px) {
+  .fp-floormap {
+    padding-left: 0;
+  }
+}
+
+.booth,
+.room {
+  &:hover {
+    path,
+    text {
+      fill-opacity: 1 !important;
+    }
+  }
+}
+
+#floormap.active {
+  .booth,
+  .room {
+    &:not(.active) {
+      path,
+      text {
+        fill-opacity: 0.2;
+      }
+    }
+  }
+}

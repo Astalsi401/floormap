@@ -1,0 +1,129 @@
+$font-size-base: 16px;
+$font-size: (
+  "xx-large": 1.5 * $font-size-base,
+  "x-large": 1.2 * $font-size-base,
+  "large": 1.08 * $font-size-base,
+  "medium": 1 * $font-size-base,
+  "small": 0.8 * $font-size-base,
+);
+$index: (tools, tags, sidebar);
+
+:root {
+  --fp-sidebar-bg: #f1f1f1;
+  --fp-search-bg: #ffffff;
+  --fp-hover-bg: #e5e5e5;
+  --fp-black: #000000;
+  --fp-unactive: #acacac;
+  --fp-active: rgb(128, 0, 75, 0.2);
+  --fp-over: #acacac;
+  --fp-main: #000080;
+  --fp-time: 0.4s;
+  --fp-search-box-height: 56px;
+  --fp-sidebar-px: 5px;
+  --fp-icon-size: 30px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+@each $key, $value in $font-size {
+  .text-#{$key} {
+    font-size: #{$value};
+  }
+}
+
+@each $value in (flex, block) {
+  .d-#{$value} {
+    display: #{$value};
+  }
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+@each $value in (grow, shrink) {
+  @for $i from 0 through 1 {
+    .flex-#{$value}-#{$i} {
+      flex-#{$value}: $i;
+    }
+  }
+}
+
+@each $key, $value in (align-items: center, justify-content: center) {
+  .#{$key}-#{$value} {
+    #{$key}: #{$value};
+  }
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+@each $key, $value in (p: padding, m: margin) {
+  @for $i from 1 through 5 {
+    .#{$key}-#{$i} {
+      #{$value}: calc($i * var(--fp-sidebar-px));
+    }
+    .#{$key}x-#{$i} {
+      #{$value}-left: calc($i * var(--fp-sidebar-px));
+      #{$value}-right: calc($i * var(--fp-sidebar-px));
+    }
+    .#{$key}y-#{$i} {
+      #{$value}-top: calc($i * var(--fp-sidebar-px));
+      #{$value}-bottom: calc($i * var(--fp-sidebar-px));
+    }
+    .#{$key}t-#{$i} {
+      #{$value}-top: calc($i * var(--fp-sidebar-px));
+    }
+    .#{$key}b-#{$i} {
+      #{$value}-bottom: calc($i * var(--fp-sidebar-px));
+    }
+    .#{$key}s-#{$i} {
+      #{$value}-left: calc($i * var(--fp-sidebar-px));
+    }
+    .#{$key}e-#{$i} {
+      #{$value}-right: calc($i * var(--fp-sidebar-px));
+    }
+  }
+}
+
+.gap-1 {
+  gap: 5px;
+}
+
+.shadow {
+  box-shadow: 0 0 var(--fp-sidebar-px) var(--fp-unactive);
+}
+
+* {
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+html {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: $font-size-base;
+  position: relative;
+  touch-action: none;
+}
+
+p {
+  margin: 0;
+}
+
+.fp-main {
+  width: 100%;
+  background-color: var(--fp-sidebar-bg);
+}

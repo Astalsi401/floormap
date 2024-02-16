@@ -1,0 +1,51 @@
+.fp-zoom,
+.fp-select-lang,
+.fp-select-floor {
+  position: absolute;
+  z-index: index($list: $index, $value: tools);
+  label {
+    display: block;
+  }
+  span {
+    cursor: pointer;
+    background-color: var(--fp-search-bg);
+  }
+  input {
+    display: none;
+    & + span {
+      width: var(--fp-icon-size);
+      height: var(--fp-icon-size);
+      transition: background-color var(--fp-time);
+    }
+    &:not([name="lang"]):checked + span {
+      background-color: var(--fp-black);
+      color: var(--fp-search-bg);
+    }
+  }
+}
+
+.fp-select-lang,
+.fp-select-floor {
+  right: 10px;
+}
+.fp-zoom,
+.fp-select-floor {
+  top: calc(var(--tags-height) + 10px);
+  display: grid;
+  grid-template-columns: var(--fp-icon-size);
+  grid-template-rows: var(--fp-icon-size) var(--fp-icon-size);
+}
+.fp-select-lang {
+  top: calc(var(--tags-height) + 20px + var(--fp-icon-size) * 2);
+}
+.fp-zoom {
+  transition: left var(--fp-time);
+  left: calc(var(--sidebar-width) + 10px);
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .fp-zoom {
+    left: 10px;
+  }
+}
