@@ -39,7 +39,7 @@ export function Floormap({ graphRef, svgRef, animation }) {
       const y = (touch1.clientY + touch2.clientY) / 2;
       const d = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
       dispatch(setDragStatus({ previousTouch: d }));
-      if (dragStatus.previousTouch) zoomCalculator(x, y, graphRef, svgRef, d / dragStatus.previousTouch);
+      if (dragStatus.previousTouch) dispatch(zoomCalculator(x, y, graphRef, svgRef, d / dragStatus.previousTouch));
     }
   };
   const handleMouseDrag = ({ movementX, movementY }) => dispatch(dragCalculator(movementX, movementY));

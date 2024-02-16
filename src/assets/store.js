@@ -203,7 +203,7 @@ export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearc
 export const zoomCalculator =
   (clientX, clientY, graphRef, svgRef, r, rMax = 10) =>
   (dispatch) => {
-    dispatch(zoom({ clientX, clientY, r, graphRef, svgRef, rMax }));
+    dispatch(zoom({ clientX, clientY, graphRef, svgRef, r, rMax }));
   };
 export const dragCalculator =
   (x, y, force = false) =>
