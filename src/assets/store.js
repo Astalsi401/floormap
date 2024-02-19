@@ -119,8 +119,6 @@ const counterSlice = createSlice({
     },
     searchChange: (state, { payload: { data } }) => {
       state.floorData.filterData = data;
-    },
-    langChange: (state) => {
       state.mapText = Object.keys(defaultMapText).reduce((acc, key) => {
         acc[key] = defaultMapText[key][state.searchCondition.lang];
         return acc;
@@ -195,7 +193,7 @@ const store = configureStore({
 });
 
 export default store;
-export const { langChange, resize, resetViewbox, zoom, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
+export const { resize, resetViewbox, zoom, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
 export const resizeAsync = () => (dispatch) => setTimeout(() => dispatch(resize()), 50);
 export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
 export const zoomCalculator =

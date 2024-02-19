@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { zoomCalculator, dragCalculator, manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, langChange, searchChange } from "../assets/store";
+import { zoomCalculator, dragCalculator, manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, searchChange } from "../assets/store";
 
 export const Advanced = () => {
   console.count("Advanced rendered");
@@ -70,7 +70,6 @@ export const Search = () => {
     dispatch(regexAsync());
   }, [string, inputTimer]);
   useEffect(() => {
-    dispatch(langChange());
     dispatch(searchChange({ data: getFilterData() }));
   }, [tag, floor, lang, regex]);
   useEffect(() => {
