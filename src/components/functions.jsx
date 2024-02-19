@@ -24,7 +24,8 @@ export class ColorPicker {
   };
 }
 
-export const getMapElems = async () => {
-  const elems = fetch(`${import.meta.env.BASE_URL}/assets/json/elems.json`).then((res) => res.json());
-  return defer({ elems: elems });
+export const getMapElems = async ({ params: { year, category } }) => {
+  console.log("run getMapElems()");
+  const data = Promise.all([fetch(`${import.meta.env.BASE_URL}/assets/json/${year}/${category}.json`).then((res) => res.json()), fetch(`${import.meta.env.BASE_URL}/assets/json/elems.json`).then((res) => res.json())]).then((res) => res.flat());
+  return defer({ data });
 };

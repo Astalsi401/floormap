@@ -51,16 +51,7 @@ const counterSlice = createSlice({
     types: ["booth", "room"],
   },
   reducers: {
-    fetchData: (state, { payload: { data } }) => {
-      console.count("run fetchData()");
-      const params = new URLSearchParams(window.location.search);
-      state.searchCondition = {
-        string: params.get("string") || state.searchCondition.string,
-        regex: params.get("regex") || state.searchCondition.regex,
-        tag: params.get("tag") || state.searchCondition.tag,
-        floor: params.get("floor") || state.searchCondition.floor,
-        lang: params.get("lang") || (/^zh/i.test(navigator.language) ? "tc" : "en"),
-      };
+    setData: (state, { payload: { data } }) => {
       state.floorData.data = data.map((d, i) => {
         let eventTime = [],
           textFormat = { tc: [], en: [] },
@@ -86,6 +77,17 @@ const counterSlice = createSlice({
         return { ...d, id: d.id ? d.id : `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat ? d.cat : textFormat, topic: d.topic ? d.topic : textFormat, tag: tags, text: d.text ? d.text : textFormat, size: d.size ? d.size : { tc: 1, en: 1 }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${d.id}-${i}` })) : [] };
       });
       state.floorData.loaded = true;
+    },
+    pageLoad: (state) => {
+      console.count("run pageLoad()");
+      const params = new URLSearchParams(window.location.search);
+      state.searchCondition = {
+        string: params.get("string") || state.searchCondition.string,
+        regex: params.get("regex") || state.searchCondition.regex,
+        tag: params.get("tag") || state.searchCondition.tag,
+        floor: params.get("floor") || state.searchCondition.floor,
+        lang: params.get("lang") || (/^zh/i.test(navigator.language) ? "tc" : "en"),
+      };
       state.mapText = Object.keys(defaultMapText).reduce((acc, key) => {
         acc[key] = defaultMapText[key][state.searchCondition.lang];
         return acc;
@@ -193,12 +195,8 @@ const store = configureStore({
 });
 
 export default store;
-export const { langChange, resize, resetViewbox, zoom, fetchData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
+export const { langChange, resize, resetViewbox, zoom, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
 export const resizeAsync = () => (dispatch) => setTimeout(() => dispatch(resize()), 50);
-export const fetchDataAsync = () => async (dispatch) => {
-  const data = await fetch("https://astalsi401.github.io/warehouse/show/floormap.json").then((res) => res.json());
-  dispatch(fetchData({ data }));
-};
 export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
 export const zoomCalculator =
   (clientX, clientY, graphRef, svgRef, r, rMax = 10) =>

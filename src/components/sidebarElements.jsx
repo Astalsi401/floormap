@@ -73,6 +73,13 @@ export const Search = () => {
     dispatch(langChange());
     dispatch(searchChange({ data: getFilterData() }));
   }, [tag, floor, lang, regex]);
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    Object.keys({ string, tag, floor, lang }).forEach((key) => {
+      eval(key).length === 0 ? url.searchParams.delete(key) : url.searchParams.set(key, eval(key));
+    });
+    history.pushState(null, "", url.href);
+  }, [string, tag, floor, lang]);
   return (
     <div className="fp-search d-flex align-items-center justify-content-center">
       <div className={`fp-filter px-1 ${advanced ? "active" : ""}`} onClick={() => dispatch(toggleElement({ name: "advanced" }))}>
