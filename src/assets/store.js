@@ -74,7 +74,7 @@ const counterSlice = createSlice({
           }));
           tags = eventTime.some((e) => e.active) ? { tc: [...tags.tc, mapText.event.tc], en: [...tags.en, mapText.event.en] } : tags;
         }
-        return { ...d, id: d.id ? d.id : `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat ? d.cat : textFormat, topic: d.topic ? d.topic : textFormat, tag: tags, text: d.text ? d.text : textFormat, size: d.size ? d.size : { tc: 1, en: 1 }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${d.id}-${i}` })) : [] };
+        return { ...d, id: d.id ? d.id : `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat ? d.cat : textFormat, topic: d.topic ? d.topic : { tc: "", en: "" }, tag: tags, text: d.text ? d.text : textFormat, size: d.size ? d.size : { tc: 1, en: 1 }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${d.id}-${i}` })) : [] };
       });
       state.floorData.loaded = true;
     },
