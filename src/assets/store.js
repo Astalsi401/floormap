@@ -49,6 +49,7 @@ const counterSlice = createSlice({
     mapText: {},
     floorData: { loaded: false, data: [], memoData: [], filterData: [] },
     types: ["booth", "room"],
+    tooltip: {},
   },
   reducers: {
     setData: (state, { payload: { data } }) => {
@@ -184,6 +185,11 @@ const counterSlice = createSlice({
     toggleElement: (state, { payload: { name } }) => {
       state.elementStatus[name] = !state.elementStatus[name];
     },
+    setTooltip: (state, { payload }) => {
+      Object.keys(payload).forEach((key) => {
+        state.tooltip[key] = payload[key];
+      });
+    },
   },
 });
 
@@ -193,7 +199,7 @@ const store = configureStore({
 });
 
 export default store;
-export const { resize, resetViewbox, zoom, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
+export const { setTooltip, resize, resetViewbox, zoom, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
 export const resizeAsync = () => (dispatch) => setTimeout(() => dispatch(resize()), 50);
 export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
 export const zoomCalculator =

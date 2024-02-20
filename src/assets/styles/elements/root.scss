@@ -93,6 +93,12 @@ $index: (tools, tags, sidebar);
   }
 }
 
+@each $value in (absolute, relative) {
+  .position-#{$value} {
+    position: #{$value};
+  }
+}
+
 .gap-1 {
   gap: 5px;
 }

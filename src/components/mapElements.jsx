@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { icon_base64 } from "../components/icons";
-import { setElementStatus } from "../assets/store";
+import { setElementStatus, setTooltip } from "../assets/store";
 
 export function Elements({ type, size }) {
   const dispatch = useDispatch();
@@ -98,14 +99,24 @@ const BoothText = ({ t, j, lineHeight, opacity, boothWidth }) => {
 };
 
 const Booth = ({ d, size, handleBoothClick }) => {
+  const dispatch = useDispatch();
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
   const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);
   const colors = useSelector((state) => state.elementStatus.colors);
   const fontSize = size * d.size;
   const lineHeight = fontSize * 1.2;
   const opacity = boothInfo && boothInfoData.id === d.id ? 1 : d.opacity;
+  const { category } = useParams();
+  const handleAreaPage = ({ clientX, clientY }) => {
+    if (category !== "areas") return;
+    const tooltipWidth = 200;
+    const margin = 20;
+    const isLeft = clientX < window.innerWidth / 2;
+    const x = isLeft ? clientX + margin : clientX - tooltipWidth - margin;
+    dispatch(setTooltip({ x: x, y: clientY }));
+  };
   return (
-    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={() => handleBoothClick(d)}>
+    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={() => handleBoothClick(d)} onPointerMove={handleAreaPage} onPointerEnter={() => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, active: true }))} onPointerLeave={() => dispatch(setTooltip({ id: "", cat: "", active: false }))}>
       <path stroke={"black"} fill={colors.scale(d.cat)} strokeWidth={1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />;
       <g transform={`translate(${d.w / 2},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2})`} fontSize={fontSize}>
         {d.text.map((t, j) => (

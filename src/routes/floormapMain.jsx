@@ -5,6 +5,7 @@ import { resizeAsync, manualToggleElement, pageLoad, setData } from "../assets/s
 import { Header } from "../components/header";
 import { Sidebar } from "../components/sidebar";
 import { Floormap } from "../components/map";
+import { Tooltip } from "../components/tooltip";
 
 export default function FloormapMain() {
   console.count("App rendered");
@@ -39,6 +40,7 @@ export default function FloormapMain() {
           <div className="fp-main" style={{ "--sidebar-width": `${0}px`, "--tags-height": `${0}px` }}>
             <Sidebar svgRef={svgRef} graphRef={graphRef} animation={animation} />
             <Floormap graphRef={graphRef} svgRef={svgRef} animation={animation} />
+            <Tooltip />
           </div>
         );
       case "booths":
