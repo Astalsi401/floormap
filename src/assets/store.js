@@ -49,7 +49,7 @@ const counterSlice = createSlice({
     mapText: {},
     floorData: { loaded: false, data: [], memoData: [], filterData: [] },
     types: ["booth", "room"],
-    tooltip: {},
+    tooltip: { width: 200, margin: 20 },
   },
   reducers: {
     setData: (state, { payload: { data } }) => {

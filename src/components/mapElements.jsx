@@ -103,16 +103,16 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
   const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);
   const colors = useSelector((state) => state.elementStatus.colors);
+  const width = useSelector((state) => state.tooltip.width);
+  const margin = useSelector((state) => state.tooltip.margin);
   const fontSize = size * d.size;
   const lineHeight = fontSize * 1.2;
   const opacity = boothInfo && boothInfoData.id === d.id ? 1 : d.opacity;
   const { category } = useParams();
   const handleAreaPage = ({ clientX, clientY }) => {
     if (category !== "areas") return;
-    const tooltipWidth = 200;
-    const margin = 20;
     const isLeft = clientX < window.innerWidth / 2;
-    const x = isLeft ? clientX + margin : clientX - tooltipWidth - margin;
+    const x = isLeft ? clientX + margin : clientX - width - margin;
     dispatch(setTooltip({ x: x, y: clientY }));
   };
   return (
