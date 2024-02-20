@@ -116,7 +116,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
     dispatch(setTooltip({ x: x, y: clientY }));
   };
   return (
-    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={() => handleBoothClick(d)} onPointerMove={handleAreaPage} onPointerEnter={() => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, active: true }))} onPointerLeave={() => dispatch(setTooltip({ id: "", cat: "", active: false }))}>
+    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={() => handleBoothClick(d)} onPointerMove={handleAreaPage} onPointerEnter={() => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, text: d.text.join(""), active: true }))} onPointerLeave={() => dispatch(setTooltip({ id: "", cat: "", text: "", active: false }))}>
       <path stroke={"black"} fill={colors.scale(d.cat)} strokeWidth={1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />;
       <g transform={`translate(${d.w / 2},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2})`} fontSize={fontSize}>
         {d.text.map((t, j) => (
