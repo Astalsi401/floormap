@@ -1,0 +1,1626 @@
+[
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 300,
+    "h": 1500,
+    "x": 900,
+    "y": 8310,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "I001",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["5"], "en": ["5"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 300,
+    "h": 2700,
+    "x": 900,
+    "y": 4810,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 2700 },
+      { "node": "L", "x": 0, "y": 2700 }
+    ],
+    "id": "I006",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["9"], "en": ["9"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2100,
+    "h": 1500,
+    "x": 1600,
+    "y": 8110,
+    "p": [
+      { "node": "L", "x": 2100, "y": 0 },
+      { "node": "L", "x": 2100, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "I102",
+    "cat": { "tc": "年度主題館", "en": "Featured Pavilions" },
+    "text": { "tc": ["SNQ健康優購", "35(31)"], "en": ["SNQ", "35(31)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2100,
+    "h": 600,
+    "x": 1600,
+    "y": 7210,
+    "p": [
+      { "node": "L", "x": 2100, "y": 0 },
+      { "node": "L", "x": 2100, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "I302",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["14"], "en": ["14"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2100,
+    "h": 600,
+    "x": 1600,
+    "y": 6310,
+    "p": [
+      { "node": "L", "x": 2100, "y": 0 },
+      { "node": "L", "x": 2100, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "I402",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["14(10)"], "en": ["14(10)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2100,
+    "h": 600,
+    "x": 1600,
+    "y": 5410,
+    "p": [
+      { "node": "L", "x": 2100, "y": 0 },
+      { "node": "L", "x": 2100, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "I502",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["14"], "en": ["14"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 600,
+    "h": 1200,
+    "x": 1600,
+    "y": 3910,
+    "p": [
+      { "node": "L", "x": 600, "y": 0 },
+      { "node": "L", "x": 600, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "I602",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["8(6)"], "en": ["8(6)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 1500,
+    "h": 1200,
+    "x": 2200,
+    "y": 3910,
+    "p": [
+      { "node": "L", "x": 1500, "y": 0 },
+      { "node": "L", "x": 1500, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "I606",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["20(18)"], "en": ["20(18)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2100,
+    "h": 2400,
+    "x": 1600,
+    "y": 900,
+    "p": [
+      { "node": "L", "x": 2100, "y": 0 },
+      { "node": "L", "x": 2100, "y": 2400 },
+      { "node": "L", "x": 0, "y": 2400 }
+    ],
+    "id": "I802",
+    "cat": { "tc": "年度主題館", "en": "Featured Pavilions" },
+    "size": { "tc": 1, "en": 0.65 },
+    "text": { "tc": ["醫師力大挑戰", "頂尖醫療主題館", "56(48)"], "en": ["Be a Doctor! ", "Experimental Zone", "SNQ Pavilion of ", "Medical Care Excellence", "56(48)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2100,
+    "h": 1200,
+    "x": 4310,
+    "y": 8410,
+    "p": [
+      { "node": "L", "x": 2100, "y": 0 },
+      { "node": "L", "x": 2100, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "I116",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["28(27)"], "en": ["28(27)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 3000,
+    "h": 1200,
+    "x": 6410,
+    "y": 8410,
+    "p": [
+      { "node": "L", "x": 3000, "y": 0 },
+      { "node": "L", "x": 3000, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "I130",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["40(38)"], "en": ["40(38)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 900,
+    "x": 4310,
+    "y": 7210,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 900 },
+      { "node": "L", "x": 0, "y": 900 }
+    ],
+    "id": "I315a",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["24"], "en": ["24"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 900,
+    "x": 7010,
+    "y": 7210,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 900 },
+      { "node": "L", "x": 0, "y": 900 }
+    ],
+    "id": "J301a",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["24"], "en": ["24"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 600,
+    "x": 4310,
+    "y": 6310,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "I416",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["16(14)"], "en": ["16(14)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 600,
+    "x": 7010,
+    "y": 6310,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "J402",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["16(12)"], "en": ["16(12)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 600,
+    "x": 4310,
+    "y": 5410,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "I516",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 600,
+    "x": 7010,
+    "y": 5410,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "J502",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 1500,
+    "h": 1200,
+    "x": 4310,
+    "y": 3910,
+    "p": [
+      { "node": "L", "x": 1500, "y": 0 },
+      { "node": "L", "x": 1500, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "I616",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["20(18)"], "en": ["20(18)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 900,
+    "h": 1200,
+    "x": 5810,
+    "y": 3910,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "I626",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["12"], "en": ["12"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 1200,
+    "x": 7010,
+    "y": 3910,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "J602",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["32(28)"], "en": ["32(28)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 1200,
+    "x": 4310,
+    "y": 2110,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "I816",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["32(30)"], "en": ["32(30)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 1200,
+    "x": 7010,
+    "y": 2110,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "J802",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["32(28)"], "en": ["32(28)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 5100,
+    "h": 300,
+    "x": 4310,
+    "y": 1510,
+    "p": [
+      { "node": "L", "x": 5100, "y": 0 },
+      { "node": "L", "x": 5100, "y": 300 },
+      { "node": "L", "x": 0, "y": 300 }
+    ],
+    "id": "I1015a",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "text": { "tc": ["17"], "en": ["17"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 3000,
+    "h": 1200,
+    "x": 10020,
+    "y": 8410,
+    "p": [
+      { "node": "L", "x": 3000, "y": 0 },
+      { "node": "L", "x": 3000, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "J118",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["40(38)"], "en": ["40(38)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 1800,
+    "h": 1200,
+    "x": 13020,
+    "y": 8410,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "K104",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["24(23)"], "en": ["24(23)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 900,
+    "x": 10020,
+    "y": 7210,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 900 },
+      { "node": "L", "x": 0, "y": 900 }
+    ],
+    "id": "J317a",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["27"], "en": ["27"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 1800,
+    "h": 900,
+    "x": 13020,
+    "y": 7210,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 900 },
+      { "node": "L", "x": 0, "y": 900 }
+    ],
+    "id": "K303a",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["18"], "en": ["18"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 600,
+    "x": 10020,
+    "y": 6310,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "J418",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["18(14)"], "en": ["18(14)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 1800,
+    "h": 600,
+    "x": 13020,
+    "y": 6310,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "K404",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["12(10)"], "en": ["12(10)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 600,
+    "x": 10020,
+    "y": 5410,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "J518",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["18"], "en": ["18"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 1800,
+    "h": 600,
+    "x": 13020,
+    "y": 5410,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "K504",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["12"], "en": ["12"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 1200,
+    "x": 10010,
+    "y": 3910,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "J618",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["36(32)"], "en": ["36(32)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 1800,
+    "h": 1200,
+    "x": 13010,
+    "y": 3910,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "K604",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["24(22)"], "en": ["24(22)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 1200,
+    "x": 10010,
+    "y": 2110,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "J818",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["36(32)"], "en": ["36(32)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 1800,
+    "h": 1200,
+    "x": 13010,
+    "y": 2110,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "K804",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["24(22)"], "en": ["24(22)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 4800,
+    "h": 300,
+    "x": 10010,
+    "y": 1510,
+    "p": [
+      { "node": "L", "x": 4800, "y": 0 },
+      { "node": "L", "x": 4800, "y": 300 },
+      { "node": "L", "x": 0, "y": 300 }
+    ],
+    "id": "J1017a",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2400,
+    "h": 2400,
+    "x": 15420,
+    "y": 7210,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 2400 },
+      { "node": "L", "x": 0, "y": 2400 }
+    ],
+    "id": "K116",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "size": { "tc": 1, "en": 0.8 },
+    "text": { "tc": ["農業部", "72(68)"], "en": ["Council of Agriculture ", "Executive Yuan R.O.C.", "72(68)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 600,
+    "x": 15420,
+    "y": 6310,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "K416",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["18(14)"], "en": ["18(14)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 600,
+    "x": 15420,
+    "y": 5410,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "K516",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["18"], "en": ["18"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 1500,
+    "h": 1200,
+    "x": 15420,
+    "y": 3910,
+    "p": [
+      { "node": "L", "x": 1500, "y": 0 },
+      { "node": "L", "x": 1500, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "K616",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["20(18)"], "en": ["20(18)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 900,
+    "h": 600,
+    "x": 17220,
+    "y": 4510,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "K628",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["6(4)"], "en": ["6(4)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 900,
+    "h": 600,
+    "x": 17220,
+    "y": 3910,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "K727a",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["6"], "en": ["6"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 600,
+    "x": 15420,
+    "y": 2710,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "K816",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["18(12)"], "en": ["18(12)"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 300,
+    "x": 15420,
+    "y": 2110,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 300 },
+      { "node": "L", "x": 0, "y": 300 }
+    ],
+    "id": "K916",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["9"], "en": ["9"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 2700,
+    "h": 300,
+    "x": 15420,
+    "y": 1510,
+    "p": [
+      { "node": "L", "x": 2700, "y": 0 },
+      { "node": "L", "x": 2700, "y": 300 },
+      { "node": "L", "x": 0, "y": 300 }
+    ],
+    "id": "K1015a",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["9"], "en": ["9"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 300,
+    "h": 1500,
+    "x": 18530,
+    "y": 8310,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "K001",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["5"], "en": ["5"] }
+  },
+  {
+    "type": "booth",
+    "floor": 1,
+    "w": 300,
+    "h": 2700,
+    "x": 18530,
+    "y": 4810,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 2700 },
+      { "node": "L", "x": 0, "y": 2700 }
+    ],
+    "id": "K006",
+    "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
+    "text": { "tc": ["9"], "en": ["9"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 300,
+    "h": 600,
+    "x": 900,
+    "y": 11410,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "L001",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["2"], "en": ["2"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 300,
+    "h": 1500,
+    "x": 900,
+    "y": 9610,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "L003",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["5"], "en": ["5"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 300,
+    "h": 2100,
+    "x": 900,
+    "y": 7110,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 2100 },
+      { "node": "L", "x": 0, "y": 2100 }
+    ],
+    "id": "L008",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["7"], "en": ["7"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 300,
+    "h": 2100,
+    "x": 900,
+    "y": 3410,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 2100 },
+      { "node": "L", "x": 0, "y": 2100 }
+    ],
+    "id": "L015",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["7"], "en": ["7"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1500,
+    "x": 1500,
+    "y": 10410,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "L102",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 1500,
+    "y": 9510,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "L302",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 1500,
+    "y": 8610,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "L402",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 1500,
+    "y": 7710,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "L502",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1200,
+    "x": 1500,
+    "y": 6210,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "L602",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["32"], "en": ["32"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1500,
+    "x": 1500,
+    "y": 4110,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "L802",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 1500,
+    "y": 3210,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "L1002",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 300,
+    "x": 1500,
+    "y": 2610,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 300 },
+      { "node": "L", "x": 0, "y": 300 }
+    ],
+    "id": "L1102",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "text": { "tc": ["8"], "en": ["8"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1200,
+    "h": 1500,
+    "x": 4500,
+    "y": 10410,
+    "p": [
+      { "node": "L", "x": 1200, "y": 0 },
+      { "node": "L", "x": 1200, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "L118",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["20"], "en": ["20"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 3600,
+    "h": 1500,
+    "x": 6000,
+    "y": 10410,
+    "p": [
+      { "node": "L", "x": 3600, "y": 0 },
+      { "node": "L", "x": 3600, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "L128",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["60"], "en": ["60"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 4500,
+    "y": 9510,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "L318",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 4500,
+    "y": 8610,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "L418",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 4500,
+    "y": 7710,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "L518",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1500,
+    "x": 4500,
+    "y": 6210,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "L617a",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1500,
+    "x": 4500,
+    "y": 4110,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "L818",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 5100,
+    "h": 600,
+    "x": 4500,
+    "y": 3210,
+    "p": [
+      { "node": "L", "x": 5100, "y": 0 },
+      { "node": "L", "x": 5100, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "L1018",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["34"], "en": ["34"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 5100,
+    "h": 300,
+    "x": 4500,
+    "y": 2610,
+    "p": [
+      { "node": "L", "x": 5100, "y": 0 },
+      { "node": "L", "x": 5100, "y": 300 },
+      { "node": "L", "x": 0, "y": 300 }
+    ],
+    "id": "L1118",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "text": { "tc": ["17"], "en": ["17"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 7200,
+    "y": 9510,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "M304",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 7200,
+    "y": 8610,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "M404",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 7200,
+    "y": 7710,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "M504",
+    "cat": { "tc": "精準醫療展區", "en": "Diagnostics, Laboratory Equipment & Services" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1500,
+    "x": 7200,
+    "y": 6210,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "M603a",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1500,
+    "x": 7200,
+    "y": 4110,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "M804",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1500,
+    "x": 10200,
+    "y": 10410,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "M120",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 10200,
+    "y": 9510,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "M320",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 10200,
+    "y": 8610,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "M420",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 600,
+    "x": 10200,
+    "y": 7710,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "M520",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["16"], "en": ["16"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1500,
+    "x": 10200,
+    "y": 6210,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "M619a",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 2400,
+    "h": 1500,
+    "x": 10200,
+    "y": 4110,
+    "p": [
+      { "node": "L", "x": 2400, "y": 0 },
+      { "node": "L", "x": 2400, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "M820",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 4500,
+    "h": 600,
+    "x": 10200,
+    "y": 3210,
+    "p": [
+      { "node": "L", "x": 4500, "y": 0 },
+      { "node": "L", "x": 4500, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "M1020",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["30"], "en": ["30"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 4500,
+    "h": 300,
+    "x": 10200,
+    "y": 2610,
+    "p": [
+      { "node": "L", "x": 4500, "y": 0 },
+      { "node": "L", "x": 4500, "y": 300 },
+      { "node": "L", "x": 0, "y": 300 }
+    ],
+    "id": "M1120",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "text": { "tc": ["15"], "en": ["15"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1800,
+    "h": 1500,
+    "x": 12900,
+    "y": 10410,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "N102",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["30"], "en": ["30"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1800,
+    "h": 600,
+    "x": 12900,
+    "y": 9510,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "N302",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["12"], "en": ["12"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1800,
+    "h": 600,
+    "x": 12900,
+    "y": 8610,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "N402",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["12"], "en": ["12"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1800,
+    "h": 600,
+    "x": 12900,
+    "y": 7710,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "N502",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["12"], "en": ["12"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1800,
+    "h": 1500,
+    "x": 12900,
+    "y": 6210,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "N601a",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["30"], "en": ["30"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1800,
+    "h": 1500,
+    "x": 12900,
+    "y": 4110,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "N802",
+    "cat": { "tc": "醫療機構展區", "en": "Medical Institutes & Hospitals" },
+    "text": { "tc": ["30"], "en": ["30"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1800,
+    "h": 1500,
+    "x": 15300,
+    "y": 10410,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "N114",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["30"], "en": ["30"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 900,
+    "h": 1500,
+    "x": 17400,
+    "y": 10410,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "N128",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["15"], "en": ["15"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 3000,
+    "h": 600,
+    "x": 15300,
+    "y": 9510,
+    "p": [
+      { "node": "L", "x": 3000, "y": 0 },
+      { "node": "L", "x": 3000, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "N314",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["20"], "en": ["20"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 3000,
+    "h": 600,
+    "x": 15300,
+    "y": 8610,
+    "p": [
+      { "node": "L", "x": 3000, "y": 0 },
+      { "node": "L", "x": 3000, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "N414",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["20"], "en": ["20"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 3000,
+    "h": 600,
+    "x": 15300,
+    "y": 7710,
+    "p": [
+      { "node": "L", "x": 3000, "y": 0 },
+      { "node": "L", "x": 3000, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "N514",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["20"], "en": ["20"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 3000,
+    "h": 1200,
+    "x": 15300,
+    "y": 6210,
+    "p": [
+      { "node": "L", "x": 3000, "y": 0 },
+      { "node": "L", "x": 3000, "y": 1200 },
+      { "node": "L", "x": 0, "y": 1200 }
+    ],
+    "id": "N614",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["40"], "en": ["40"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1800,
+    "h": 1500,
+    "x": 15300,
+    "y": 4110,
+    "p": [
+      { "node": "L", "x": 1800, "y": 0 },
+      { "node": "L", "x": 1800, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "N814",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["30"], "en": ["30"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 1200,
+    "h": 1500,
+    "x": 17100,
+    "y": 4110,
+    "p": [
+      { "node": "L", "x": 1200, "y": 0 },
+      { "node": "L", "x": 1200, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "N826",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["20"], "en": ["20"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 3000,
+    "h": 600,
+    "x": 15300,
+    "y": 3210,
+    "p": [
+      { "node": "L", "x": 3000, "y": 0 },
+      { "node": "L", "x": 3000, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "N1014",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["20"], "en": ["20"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 3000,
+    "h": 300,
+    "x": 15300,
+    "y": 2610,
+    "p": [
+      { "node": "L", "x": 3000, "y": 0 },
+      { "node": "L", "x": 3000, "y": 300 },
+      { "node": "L", "x": 0, "y": 300 }
+    ],
+    "id": "N1114",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "text": { "tc": ["10"], "en": ["10"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 300,
+    "h": 600,
+    "x": 18630,
+    "y": 11410,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 600 },
+      { "node": "L", "x": 0, "y": 600 }
+    ],
+    "id": "N002",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["2"], "en": ["2"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 300,
+    "h": 1500,
+    "x": 18630,
+    "y": 9610,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 1500 },
+      { "node": "L", "x": 0, "y": 1500 }
+    ],
+    "id": "N007",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["5"], "en": ["5"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 300,
+    "h": 2100,
+    "x": 18630,
+    "y": 7110,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 2100 },
+      { "node": "L", "x": 0, "y": 2100 }
+    ],
+    "id": "N013",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["7"], "en": ["7"] }
+  },
+  {
+    "type": "booth",
+    "floor": 4,
+    "w": 300,
+    "h": 2100,
+    "x": 18630,
+    "y": 3410,
+    "p": [
+      { "node": "L", "x": 300, "y": 0 },
+      { "node": "L", "x": 300, "y": 2100 },
+      { "node": "L", "x": 0, "y": 2100 }
+    ],
+    "id": "N021",
+    "cat": { "tc": "智慧醫療展區", "en": "Medical Devices & Equipment" },
+    "text": { "tc": ["7"], "en": ["7"] }
+  }
+]

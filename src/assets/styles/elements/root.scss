@@ -37,7 +37,7 @@ $index: (tools, tags, sidebar);
   }
 }
 
-@each $value in (flex, block) {
+@each $value in (flex, block, none) {
   .d-#{$value} {
     display: #{$value};
   }

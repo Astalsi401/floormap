@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useAsyncValue } from "react-router-dom";
+import { useAsyncValue, useParams } from "react-router-dom";
 import { resizeAsync, manualToggleElement, pageLoad, setData } from "../assets/store";
 import { Header } from "../components/header";
 import { Sidebar } from "../components/sidebar";
@@ -17,7 +17,7 @@ export default function FloormapMain() {
   const graphRef = useRef(null);
   const svgRef = useRef(null);
   const data = useAsyncValue();
-
+  const { category } = useParams();
   const animation = () => {
     svgRef.current.style.transition = "0.4s";
     setTimeout(() => (svgRef.current.style.transition = null), 400);
@@ -33,19 +33,31 @@ export default function FloormapMain() {
     dispatch(resizeAsync());
   }, [sidebar, smallScreen]);
   if (loaded) {
-    return (
-      <div className="fp-main" style={{ "--sidebar-width": `${sidebarWidth}px`, "--tags-height": `${tagsHeight}px` }}>
-        <Sidebar svgRef={svgRef} graphRef={graphRef} animation={animation} />
-        <Header />
-        <div
-          className="fp-graph d-flex align-items-center"
-          onClick={() => {
-            if (smallScreen) dispatch(manualToggleElement({ name: "sidebar", value: false }));
-          }}
-        >
-          <Floormap graphRef={graphRef} svgRef={svgRef} animation={animation} />
-        </div>
-      </div>
-    );
+    switch (category) {
+      case "areas":
+        return (
+          <div className="fp-main" style={{ "--sidebar-width": `${0}px`, "--tags-height": `${0}px` }}>
+            <Sidebar svgRef={svgRef} graphRef={graphRef} animation={animation} />
+            <Floormap graphRef={graphRef} svgRef={svgRef} animation={animation} />
+          </div>
+        );
+      case "booths":
+        return (
+          <div className="fp-main" style={{ "--sidebar-width": `${sidebarWidth}px`, "--tags-height": `${tagsHeight}px` }}>
+            <Sidebar svgRef={svgRef} graphRef={graphRef} animation={animation} />
+            <Header />
+            <div
+              className="fp-graph d-flex align-items-center"
+              onClick={() => {
+                if (smallScreen) dispatch(manualToggleElement({ name: "sidebar", value: false }));
+              }}
+            >
+              <Floormap graphRef={graphRef} svgRef={svgRef} animation={animation} />
+            </div>
+          </div>
+        );
+      default:
+        break;
+    }
   }
 }
