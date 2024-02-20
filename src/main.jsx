@@ -17,10 +17,7 @@ const router = createBrowserRouter([
           <Link to={`/floormap/2023/booths`}>2023 Booths</Link>
         </div>
         <div>
-          <Link to={`/floormap/2023/areas`}>2023 Area</Link>
-        </div>
-        <div>
-          <Link to={`/floormap/2024/areas`}>2023 Area</Link>
+          <Link to={`/floormap/2024/areas`}>2024 Area</Link>
         </div>
       </>
     ),
