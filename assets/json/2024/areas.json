@@ -48,7 +48,7 @@
     "id": "I102",
     "cat": { "tc": "年度主題館", "en": "Featured Pavilions" },
     "size": { "tc": 1, "en": 1.5 },
-    "text": { "tc": ["SNQ健康優購", "35(31)"], "en": ["SNQ", "35(31)"] }
+    "text": { "tc": ["SNQ健康優購", " 35(31)"], "en": ["SNQ", " 35(31)"] }
   },
   {
     "type": "booth",
@@ -150,7 +150,7 @@
     "id": "I802",
     "cat": { "tc": "年度主題館", "en": "Featured Pavilions" },
     "size": { "tc": 1, "en": 0.65 },
-    "text": { "tc": ["醫師力大挑戰", "頂尖醫療主題館", "56(48)"], "en": ["Be a Doctor! ", "Experimental Zone", "SNQ Pavilion of ", "Medical Care Excellence", "56(48)"] }
+    "text": { "tc": ["醫師力大挑戰", "頂尖醫療主題館", " 56(48)"], "en": ["Be a Doctor! ", "Experimental Zone", " SNQ Pavilion of ", "Medical Care Excellence", " 56(48)"] }
   },
   {
     "type": "booth",
@@ -626,7 +626,7 @@
     "id": "K116",
     "cat": { "tc": "全齡健康展區", "en": "Consumer Health Products" },
     "size": { "tc": 1.5, "en": 0.8 },
-    "text": { "tc": ["農業部", "72(68)"], "en": ["Council of Agriculture ", "Executive Yuan R.O.C.", "72(68)"] }
+    "text": { "tc": ["農業部", " 72(68)"], "en": ["Council of Agriculture ", "Executive Yuan R.O.C.", " 72(68)"] }
   },
   {
     "type": "booth",
