@@ -17,6 +17,7 @@ const defaultMapText = {
   clear: { tc: "清除搜索條件", en: "Clear search" },
   exhibitor: { tc: "聯展單位", en: "Co-exhibitors" },
   activity: { tc: "相關活動", en: "Events" },
+  numOfBooths: { tc: "攤位數", en: "Booths" },
 };
 const regexEscape = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
