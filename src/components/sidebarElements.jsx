@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { zoomCalculator, dragCalculator, manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, searchChange } from "../assets/store";
+import { zoomCalculator, dragCalculator, manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, searchChange } from "@store";
 
 export const Advanced = () => {
   console.count("Advanced rendered");
@@ -20,11 +20,7 @@ export const Advanced = () => {
 export const Search = () => {
   console.count("Search rendered");
   const dispatch = useDispatch();
-  const string = useSelector((state) => state.searchCondition.string);
-  const regex = useSelector((state) => state.searchCondition.regex);
-  const tag = useSelector((state) => state.searchCondition.tag);
-  const floor = useSelector((state) => state.searchCondition.floor);
-  const lang = useSelector((state) => state.searchCondition.lang);
+  const { string, regex, tag, floor, lang } = useSelector((state) => state.searchCondition);
   const sidebar = useSelector((state) => state.elementStatus.sidebar);
   const advanced = useSelector((state) => state.elementStatus.advanced);
   const colors = useSelector((state) => state.elementStatus.colors);
@@ -74,9 +70,7 @@ export const Search = () => {
   }, [tag, floor, lang, regex]);
   useEffect(() => {
     const url = new URL(window.location.href);
-    Object.keys({ string, tag, floor, lang }).forEach((key) => {
-      eval(key).length === 0 ? url.searchParams.delete(key) : url.searchParams.set(key, eval(key));
-    });
+    Object.keys({ string, tag, floor, lang }).forEach((key) => (eval(key).length === 0 ? url.searchParams.delete(key) : url.searchParams.set(key, eval(key))));
     history.pushState(null, "", url.href);
   }, [string, tag, floor, lang]);
   return (

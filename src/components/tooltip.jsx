@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import "../assets/styles/elements/tooltip.scss";
+import "@styles/elements/tooltip.scss";
 
 export function Tooltip() {
   const { id, cat, text, x, y, active, width } = useSelector((state) => state.tooltip);

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { resetViewbox, manualToggleElement, setSearchCondition } from "../assets/store";
+import { resetViewbox, manualToggleElement, setSearchCondition } from "@store";
 
 export const Header = () => {
   console.count("Header rendered");

@@ -1,10 +1,8 @@
 import { signal, effect, computed } from "@preact/signals-react";
 import { useState, useRef, useEffect, useMemo, Suspense } from "react";
 import { useLoaderData, Await, useAsyncValue } from "react-router-dom";
-import { searchCondition, elementState, mapText } from "../assets/signals";
-import { Loading } from "./../components/loading";
-import { Header } from "./../components/header";
-import { Sidebar } from "../components/sidebar";
+import { searchCondition, elementState, mapText } from "@signals";
+import { Header, Sidebar, Floormap } from "@components";
 
 const handleResize = () => {
   setTimeout(() => {
@@ -18,9 +16,9 @@ const handleResize = () => {
   }, 50);
 };
 
-export default function Home() {
+export const Home = () => {
   useEffect(() => {
     window.addEventListener("resize", handleResize);
   }, []);
   return <>{elementState.value.width}</>;
-}
+};

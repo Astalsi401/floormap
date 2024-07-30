@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Elements } from "./mapElements";
 import { Selector } from "./selector";
-import { dragCalculator, zoomCalculator, setDragStatus } from "../assets/store";
+import { dragCalculator, zoomCalculator, setDragStatus } from "@store";
 
 export function Floormap({ graphRef, svgRef, animation }) {
   console.count("Floormap rendered");
@@ -16,10 +16,7 @@ export function Floormap({ graphRef, svgRef, animation }) {
   const tagsHeight = useSelector((state) => state.elementStatus.tagsHeight);
   const { category } = useParams();
   const [viewBox, setViewBox] = useState({ x1: 0, y1: 0, x2: 0, y2: 0 });
-  const handleStart = (e) => {
-    let distance = e.touches ? e.touches[0].clientX + e.touches[0].clientY : e.clientX + e.clientY;
-    dispatch(setDragStatus({ moving: true, distance }));
-  };
+  const handleStart = (e) => dispatch(setDragStatus({ moving: true, distance: e.touches ? e.touches[0].clientX + e.touches[0].clientY : e.clientX + e.clientY }));
   const handleEnd = (e) => {
     if (!dragStatus.moving) return;
     let distance = e.changedTouches ? e.changedTouches[0].clientX + e.changedTouches[0].clientY : e.clientX + e.clientY;
@@ -50,8 +47,9 @@ export function Floormap({ graphRef, svgRef, animation }) {
     let r = deltaY > 0 ? 0.95 : deltaY < 0 ? 1.05 : 1;
     dispatch(zoomCalculator(clientX, clientY, graphRef, svgRef, r));
   };
-
-  useEffect(() => setViewBox({ x1: 0, y1: 0, x2: realSize.w, y2: realSize.h }), [realSize.w, realSize.h]);
+  useEffect(() => {
+    setViewBox({ x1: 0, y1: 0, x2: realSize.w, y2: realSize.h });
+  }, [realSize.w, realSize.h]);
   const svgStyles = category === "areas" ? { translate: `0px 0px`, scale: `1`, backgroundColor: "#f1f1f1" } : { translate: `${zoom.x + dragStatus.x}px ${zoom.y + dragStatus.y}px`, scale: `${zoom.scale}`, backgroundColor: "#f1f1f1" };
   return (
     <div className="fp-floormap d-flex align-items-center" style={{ height: height + tagsHeight }}>

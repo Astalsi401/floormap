@@ -42,13 +42,16 @@
   }
 }
 
-#floormap.active {
-  .booth,
-  .room {
-    &:not(.active) {
-      path,
-      text {
-        fill-opacity: 0.2;
+#floormap {
+  will-change: translate, scale;
+  &.active {
+    .booth,
+    .room {
+      &:not(.active) {
+        path,
+        text {
+          fill-opacity: 0.2;
+        }
       }
     }
   }

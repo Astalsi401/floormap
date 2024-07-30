@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 import { useLoaderData, Await } from "react-router-dom";
-import { Loading } from "../components/loading";
-import FloormapMain from "./floormapMain";
+import { Loading } from "@components";
+import { FloormapMain } from "./floormapMain";
 
-export default function App() {
+export const App = () => {
   const { data } = useLoaderData();
   return (
     <Suspense fallback={<Loading />}>
@@ -12,4 +12,4 @@ export default function App() {
       </Await>
     </Suspense>
   );
-}
+};

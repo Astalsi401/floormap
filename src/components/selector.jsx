@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchCondition, zoomCalculator, resetViewbox } from "../assets/store";
+import { setSearchCondition, zoomCalculator, resetViewbox } from "@store";
 
 export const Selector = ({ graphRef, svgRef, animation }) => {
   const dispatch = useDispatch();

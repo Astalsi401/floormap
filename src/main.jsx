@@ -2,11 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
-import store from "./assets/store";
-import { getMapElems } from "./components/functions";
-import ErrorPage from "./routes/error";
-import App from "./routes/App";
-import "./assets/styles/floormap-main.scss";
+import store from "@store";
+import { getMapElems } from "@functions";
+import { App, ErrorPage } from "@routes";
+import "@styles/floormap-main.scss";
 
 const router = createBrowserRouter([
   {

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { manualToggleElement } from "../assets/store";
+import { manualToggleElement } from "@store";
 import { Search, Advanced, ResultList, BoothInfo } from "./sidebarElements";
 
 export const Sidebar = ({ svgRef, graphRef, animation }) => {

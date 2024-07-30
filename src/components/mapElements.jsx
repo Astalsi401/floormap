@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { icon_base64 } from "../components/icons";
-import { setElementStatus, setTooltip } from "../assets/store";
+import { icon_base64 } from "@icons";
+import { setElementStatus, setTooltip } from "@store";
 
 export function Elements({ type, size }) {
   const dispatch = useDispatch();

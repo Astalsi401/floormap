@@ -1,13 +1,10 @@
 import { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useAsyncValue, useParams } from "react-router-dom";
-import { resizeAsync, manualToggleElement, pageLoad, setData } from "../assets/store";
-import { Header } from "../components/header";
-import { Sidebar } from "../components/sidebar";
-import { Floormap } from "../components/map";
-import { Tooltip } from "../components/tooltip";
+import { resizeAsync, manualToggleElement, pageLoad, setData } from "@store";
+import { Header, Sidebar, Floormap, Tooltip } from "@components";
 
-export default function FloormapMain() {
+export const FloormapMain = () => {
   console.count("App rendered");
   const dispatch = useDispatch();
   const sidebarWidth = useSelector((state) => state.elementStatus.sidebarWidth);
@@ -62,4 +59,4 @@ export default function FloormapMain() {
         break;
     }
   }
-}
+};
