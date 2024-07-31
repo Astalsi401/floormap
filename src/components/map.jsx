@@ -26,7 +26,7 @@ export const Floormap = ({ graphRef, svgRef, animation }) => {
     e.preventDefault();
     if (e.touches.length === 1) {
       const touch = e.touches[0];
-      if (dragStatus.previousTouch && dragStatus.moving) dragCalculator(touch.clientX - dragStatus.previousTouch.clientX, touch.clientY - dragStatus.previousTouch.clientY, svgRef.current);
+      if (dragStatus.previousTouch && dragStatus.moving) requestAnimationFrame(() => dragCalculator(touch.clientX - dragStatus.previousTouch.clientX, touch.clientY - dragStatus.previousTouch.clientY, svgRef.current));
       dispatch(setDragStatus({ previousTouch: touch, previousTouchLength: e.touches.length }));
     } else {
       if (dragStatus.previousTouchLength && dragStatus.previousTouchLength !== e.touches.length) {
@@ -39,13 +39,13 @@ export const Floormap = ({ graphRef, svgRef, animation }) => {
       const y = (touch1.clientY + touch2.clientY) / 2;
       const d = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
       dispatch(setDragStatus({ previousTouch: d }));
-      if (dragStatus.previousTouch) zoomCalculator(x, y, graphRef.current, svgRef.current, d / dragStatus.previousTouch);
+      if (dragStatus.previousTouch) requestAnimationFrame(() => zoomCalculator(x, y, graphRef.current, svgRef.current, d / dragStatus.previousTouch));
     }
   };
-  const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && dragCalculator(movementX, movementY, svgRef.current);
+  const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && requestAnimationFrame(() => dragCalculator(movementX, movementY, svgRef.current));
   const handleWheelZoom = ({ clientX, clientY, deltaY }) => {
     let r = deltaY > 0 ? 0.95 : deltaY < 0 ? 1.05 : 1;
-    zoomCalculator(clientX, clientY, graphRef.current, svgRef.current, r);
+    requestAnimationFrame(() => zoomCalculator(clientX, clientY, graphRef.current, svgRef.current, r));
   };
   useEffect(() => {
     setViewBox({ x1: 0, y1: 0, x2: realSize.w, y2: realSize.h });
