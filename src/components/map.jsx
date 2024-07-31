@@ -27,7 +27,7 @@ export function Floormap({ graphRef, svgRef, animation }) {
     e.preventDefault();
     if (e.touches.length === 1) {
       const touch = e.touches[0];
-      if (dragStatus.previousTouch && dragStatus.moving) dragCalculator(touch.clientX - dragStatus.previousTouch.clientX, touch.clientY - dragStatus.previousTouch.clientY, svgRef);
+      if (dragStatus.previousTouch && dragStatus.moving) dragCalculator(touch.clientX - dragStatus.previousTouch.clientX, touch.clientY - dragStatus.previousTouch.clientY, svgRef.current);
       dispatch(setDragStatus({ previousTouch: touch, previousTouchLength: e.touches.length }));
     } else {
       if (dragStatus.previousTouchLength && dragStatus.previousTouchLength !== e.touches.length) {
@@ -43,7 +43,7 @@ export function Floormap({ graphRef, svgRef, animation }) {
       if (dragStatus.previousTouch) zoomCalculator(x, y, graphRef.current, svgRef.current, d / dragStatus.previousTouch);
     }
   };
-  const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && dragCalculator(movementX, movementY, svgRef);
+  const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && dragCalculator(movementX, movementY, svgRef.current);
   const handleWheelZoom = ({ clientX, clientY, deltaY }) => {
     let r = deltaY > 0 ? 0.95 : deltaY < 0 ? 1.05 : 1;
     zoomCalculator(clientX, clientY, graphRef.current, svgRef.current, r);

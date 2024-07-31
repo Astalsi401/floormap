@@ -201,7 +201,7 @@ const Result = ({ d, svgRef, graphRef, animation }) => {
     const { offsetLeft: x, offsetTop: y, offsetWidth: w, offsetHeight: h } = graphRef.current;
     const center = { x: w / 2 + x, y: smallScreen ? (sidebarWidth + tagsHeight) / 2 : h / 2 + y };
     zoomCalculator(transformedPoint.x, transformedPoint.y, graphRef.current, svgRef.current, 1.5, 1.5);
-    dragCalculator(center.x - transformedPoint.x, center.y - transformedPoint.y, svgRef);
+    dragCalculator(center.x - transformedPoint.x, center.y - transformedPoint.y, svgRef.current);
   };
   return (
     <div id={id} className="fp-result-item d-flex align-items-center px-2 py-1" style={{ "--cat": bg }} onClick={handleResultClick}>
