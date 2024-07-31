@@ -6,7 +6,7 @@ import { Selector } from "./selector";
 import { setDragStatus } from "@store";
 import { dragCalculator, zoomCalculator } from "@functions";
 
-export function Floormap({ graphRef, svgRef, animation }) {
+export const Floormap = ({ graphRef, svgRef, animation }) => {
   console.count("Floormap rendered");
   const dispatch = useDispatch();
   const dragStatus = useSelector((state) => state.elementStatus.dragStatus);
@@ -22,7 +22,6 @@ export function Floormap({ graphRef, svgRef, animation }) {
     let distance = e.changedTouches ? e.changedTouches[0].clientX + e.changedTouches[0].clientY : e.clientX + e.clientY;
     dispatch(setDragStatus({ moving: false, previousTouch: null, previousTouchLength: null, distance: distance - dragStatus.distance }));
   };
-
   const handleTouchDragZoom = (e) => {
     e.preventDefault();
     if (e.touches.length === 1) {
@@ -66,4 +65,4 @@ export function Floormap({ graphRef, svgRef, animation }) {
       </div>
     </div>
   );
-}
+};

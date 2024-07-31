@@ -43,7 +43,6 @@
 }
 
 #floormap {
-  will-change: translate, scale;
   &.active {
     .booth,
     .room {
