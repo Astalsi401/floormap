@@ -200,7 +200,7 @@ const Result = ({ d, svgRef, graphRef, animation }) => {
     const transformedPoint = svgPoint.matrixTransform(CTM);
     const { offsetLeft: x, offsetTop: y, offsetWidth: w, offsetHeight: h } = graphRef.current;
     const center = { x: w / 2 + x, y: smallScreen ? (sidebarWidth + tagsHeight) / 2 : h / 2 + y };
-    zoomCalculator(transformedPoint.x, transformedPoint.y, graphRef, svgRef, 1.5, 1.5);
+    zoomCalculator(transformedPoint.x, transformedPoint.y, graphRef.current, svgRef.current, 1.5, 1.5);
     dragCalculator(center.x - transformedPoint.x, center.y - transformedPoint.y, svgRef);
   };
   return (

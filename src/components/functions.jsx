@@ -30,30 +30,30 @@ export const getMapElems = async ({ params: { year, category } }) => {
   return defer({ data });
 };
 
-export const zoomCalculator = (clientX, clientY, graphRef, svgRef, r, rMax = 10) => {
-  const box = graphRef.current.getBoundingClientRect();
-  const prevScale = parseFloat(svgRef.current.style.scale || 1);
-  let [prevx, prevy] = svgRef.current.style.translate.replace("px", "").split(" ");
+export const zoomCalculator = (clientX, clientY, graph, svg, r, rMax = 10) => {
+  const box = graph.getBoundingClientRect();
+  const prevScale = parseFloat(svg.style.scale || 1);
+  let [prevx, prevy] = svg.style.translate.replace("px", "").split(" ");
   prevx = parseFloat(prevx || 0);
   prevy = parseFloat(prevy || 0);
   let scale = prevScale * r;
   scale = scale < 0.9 ? 0.9 : scale > rMax ? rMax : scale;
-  let w = svgRef.current.clientWidth * prevScale;
-  let h = svgRef.current.clientHeight * prevScale;
-  let x = (graphRef.current.clientWidth - w) / 2 + prevx;
-  let y = (graphRef.current.clientHeight - h) / 2 + prevy;
+  let w = svg.clientWidth * prevScale;
+  let h = svg.clientHeight * prevScale;
+  let x = (graph.clientWidth - w) / 2 + prevx;
+  let y = (graph.clientHeight - h) / 2 + prevy;
   let originX = clientX - box.x - x - w / 2;
   let originY = clientY - box.y - y - h / 2;
   let xNew = originX - (originX / prevScale) * scale + prevx;
   let yNew = originY - (originY / prevScale) * scale + prevy;
-  svgRef.current.style.scale = scale;
-  svgRef.current.style.translate = `${xNew}px ${yNew}px`;
+  svg.style.scale = scale;
+  svg.style.translate = `${xNew}px ${yNew}px`;
 };
-export const dragCalculator = (x, y, svgRef) => {
-  const [prevx, prevy] = svgRef.current.style.translate.replace("px", "").split(" ");
-  svgRef.current.style.translate = `${parseFloat(prevx || 0) + x}px ${parseFloat(prevy || 0) + y}px`;
+export const dragCalculator = (x, y, svg) => {
+  const [prevx, prevy] = svg.style.translate.replace("px", "").split(" ");
+  svg.style.translate = `${parseFloat(prevx || 0) + x}px ${parseFloat(prevy || 0) + y}px`;
 };
-export const resetViewbox = (svgRef) => {
-  svgRef.current.style.scale = "0.9";
-  svgRef.current.style.translate = "0px 0px";
+export const resetViewbox = (svg) => {
+  svg.style.scale = "0.9";
+  svg.style.translate = "0px 0px";
 };

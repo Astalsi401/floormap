@@ -40,13 +40,13 @@ export function Floormap({ graphRef, svgRef, animation }) {
       const y = (touch1.clientY + touch2.clientY) / 2;
       const d = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
       dispatch(setDragStatus({ previousTouch: d }));
-      if (dragStatus.previousTouch) zoomCalculator(x, y, graphRef, svgRef, d / dragStatus.previousTouch);
+      if (dragStatus.previousTouch) zoomCalculator(x, y, graphRef.current, svgRef.current, d / dragStatus.previousTouch);
     }
   };
   const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && dragCalculator(movementX, movementY, svgRef);
   const handleWheelZoom = ({ clientX, clientY, deltaY }) => {
     let r = deltaY > 0 ? 0.95 : deltaY < 0 ? 1.05 : 1;
-    zoomCalculator(clientX, clientY, graphRef, svgRef, r);
+    zoomCalculator(clientX, clientY, graphRef.current, svgRef.current, r);
   };
   useEffect(() => {
     setViewBox({ x1: 0, y1: 0, x2: realSize.w, y2: realSize.h });

@@ -8,7 +8,7 @@ export const Selector = ({ graphRef, svgRef, animation }) => {
   const handleClickZoom = (r) => {
     animation();
     const { offsetLeft: x, offsetTop: y, offsetWidth: w, offsetHeight: h } = graphRef.current;
-    zoomCalculator(x + w / 2, y + h / 2, graphRef, svgRef, r);
+    zoomCalculator(x + w / 2, y + h / 2, graphRef.current, svgRef.current, r);
   };
   return (
     <>
