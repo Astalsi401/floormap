@@ -51,12 +51,11 @@ export function Floormap({ graphRef, svgRef, animation }) {
   useEffect(() => {
     setViewBox({ x1: 0, y1: 0, x2: realSize.w, y2: realSize.h });
   }, [realSize.w, realSize.h]);
-  const svgStyles = { translate: `0px 0px`, scale: "1", backgroundColor: "#f1f1f1" };
   return (
     <div className="fp-floormap d-flex align-items-center" style={{ height: height + tagsHeight }}>
       {category !== "areas" && <Selector graphRef={graphRef} svgRef={svgRef} animation={animation} />}
       <div className={`fp-viewBox ${dragStatus.moving ? "moving" : ""}`} ref={graphRef} onWheel={handleWheelZoom} onMouseDown={handleStart} onMouseUp={handleEnd} onMouseLeave={handleEnd} onMouseMove={handleMouseDrag} onTouchStart={handleStart} onTouchEnd={handleEnd} onTouchCancel={handleEnd} onTouchMove={handleTouchDragZoom}>
-        <svg id="floormap" className={boothInfo ? "active" : ""} ref={svgRef} style={svgStyles} width="100%" height="100%" viewBox={`${viewBox.x1} ${viewBox.y1} ${viewBox.x2} ${viewBox.y2}`} xmlns="http://www.w3.org/2000/svg">
+        <svg id="floormap" className={boothInfo ? "active" : ""} ref={svgRef} style={{ translate: `0px 0px`, scale: "1", backgroundColor: "#f1f1f1" }} width="100%" height="100%" viewBox={`${viewBox.x1} ${viewBox.y1} ${viewBox.x2} ${viewBox.y2}`} xmlns="http://www.w3.org/2000/svg">
           <Elements type="wall" />
           <Elements type="pillar" />
           <Elements type="text" />

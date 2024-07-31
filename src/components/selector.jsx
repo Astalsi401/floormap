@@ -36,7 +36,7 @@ export const Selector = ({ graphRef, svgRef, animation }) => {
           className="d-flex justify-content-center align-items-center text-xx-large shadow"
           onClick={() => {
             animation();
-            resetViewbox(svgRef);
+            resetViewbox(svgRef.current);
           }}
         >
           <svg width="26" height="26" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
