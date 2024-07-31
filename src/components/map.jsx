@@ -3,13 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { Elements } from "./mapElements";
 import { Selector } from "./selector";
-import { dragCalculator, zoomCalculator, setDragStatus } from "@store";
+import { setDragStatus } from "@store";
+import { dragCalculator, zoomCalculator } from "@functions";
 
 export function Floormap({ graphRef, svgRef, animation }) {
   console.count("Floormap rendered");
   const dispatch = useDispatch();
   const dragStatus = useSelector((state) => state.elementStatus.dragStatus);
-  const zoom = useSelector((state) => state.elementStatus.zoom);
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
   const realSize = useSelector((state) => state.elementStatus.realSize);
   const height = useSelector((state) => state.elementStatus.height);
@@ -22,11 +22,12 @@ export function Floormap({ graphRef, svgRef, animation }) {
     let distance = e.changedTouches ? e.changedTouches[0].clientX + e.changedTouches[0].clientY : e.clientX + e.clientY;
     dispatch(setDragStatus({ moving: false, previousTouch: null, previousTouchLength: null, distance: distance - dragStatus.distance }));
   };
+
   const handleTouchDragZoom = (e) => {
     e.preventDefault();
     if (e.touches.length === 1) {
       const touch = e.touches[0];
-      if (dragStatus.previousTouch) dispatch(dragCalculator(touch.clientX - dragStatus.previousTouch.clientX, touch.clientY - dragStatus.previousTouch.clientY));
+      if (dragStatus.previousTouch && dragStatus.moving) dragCalculator(touch.clientX - dragStatus.previousTouch.clientX, touch.clientY - dragStatus.previousTouch.clientY, svgRef);
       dispatch(setDragStatus({ previousTouch: touch, previousTouchLength: e.touches.length }));
     } else {
       if (dragStatus.previousTouchLength && dragStatus.previousTouchLength !== e.touches.length) {
@@ -39,18 +40,18 @@ export function Floormap({ graphRef, svgRef, animation }) {
       const y = (touch1.clientY + touch2.clientY) / 2;
       const d = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
       dispatch(setDragStatus({ previousTouch: d }));
-      if (dragStatus.previousTouch) dispatch(zoomCalculator(x, y, graphRef, svgRef, d / dragStatus.previousTouch));
+      if (dragStatus.previousTouch) zoomCalculator(x, y, graphRef, svgRef, d / dragStatus.previousTouch);
     }
   };
-  const handleMouseDrag = ({ movementX, movementY }) => dispatch(dragCalculator(movementX, movementY));
+  const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && dragCalculator(movementX, movementY, svgRef);
   const handleWheelZoom = ({ clientX, clientY, deltaY }) => {
     let r = deltaY > 0 ? 0.95 : deltaY < 0 ? 1.05 : 1;
-    dispatch(zoomCalculator(clientX, clientY, graphRef, svgRef, r));
+    zoomCalculator(clientX, clientY, graphRef, svgRef, r);
   };
   useEffect(() => {
     setViewBox({ x1: 0, y1: 0, x2: realSize.w, y2: realSize.h });
   }, [realSize.w, realSize.h]);
-  const svgStyles = category === "areas" ? { translate: `0px 0px`, scale: `1`, backgroundColor: "#f1f1f1" } : { translate: `${zoom.x + dragStatus.x}px ${zoom.y + dragStatus.y}px`, scale: `${zoom.scale}`, backgroundColor: "#f1f1f1" };
+  const svgStyles = { translate: `0px 0px`, scale: "1", backgroundColor: "#f1f1f1" };
   return (
     <div className="fp-floormap d-flex align-items-center" style={{ height: height + tagsHeight }}>
       {category !== "areas" && <Selector graphRef={graphRef} svgRef={svgRef} animation={animation} />}

@@ -44,8 +44,7 @@ const counterSlice = createSlice({
       realSize: { w: 19830, h: 16950 },
       tagsHeight: 80,
       sidebarWidth: 40,
-      dragStatus: { moving: false, previousTouch: null, previousTouchLength: null, x: 0, y: 0, distance: 0 },
-      zoom: { scale: 0.9, x: 0, y: 0 },
+      dragStatus: { moving: false, previousTouch: null, previousTouchLength: null, distance: 0 },
     },
     mapText: {},
     floorData: { loaded: false, data: [], memoData: [], filterData: [] },
@@ -154,31 +153,10 @@ const counterSlice = createSlice({
         state.elementStatus[key] = payload[key];
       });
     },
-    resetViewbox: (state) => {
-      state.elementStatus.dragStatus = { ...state.elementStatus.dragStatus, x: 0, y: 0 };
-      state.elementStatus.zoom = { scale: 0.9, x: 0, y: 0 };
-    },
-    zoom: (state, { payload: { clientX, clientY, r, graphRef, svgRef, rMax } }) => {
-      const box = graphRef.current.getBoundingClientRect();
-      let scale = state.elementStatus.zoom.scale * r;
-      scale = scale < 0.9 ? 0.9 : scale > rMax ? rMax : scale;
-      let w = svgRef.current.clientWidth * state.elementStatus.zoom.scale;
-      let h = svgRef.current.clientHeight * state.elementStatus.zoom.scale;
-      let x = (graphRef.current.clientWidth - w) / 2 + state.elementStatus.zoom.x + state.elementStatus.dragStatus.x;
-      let y = (graphRef.current.clientHeight - h) / 2 + state.elementStatus.zoom.y + state.elementStatus.dragStatus.y;
-      let originX = clientX - box.x - x - w / 2;
-      let originY = clientY - box.y - y - h / 2;
-      let xNew = originX - (originX / state.elementStatus.zoom.scale) * scale + state.elementStatus.zoom.x;
-      let yNew = originY - (originY / state.elementStatus.zoom.scale) * scale + state.elementStatus.zoom.y;
-      state.elementStatus = { ...state.elementStatus, zoom: { scale: scale, x: xNew, y: yNew } };
-    },
     setDragStatus: (state, { payload }) => {
       Object.keys(payload).forEach((key) => {
         state.elementStatus.dragStatus[key] = payload[key];
       });
-    },
-    drag: (state, { payload: { x, y, force } }) => {
-      if (state.elementStatus.dragStatus.moving || force) state.elementStatus = { ...state.elementStatus, dragStatus: { ...state.elementStatus.dragStatus, x: state.elementStatus.dragStatus.x + x, y: state.elementStatus.dragStatus.y + y } };
     },
     manualToggleElement: (state, { payload: { name, value } }) => {
       state.elementStatus[name] = value;
@@ -200,15 +178,6 @@ const store = configureStore({
 });
 
 export default store;
-export const { setTooltip, resize, resetViewbox, zoom, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
+export const { setTooltip, resize, resetViewbox, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
 export const resizeAsync = () => (dispatch) => setTimeout(() => dispatch(resize()), 50);
 export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
-export const zoomCalculator =
-  (clientX, clientY, graphRef, svgRef, r, rMax = 10) =>
-  (dispatch) => {
-    dispatch(zoom({ clientX, clientY, graphRef, svgRef, r, rMax }));
-  };
-export const dragCalculator =
-  (x, y, force = false) =>
-  (dispatch) =>
-    dispatch(drag({ x, y, force }));

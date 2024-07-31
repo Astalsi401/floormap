@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { zoomCalculator, dragCalculator, manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, searchChange } from "@store";
+import { manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, searchChange } from "@store";
+import { zoomCalculator, dragCalculator } from "@functions";
 
 export const Advanced = () => {
   console.count("Advanced rendered");
@@ -199,8 +200,8 @@ const Result = ({ d, svgRef, graphRef, animation }) => {
     const transformedPoint = svgPoint.matrixTransform(CTM);
     const { offsetLeft: x, offsetTop: y, offsetWidth: w, offsetHeight: h } = graphRef.current;
     const center = { x: w / 2 + x, y: smallScreen ? (sidebarWidth + tagsHeight) / 2 : h / 2 + y };
-    dispatch(zoomCalculator(transformedPoint.x, transformedPoint.y, graphRef, svgRef, 1.5, 1.5));
-    dispatch(dragCalculator(center.x - transformedPoint.x, center.y - transformedPoint.y, true));
+    zoomCalculator(transformedPoint.x, transformedPoint.y, graphRef, svgRef, 1.5, 1.5);
+    dragCalculator(center.x - transformedPoint.x, center.y - transformedPoint.y, svgRef);
   };
   return (
     <div id={id} className="fp-result-item d-flex align-items-center px-2 py-1" style={{ "--cat": bg }} onClick={handleResultClick}>

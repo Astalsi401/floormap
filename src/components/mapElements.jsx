@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { icon_base64 } from "@icons";
 import { setElementStatus, setTooltip } from "@store";
 
-export function Elements({ type, size }) {
+export const Elements = ({ type, size }) => {
   const dispatch = useDispatch();
   const floor = useSelector((state) => state.searchCondition.floor);
   const data = useSelector((state) => state.floorData.filterData).filter((d) => d.floor === floor && d.draw);
@@ -20,22 +20,13 @@ export function Elements({ type, size }) {
     booth: (d, i) => <Booth key={d.id} d={d} size={size} handleBoothClick={handleBoothClick} />,
   };
   const handleBoothClick = (d) => {
-    if (distance !== 0) return;
-    if (boothInfo && boothInfoData.id === d.id) {
-      dispatch(setElementStatus({ boothInfo: false }));
-    } else {
-      dispatch(setElementStatus({ boothInfo: true, boothInfoData: d }));
-    }
+    if (distance === 0) dispatch(setElementStatus(boothInfo && boothInfoData.id === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
   };
   return <g className={`${type}-g`}>{data.filter((d) => d.type === type).map((d, i) => elementActions[type](d, i))}</g>;
-}
-
+};
 const drawPath = (path) => path.map((p) => (p.node === "L" ? `${p.node}${p.x} ${p.y}` : `${p.node}${p.x1} ${p.y1} ${p.x2} ${p.y2} ${p.x} ${p.y}`)).join("") + "Z";
 const Wall = ({ d }) => <path stroke="black" fill={d.fill} strokeWidth={d.strokeWidth} d={`M${d.x} ${d.y}${drawPath(d.p)}`} />;
-const Pillar = ({ d }) => {
-  const path = d.p.map((p) => ({ node: p.node, x: p.x + d.x, y: p.y + d.y }));
-  return <path fill="rgba(0, 0, 0, 0.2)" d={`M${d.x} ${d.y}${drawPath(path)}`} />;
-};
+const Pillar = ({ d }) => <path fill="rgba(0, 0, 0, 0.2)" d={`M${d.x} ${d.y}${drawPath(d.p.map((p) => ({ node: p.node, x: p.x + d.x, y: p.y + d.y })))}`} />;
 const Text = ({ d }) => (
   <text textAnchor="middle" fontWeight="bold" fill={d.color} fontSize={400 * d.size} x={d.x} y={d.y}>
     {d.text.join("")}

@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setSearchCondition, zoomCalculator, resetViewbox } from "@store";
+import { setSearchCondition } from "@store";
+import { zoomCalculator, resetViewbox } from "@functions";
 
 export const Selector = ({ graphRef, svgRef, animation }) => {
   const dispatch = useDispatch();
@@ -7,7 +8,7 @@ export const Selector = ({ graphRef, svgRef, animation }) => {
   const handleClickZoom = (r) => {
     animation();
     const { offsetLeft: x, offsetTop: y, offsetWidth: w, offsetHeight: h } = graphRef.current;
-    dispatch(zoomCalculator(w / 2 + x, h / 2 + y, graphRef, svgRef, r));
+    zoomCalculator(x + w / 2, y + h / 2, graphRef, svgRef, r);
   };
   return (
     <>
@@ -35,7 +36,7 @@ export const Selector = ({ graphRef, svgRef, animation }) => {
           className="d-flex justify-content-center align-items-center text-xx-large shadow"
           onClick={() => {
             animation();
-            dispatch(resetViewbox());
+            resetViewbox(svgRef);
           }}
         >
           <svg width="26" height="26" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
