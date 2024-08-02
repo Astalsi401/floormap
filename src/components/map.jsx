@@ -38,10 +38,7 @@ export const Floormap = ({ graphRef, svgRef, animation }) => {
     }
   };
   const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && requestAnimationFrame(() => dragCalculator(movementX, movementY, svgRef.current));
-  const handleWheelZoom = ({ clientX, clientY, deltaY }) => {
-    let r = deltaY > 0 ? 0.95 : deltaY < 0 ? 1.05 : 1;
-    requestAnimationFrame(() => zoomCalculator(clientX, clientY, graphRef.current, svgRef.current, r));
-  };
+  const handleWheelZoom = ({ clientX, clientY, deltaY }) => requestAnimationFrame(() => zoomCalculator(clientX, clientY, graphRef.current, svgRef.current, deltaY > 0 ? 0.95 : deltaY < 0 ? 1.05 : 1));
   useEffect(() => {
     setViewBox({ x1: 0, y1: 0, x2: realSize.w, y2: realSize.h });
   }, [realSize.w, realSize.h]);
