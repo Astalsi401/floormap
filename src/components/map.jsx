@@ -23,16 +23,11 @@ export const Floormap = ({ graphRef, svgRef, animation }) => {
     dispatch(setDragStatus({ moving: false, previousTouch: null, previousTouchLength: null, distance: distance - dragStatus.distance }));
   };
   const handleTouchDragZoom = (e) => {
-    e.preventDefault();
     if (e.touches.length === 1) {
       const touch = e.touches[0];
       if (dragStatus.previousTouch && dragStatus.moving) requestAnimationFrame(() => dragCalculator(touch.clientX - dragStatus.previousTouch.clientX, touch.clientY - dragStatus.previousTouch.clientY, svgRef.current));
       dispatch(setDragStatus({ previousTouch: touch, previousTouchLength: e.touches.length }));
     } else {
-      if (dragStatus.previousTouchLength && dragStatus.previousTouchLength !== e.touches.length) {
-        handleEnd(e);
-        return;
-      }
       const touch1 = e.touches[0];
       const touch2 = e.touches[1];
       const x = (touch1.clientX + touch2.clientX) / 2;

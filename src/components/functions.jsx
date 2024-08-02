@@ -25,7 +25,6 @@ export class ColorPicker {
 }
 
 export const getMapElems = async ({ params: { year, category } }) => {
-  console.log("run getMapElems()");
   const data = Promise.all([fetch(`${import.meta.env.BASE_URL}/assets/json/${year}/${category}.json`).then((res) => res.json()), fetch(`${import.meta.env.BASE_URL}/assets/json/elems.json`).then((res) => res.json())]).then((res) => res.flat());
   return defer({ data });
 };
@@ -50,7 +49,7 @@ export const zoomCalculator = (clientX, clientY, graph, svg, r, rMax = 10) => {
   svg.style.translate = `${xNew}px ${yNew}px`;
 };
 export const dragCalculator = (x, y, svg) => {
-  const [prevx, prevy] = svg.style.translate.replace("px", "").split(" ");
+  const [prevx, prevy] = svg.style.translate.split(" ");
   svg.style.translate = `${parseFloat(prevx || 0) + x}px ${parseFloat(prevy || 0) + y}px`;
 };
 export const resetViewbox = (svg) => {
