@@ -18,7 +18,6 @@ export const Floormap = ({ graphRef, svgRef, animation }) => {
   const [viewBox, setViewBox] = useState({ x1: 0, y1: 0, x2: 0, y2: 0 });
   const handleStart = (e) => dispatch(setDragStatus({ moving: true, distance: e.touches ? e.touches[0].clientX + e.touches[0].clientY : e.clientX + e.clientY }));
   const handleEnd = (e) => {
-    if (!dragStatus.moving) return;
     graphRef.current.dataset.prevX = null;
     graphRef.current.dataset.prevY = null;
     graphRef.current.dataset.prevD = null;
@@ -27,22 +26,21 @@ export const Floormap = ({ graphRef, svgRef, animation }) => {
   };
   const handleTouchDragZoom = (e) => {
     if (e.touches.length === 1) {
-      // drag
+      // handle drag
       const touch = e.touches[0];
-      const prevX = parseFloat(graphRef.current.dataset.prevX);
-      const prevY = parseFloat(graphRef.current.dataset.prevY);
+      const prevX = Math.round(parseFloat(graphRef.current.dataset.prevX) * 100) / 100;
+      const prevY = Math.round(parseFloat(graphRef.current.dataset.prevY) * 100) / 100;
       if (prevX && prevY && dragStatus.moving) requestAnimationFrame(() => dragCalculator(touch.clientX - prevX, touch.clientY - prevY, svgRef.current));
       graphRef.current.dataset.prevX = touch.clientX;
       graphRef.current.dataset.prevY = touch.clientY;
     } else {
-      // zoom
+      // handle zoom
       const touch1 = e.touches[0];
       const touch2 = e.touches[1];
       const x = (touch1.clientX + touch2.clientX) / 2;
       const y = (touch1.clientY + touch2.clientY) / 2;
-      const d = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
-      const prevD = parseFloat(graphRef.current.dataset.prevD);
-      console.log(d, prevD);
+      const d = Math.round(Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY) * 100) / 100;
+      const prevD = Math.round(parseFloat(graphRef.current.dataset.prevD) * 100) / 100;
       if (prevD) requestAnimationFrame(() => zoomCalculator(x, y, graphRef.current, svgRef.current, d / prevD));
       graphRef.current.dataset.prevD = d;
     }
