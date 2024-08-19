@@ -44,7 +44,7 @@ const counterSlice = createSlice({
       realSize: { w: 19830, h: 16950 },
       tagsHeight: 80,
       sidebarWidth: 40,
-      dragStatus: { moving: false, previousTouch: null, previousTouchLength: null, distance: 0 },
+      dragStatus: { moving: false, distance: 0 },
     },
     mapText: {},
     floorData: { loaded: false, data: [], memoData: [], filterData: [] },

@@ -19,22 +19,32 @@ export const Floormap = ({ graphRef, svgRef, animation }) => {
   const handleStart = (e) => dispatch(setDragStatus({ moving: true, distance: e.touches ? e.touches[0].clientX + e.touches[0].clientY : e.clientX + e.clientY }));
   const handleEnd = (e) => {
     if (!dragStatus.moving) return;
+    graphRef.current.dataset.prevX = null;
+    graphRef.current.dataset.prevY = null;
+    graphRef.current.dataset.prevD = null;
     let distance = e.changedTouches ? e.changedTouches[0].clientX + e.changedTouches[0].clientY : e.clientX + e.clientY;
-    dispatch(setDragStatus({ moving: false, previousTouch: null, previousTouchLength: null, distance: distance - dragStatus.distance }));
+    dispatch(setDragStatus({ moving: false, distance: distance - dragStatus.distance }));
   };
   const handleTouchDragZoom = (e) => {
     if (e.touches.length === 1) {
+      // drag
       const touch = e.touches[0];
-      if (dragStatus.previousTouch && dragStatus.moving) requestAnimationFrame(() => dragCalculator(touch.clientX - dragStatus.previousTouch.clientX, touch.clientY - dragStatus.previousTouch.clientY, svgRef.current));
-      dispatch(setDragStatus({ previousTouch: touch, previousTouchLength: e.touches.length }));
+      const prevX = parseFloat(graphRef.current.dataset.prevX);
+      const prevY = parseFloat(graphRef.current.dataset.prevY);
+      if (prevX && prevY && dragStatus.moving) requestAnimationFrame(() => dragCalculator(touch.clientX - prevX, touch.clientY - prevY, svgRef.current));
+      graphRef.current.dataset.prevX = touch.clientX;
+      graphRef.current.dataset.prevY = touch.clientY;
     } else {
+      // zoom
       const touch1 = e.touches[0];
       const touch2 = e.touches[1];
       const x = (touch1.clientX + touch2.clientX) / 2;
       const y = (touch1.clientY + touch2.clientY) / 2;
       const d = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
-      dispatch(setDragStatus({ previousTouch: d }));
-      if (dragStatus.previousTouch) requestAnimationFrame(() => zoomCalculator(x, y, graphRef.current, svgRef.current, d / dragStatus.previousTouch));
+      const prevD = parseFloat(graphRef.current.dataset.prevD);
+      console.log(d, prevD);
+      if (prevD) requestAnimationFrame(() => zoomCalculator(x, y, graphRef.current, svgRef.current, d / prevD));
+      graphRef.current.dataset.prevD = d;
     }
   };
   const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && requestAnimationFrame(() => dragCalculator(movementX, movementY, svgRef.current));
