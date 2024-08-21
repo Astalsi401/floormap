@@ -1,5 +1,5 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import { ColorPicker } from "../components/functions";
+import { ColorPicker } from "@functions";
 
 const defaultMapText = {
   categories: {
