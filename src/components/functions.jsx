@@ -45,14 +45,10 @@ export const zoomCalculator = (clientX, clientY, graph, svg, r, rMax = 10) => {
     originY = clientY - box.y - y - h / 2,
     xNew = originX - (originX / prevScale) * scale + prevx,
     yNew = originY - (originY / prevScale) * scale + prevy;
-  svg.style.scale = scale;
-  svg.style.translate = `${xNew}px ${yNew}px`;
+  Object.assign(svg.style, { scale, translate: `${xNew}px ${yNew}px` });
 };
 export const dragCalculator = (x, y, svg) => {
   const [prevx, prevy] = svg.style.translate.replace("px", "").split(" ");
   svg.style.translate = `${parseFloat(prevx || 0) + x}px ${parseFloat(prevy || 0) + y}px`;
 };
-export const resetViewbox = (svg) => {
-  svg.style.scale = "0.9";
-  svg.style.translate = "0px 0px";
-};
+export const resetViewbox = (svg) => Object.assign(svg.style, { scale: "0.9", translate: "0px 0px" });

@@ -18,8 +18,7 @@ export const Header = () => {
     document.body.appendChild(canvas);
     const resolution = 3840;
     const scale = resolution / svgElement.clientWidth;
-    canvas.width = resolution;
-    canvas.height = scale * svgElement.clientHeight;
+    Object.assign(canvas, { width: resolution, height: scale * svgElement.clientHeight });
     const ctx = canvas.getContext("2d");
     const image = new Image();
     blob = await new Promise((resolve) => {
@@ -33,8 +32,7 @@ export const Header = () => {
     });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
-    link.href = url;
-    link.download = `Floor ${floor}.png`;
+    Object.assign(link, { href: url, download: `Floor ${floor}.png` });
     document.body.appendChild(link);
     link.click();
     link.remove();
