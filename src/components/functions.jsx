@@ -36,15 +36,15 @@ export const zoomCalculator = (clientX, clientY, graph, svg, r, rMax = 10) => {
   prevx = parseFloat(prevx || 0);
   prevy = parseFloat(prevy || 0);
   let scale = prevScale * r;
-  scale = scale < 0.9 ? 0.9 : scale > rMax ? rMax : scale;
+  scale = Math.ceil((scale < 0.9 ? 0.9 : scale > rMax ? rMax : scale) * 10) / 10;
   let w = svg.clientWidth * prevScale,
     h = svg.clientHeight * prevScale,
     x = (graph.clientWidth - w) / 2 + prevx,
     y = (graph.clientHeight - h) / 2 + prevy,
     originX = clientX - box.x - x - w / 2,
     originY = clientY - box.y - y - h / 2,
-    xNew = originX - (originX / prevScale) * scale + prevx,
-    yNew = originY - (originY / prevScale) * scale + prevy;
+    xNew = Math.ceil(originX - (originX / prevScale) * scale + prevx),
+    yNew = Math.ceil(originY - (originY / prevScale) * scale + prevy);
   Object.assign(svg.style, { scale, translate: `${xNew}px ${yNew}px` });
 };
 export const dragCalculator = (x, y, svg) => {
