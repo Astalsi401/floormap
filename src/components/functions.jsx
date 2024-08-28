@@ -36,7 +36,7 @@ export const zoomCalculator = (clientX, clientY, graph, svg, r, rMax = 10) => {
   prevx = parseFloat(prevx || 0);
   prevy = parseFloat(prevy || 0);
   let scale = prevScale * r;
-  scale = Math.ceil((scale < 0.9 ? 0.9 : scale > rMax ? rMax : scale) * 10) / 10;
+  scale = Math.ceil((scale < 0.9 ? 0.9 : scale > rMax ? rMax : scale) * 100) / 100;
   let w = svg.clientWidth * prevScale,
     h = svg.clientHeight * prevScale,
     x = (graph.clientWidth - w) / 2 + prevx,
