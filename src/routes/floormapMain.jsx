@@ -16,10 +16,7 @@ export const FloormapMain = () => {
   const svgRef = useRef(null);
   const data = useAsyncValue();
   const { category } = useParams();
-  const animation = () => {
-    svgRef.current.style.transition = "0.4s";
-    setTimeout(() => (svgRef.current.style.transition = null), 400);
-  };
+
   useEffect(() => {
     dispatch(setData({ data }));
     dispatch(pageLoad());
@@ -35,15 +32,15 @@ export const FloormapMain = () => {
       case "areas":
         return (
           <div className="fp-main" style={{ "--sidebar-width": `${0}px`, "--tags-height": `${0}px` }}>
-            <Sidebar svgRef={svgRef} graphRef={graphRef} animation={animation} />
-            <Floormap graphRef={graphRef} svgRef={svgRef} animation={animation} />
+            <Sidebar svgRef={svgRef} graphRef={graphRef} />
+            <Floormap graphRef={graphRef} svgRef={svgRef} />
             <Tooltip />
           </div>
         );
       case "booths":
         return (
           <div className="fp-main" style={{ "--sidebar-width": `${sidebarWidth}px`, "--tags-height": `${tagsHeight}px` }}>
-            <Sidebar svgRef={svgRef} graphRef={graphRef} animation={animation} />
+            <Sidebar svgRef={svgRef} graphRef={graphRef} />
             <Header />
             <div
               className="fp-graph d-flex align-items-center"
@@ -51,7 +48,7 @@ export const FloormapMain = () => {
                 if (smallScreen) dispatch(manualToggleElement({ name: "sidebar", value: false }));
               }}
             >
-              <Floormap graphRef={graphRef} svgRef={svgRef} animation={animation} />
+              <Floormap graphRef={graphRef} svgRef={svgRef} />
             </div>
           </div>
         );

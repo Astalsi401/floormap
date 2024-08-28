@@ -100,14 +100,14 @@ export const Search = () => {
   );
 };
 
-export const ResultList = ({ svgRef, graphRef, animation }) => {
+export const ResultList = ({ svgRef, graphRef }) => {
   console.count("ResultList rendered");
   const types = useSelector((state) => state.types);
   const data = useSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type) && types.includes(d.type) && d.sidebar && d.text.length > 0 && d.opacity > 0.1 && d.text.length !== 0);
   return (
     <div className="fp-result pb-5">
       {data.map((d) => (
-        <Result key={`Result-${d.corpId ? d.corpId : d.id}`} d={d} svgRef={svgRef} graphRef={graphRef} animation={animation} />
+        <Result key={`Result-${d.corpId ? d.corpId : d.id}`} d={d} svgRef={svgRef} graphRef={graphRef} />
       ))}
     </div>
   );
@@ -175,7 +175,7 @@ const FilterIcon = () => {
   );
 };
 
-const Result = ({ d, svgRef, graphRef, animation }) => {
+const Result = ({ d, svgRef, graphRef }) => {
   const dispatch = useDispatch();
   const colors = useSelector((state) => state.elementStatus.colors);
   const smallScreen = useSelector((state) => state.elementStatus.smallScreen);
@@ -191,7 +191,6 @@ const Result = ({ d, svgRef, graphRef, animation }) => {
     if (!sidebar) return;
     dispatch(setElementStatus({ boothInfo: true, boothInfoData: d }));
     dispatch(setSearchCondition({ floor: d.floor }));
-    animation();
     // 定位選取攤位中心點至地圖中心點
     const svgPoint = svgRef.current.createSVGPoint();
     svgPoint.x = d.x + d.w / 2;
@@ -200,8 +199,8 @@ const Result = ({ d, svgRef, graphRef, animation }) => {
     const transformedPoint = svgPoint.matrixTransform(CTM);
     const { offsetLeft: x, offsetTop: y, offsetWidth: w, offsetHeight: h } = graphRef.current;
     const center = { x: w / 2 + x, y: smallScreen ? (sidebarWidth + tagsHeight) / 2 : h / 2 + y };
-    zoomCalculator(transformedPoint.x, transformedPoint.y, graphRef.current, svgRef.current, 1.5, 1.5);
-    dragCalculator(center.x - transformedPoint.x, center.y - transformedPoint.y, svgRef.current);
+    zoomCalculator({ clientX: transformedPoint.x, clientY: transformedPoint.y, graph: graphRef.current, svg: svgRef.current, r: 1.5, rMax: 1.5, animate: true });
+    dragCalculator({ x: center.x - transformedPoint.x, y: center.y - transformedPoint.y, svg: svgRef.current, animate: true });
   };
   return (
     <div id={id} className="fp-result-item d-flex align-items-center px-2 py-1" style={{ "--cat": bg }} onClick={handleResultClick}>

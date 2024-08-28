@@ -6,7 +6,7 @@ import { Selector } from "./selector";
 import { setDragStatus } from "@store";
 import { dragCalculator, zoomCalculator } from "@functions";
 
-export const Floormap = ({ graphRef, svgRef, animation }) => {
+export const Floormap = ({ graphRef, svgRef }) => {
   const dispatch = useDispatch();
   const dragStatus = useSelector((state) => state.elementStatus.dragStatus);
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
@@ -25,7 +25,7 @@ export const Floormap = ({ graphRef, svgRef, animation }) => {
     const [touch] = touches,
       prevX = Math.round(parseFloat(graphRef.current.dataset.prevX)),
       prevY = Math.round(parseFloat(graphRef.current.dataset.prevY));
-    if (prevX && prevY && dragStatus.moving) requestAnimationFrame(() => dragCalculator(touch.clientX - prevX, touch.clientY - prevY, svgRef.current));
+    if (prevX && prevY && dragStatus.moving) requestAnimationFrame(() => dragCalculator({ x: touch.clientX - prevX, y: touch.clientY - prevY, svg: svgRef.current }));
     Object.assign(graphRef.current.dataset, { prevX: touch.clientX, prevY: touch.clientY });
   };
   const handleTouchZoom = (touches) => {
@@ -34,18 +34,18 @@ export const Floormap = ({ graphRef, svgRef, animation }) => {
       y = (touch1.clientY + touch2.clientY) / 2,
       d = Math.round(Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY)),
       prevD = Math.round(parseFloat(graphRef.current.dataset.prevD));
-    if (prevD) requestAnimationFrame(() => zoomCalculator(x, y, graphRef.current, svgRef.current, d / prevD));
+    if (prevD) requestAnimationFrame(() => zoomCalculator({ clientX: x, clientY: y, graph: graphRef.current, svg: svgRef.current, r: d / prevD }));
     graphRef.current.dataset.prevD = d;
   };
   const handleTouchDragZoom = ({ touches }) => (touches.length === 1 ? handleTouchDrag(touches) : handleTouchZoom(touches));
-  const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && requestAnimationFrame(() => dragCalculator(movementX, movementY, svgRef.current));
-  const handleWheelZoom = ({ clientX, clientY, deltaY }) => requestAnimationFrame(() => zoomCalculator(clientX, clientY, graphRef.current, svgRef.current, deltaY > 0 ? 0.95 : deltaY < 0 ? 1.05 : 1));
+  const handleMouseDrag = ({ movementX, movementY }) => dragStatus.moving && requestAnimationFrame(() => dragCalculator({ x: movementX, y: movementY, svg: svgRef.current }));
+  const handleWheelZoom = ({ clientX, clientY, deltaY }) => requestAnimationFrame(() => zoomCalculator({ clientX, clientY, graph: graphRef.current, svg: svgRef.current, r: deltaY > 0 ? 0.95 : deltaY < 0 ? 1.05 : 1 }));
   useEffect(() => {
     setViewBox({ x1: 0, y1: 0, x2: realSize.w, y2: realSize.h });
   }, [realSize.w, realSize.h]);
   return (
     <div className="fp-floormap d-flex align-items-center" style={{ height: height + tagsHeight }}>
-      {category !== "areas" && <Selector graphRef={graphRef} svgRef={svgRef} animation={animation} />}
+      {category !== "areas" && <Selector graphRef={graphRef} svgRef={svgRef} />}
       <div className={`fp-viewBox ${dragStatus.moving ? "moving" : ""}`} ref={graphRef} onWheel={handleWheelZoom} onMouseDown={handleStart} onMouseUp={handleEnd} onMouseLeave={handleEnd} onMouseMove={handleMouseDrag} onTouchStart={handleStart} onTouchEnd={handleEnd} onTouchCancel={handleEnd} onTouchMove={handleTouchDragZoom}>
         <svg id="floormap" className={boothInfo ? "active" : ""} ref={svgRef} style={{ translate: `0px 0px`, scale: "1", backgroundColor: "#f1f1f1" }} width="100%" height="100%" viewBox={`${viewBox.x1} ${viewBox.y1} ${viewBox.x2} ${viewBox.y2}`} xmlns="http://www.w3.org/2000/svg">
           <Elements type="wall" />

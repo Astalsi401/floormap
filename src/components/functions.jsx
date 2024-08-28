@@ -29,12 +29,19 @@ export const getMapElems = async ({ params: { year, category } }) => {
   return defer({ data });
 };
 
-export const zoomCalculator = (clientX, clientY, graph, svg, r, rMax = 10) => {
+const prevTranslateScale = (svg) => {
+  const [prevx, prevy] = svg.style.translate.replace("px", "").split(" ");
+  return { prevx: parseFloat(prevx || 0), prevy: parseFloat(prevy || 0), prevScale: parseFloat(svg.style.scale || 1) };
+};
+
+const animation = (elem) => {
+  elem.style.transition = "0.4s";
+  setTimeout(() => (elem.style.transition = null), 400);
+};
+
+export const zoomCalculator = ({ clientX, clientY, graph, svg, r, rMax = 10, animate = false }) => {
   const box = graph.getBoundingClientRect(),
-    prevScale = parseFloat(svg.style.scale || 1);
-  let [prevx, prevy] = svg.style.translate.replace("px", "").split(" ");
-  prevx = parseFloat(prevx || 0);
-  prevy = parseFloat(prevy || 0);
+    { prevx, prevy, prevScale } = prevTranslateScale(svg);
   let scale = prevScale * r;
   scale = Math.ceil((scale < 0.9 ? 0.9 : scale > rMax ? rMax : scale) * 100) / 100;
   let w = svg.clientWidth * prevScale,
@@ -45,10 +52,15 @@ export const zoomCalculator = (clientX, clientY, graph, svg, r, rMax = 10) => {
     originY = clientY - box.y - y - h / 2,
     xNew = Math.ceil(originX - (originX / prevScale) * scale + prevx),
     yNew = Math.ceil(originY - (originY / prevScale) * scale + prevy);
+  animate && animation(svg);
   Object.assign(svg.style, { scale, translate: `${xNew}px ${yNew}px` });
 };
-export const dragCalculator = (x, y, svg) => {
-  const [prevx, prevy] = svg.style.translate.replace("px", "").split(" ");
-  svg.style.translate = `${parseFloat(prevx || 0) + x}px ${parseFloat(prevy || 0) + y}px`;
+export const dragCalculator = ({ x, y, svg, animate = false }) => {
+  const { prevx, prevy } = prevTranslateScale(svg);
+  animate && animation(svg);
+  svg.style.translate = `${prevx + x}px ${prevy + y}px`;
 };
-export const resetViewbox = (svg) => Object.assign(svg.style, { scale: "0.9", translate: "0px 0px" });
+export const resetViewbox = ({ svg, animate = false }) => {
+  animate && animation(svg);
+  Object.assign(svg.style, { scale: "1", translate: "0px 0px" });
+};

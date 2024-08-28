@@ -11,7 +11,7 @@ export const Header = () => {
   const tags = [mapText.event, ...mapText.headerTags];
   const download = async () => {
     const svgElement = document.querySelector("#floormap");
-    resetViewbox(svgElement);
+    resetViewbox({ svg: svgElement });
     const svgString = new XMLSerializer().serializeToString(svgElement);
     let blob;
     const canvas = document.createElement("canvas");
