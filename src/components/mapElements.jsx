@@ -19,9 +19,7 @@ export const Elements = ({ type, size }) => {
     icon: (d, i) => <Room key={d.id} d={d} i={i} size={size} />,
     booth: (d, i) => <Booth key={d.id} d={d} size={size} handleBoothClick={handleBoothClick} />,
   };
-  const handleBoothClick = (d) => {
-    if (distance === 0) dispatch(setElementStatus(boothInfo && boothInfoData.id === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
-  };
+  const handleBoothClick = (d) => distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoData.id === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
   return <g className={`${type}-g`}>{data.filter((d) => d.type === type).map((d, i) => elementActions[type](d, i))}</g>;
 };
 const drawPath = (path) => path.map((p) => (p.node === "L" ? `${p.node}${p.x} ${p.y}` : `${p.node}${p.x1} ${p.y1} ${p.x2} ${p.y2} ${p.x} ${p.y}`)).join("") + "Z";

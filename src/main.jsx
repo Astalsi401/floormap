@@ -18,6 +18,9 @@ const router = createBrowserRouter([
         <div>
           <Link to={`/floormap/2024/areas`}>2024 Area</Link>
         </div>
+        <div>
+          <Link to={`/floormap/2024/booths`}>2024 Booths</Link>
+        </div>
       </>
     ),
     errorElement: <ErrorPage />,

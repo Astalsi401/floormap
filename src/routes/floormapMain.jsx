@@ -42,12 +42,7 @@ export const FloormapMain = () => {
           <div className="fp-main" style={{ "--sidebar-width": `${sidebarWidth}px`, "--tags-height": `${tagsHeight}px` }}>
             <Sidebar svgRef={svgRef} graphRef={graphRef} />
             <Header />
-            <div
-              className="fp-graph d-flex align-items-center"
-              onClick={() => {
-                if (smallScreen) dispatch(manualToggleElement({ name: "sidebar", value: false }));
-              }}
-            >
+            <div className="fp-graph d-flex align-items-center" onClick={() => smallScreen && dispatch(manualToggleElement({ name: "sidebar", value: false }))}>
               <Floormap graphRef={graphRef} svgRef={svgRef} />
             </div>
           </div>

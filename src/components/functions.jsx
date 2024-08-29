@@ -39,19 +39,21 @@ const animation = (elem) => {
   setTimeout(() => (elem.style.transition = null), 400);
 };
 
+const round = (n, d) => Math.round(n * 10 ** d) / 10 ** d;
+
 export const zoomCalculator = ({ clientX, clientY, graph, svg, r, rMax = 10, animate = false }) => {
   const box = graph.getBoundingClientRect(),
     { prevx, prevy, prevScale } = prevTranslateScale(svg);
   let scale = prevScale * r;
-  scale = Math.ceil((scale < 0.9 ? 0.9 : scale > rMax ? rMax : scale) * 100) / 100;
+  scale = round(scale < 0.9 ? 0.9 : scale > rMax ? rMax : scale, 2);
   let w = svg.clientWidth * prevScale,
     h = svg.clientHeight * prevScale,
     x = (graph.clientWidth - w) / 2 + prevx,
     y = (graph.clientHeight - h) / 2 + prevy,
     originX = clientX - box.x - x - w / 2,
     originY = clientY - box.y - y - h / 2,
-    xNew = Math.ceil(originX - (originX / prevScale) * scale + prevx),
-    yNew = Math.ceil(originY - (originY / prevScale) * scale + prevy);
+    xNew = round(originX - (originX / prevScale) * scale + prevx, 2),
+    yNew = round(originY - (originY / prevScale) * scale + prevy, 2);
   animate && animation(svg);
   Object.assign(svg.style, { scale, translate: `${xNew}px ${yNew}px` });
 };

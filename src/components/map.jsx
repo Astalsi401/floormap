@@ -25,7 +25,7 @@ export const Floormap = ({ graphRef, svgRef }) => {
     const [touch] = touches,
       prevX = Math.round(parseFloat(graphRef.current.dataset.prevX)),
       prevY = Math.round(parseFloat(graphRef.current.dataset.prevY));
-    if (prevX && prevY && dragStatus.moving) requestAnimationFrame(() => dragCalculator({ x: touch.clientX - prevX, y: touch.clientY - prevY, svg: svgRef.current }));
+    prevX && prevY && dragStatus.moving && requestAnimationFrame(() => dragCalculator({ x: touch.clientX - prevX, y: touch.clientY - prevY, svg: svgRef.current }));
     Object.assign(graphRef.current.dataset, { prevX: touch.clientX, prevY: touch.clientY });
   };
   const handleTouchZoom = (touches) => {
@@ -34,7 +34,7 @@ export const Floormap = ({ graphRef, svgRef }) => {
       y = (touch1.clientY + touch2.clientY) / 2,
       d = Math.round(Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY)),
       prevD = Math.round(parseFloat(graphRef.current.dataset.prevD));
-    if (prevD) requestAnimationFrame(() => zoomCalculator({ clientX: x, clientY: y, graph: graphRef.current, svg: svgRef.current, r: d / prevD }));
+    prevD && requestAnimationFrame(() => zoomCalculator({ clientX: x, clientY: y, graph: graphRef.current, svg: svgRef.current, r: d / prevD }));
     graphRef.current.dataset.prevD = d;
   };
   const handleTouchDragZoom = ({ touches }) => (touches.length === 1 ? handleTouchDrag(touches) : handleTouchZoom(touches));
