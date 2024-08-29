@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { manualToggleElement } from "@store";
-import { Search, Advanced, ResultList, BoothInfo } from "./sidebarElements";
+import { Search, Advanced, ResultList, BoothInfo } from "./Elements";
 
 export const Sidebar = ({ svgRef, graphRef }) => {
   console.count("Sidebar rendered");

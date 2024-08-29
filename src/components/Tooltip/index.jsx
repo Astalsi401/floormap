@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import "@styles/elements/tooltip.scss";
 
-export function Tooltip() {
+export const Tooltip = () => {
   const { id, cat, text, x, y, active, width } = useSelector((state) => state.tooltip);
   const numOfBooths = useSelector((state) => state.mapText.numOfBooths);
   return (
@@ -13,4 +13,4 @@ export function Tooltip() {
       {numOfBooths}: {text}
     </div>
   );
-}
+};
