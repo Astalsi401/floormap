@@ -43,7 +43,7 @@ export const Header = () => {
       <div className="d-flex">
         <div className="flex-grow-1">
           <a href={`https://expo.taiwan-healthcare.org/${mapText.link}/`} className="logo d-block">
-            <img className="d-block mx-auto" src="https://expo.taiwan-healthcare.org//data/tmp/20231127/20231127ata8n2.png" alt="Healthcare Expo Taiwan Logo" />
+            <img className="d-block mx-auto" src={`${import.meta.env.BASE_URL}/assets/images/expo-header-icon.png`} alt="Healthcare Expo Taiwan Logo" />
           </a>
         </div>
         <div className="fp-download flex-shrink-0" title={mapText.download} onClick={() => setTimeout(download, 50)}>
