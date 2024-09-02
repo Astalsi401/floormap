@@ -10,15 +10,15 @@ export const Header = () => {
   const mapText = useSelector((state) => state.mapText);
   const tags = [mapText.event, ...mapText.headerTags];
   const download = async () => {
-    const svgElement = document.querySelector("#floormap");
-    resetViewbox({ svg: svgElement });
-    const svgString = new XMLSerializer().serializeToString(svgElement);
+    const svg = document.querySelector("#floormap");
+    resetViewbox({ svg });
     let blob;
+    const svgString = new XMLSerializer().serializeToString(svg);
     const canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
     const resolution = 3840;
-    const scale = resolution / svgElement.clientWidth;
-    Object.assign(canvas, { width: resolution, height: scale * svgElement.clientHeight });
+    const scale = resolution / svg.clientWidth;
+    Object.assign(canvas, { width: resolution, height: scale * svg.clientHeight });
     const ctx = canvas.getContext("2d");
     const image = new Image();
     blob = await new Promise((resolve) => {
@@ -54,17 +54,17 @@ export const Header = () => {
       </div>
       <div className="gap-1 d-flex flex-wrap align-items-center">
         <div>{mapText.header}：</div>
-        {tags.map((d) => (
+        {tags.map((tag) => (
           <div
-            key={d}
+            key={tag}
             className="fp-input-tag shadow text-small"
-            style={{ "--cat": colors.scale(d) }}
+            style={{ "--cat": colors.scale(tag) }}
             onClick={() => {
-              dispatch(setSearchCondition({ tag: d }));
+              dispatch(setSearchCondition({ tag }));
               dispatch(manualToggleElement({ name: "boothInfo", value: false }));
             }}
           >
-            {d}
+            {tag}
           </div>
         ))}
       </div>
