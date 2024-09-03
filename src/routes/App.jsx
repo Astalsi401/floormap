@@ -27,7 +27,6 @@ const FloormapApp = () => {
   const svgRef = useRef(null);
   const data = useAsyncValue();
   const { category } = useParams();
-
   useEffect(() => {
     dispatch(setData({ data }));
     dispatch(pageLoad());
@@ -43,7 +42,7 @@ const FloormapApp = () => {
       case "areas":
         return (
           <div className="fp-main" style={{ "--sidebar-width": `${0}px`, "--tags-height": `${0}px` }}>
-            <Sidebar svgRef={svgRef} graphRef={graphRef} />
+            <Sidebar graphRef={graphRef} svgRef={svgRef} />
             <Floormap graphRef={graphRef} svgRef={svgRef} />
             <Tooltip />
           </div>
@@ -51,7 +50,7 @@ const FloormapApp = () => {
       case "booths":
         return (
           <div className="fp-main" style={{ "--sidebar-width": `${sidebarWidth}px`, "--tags-height": `${tagsHeight}px` }}>
-            <Sidebar svgRef={svgRef} graphRef={graphRef} />
+            <Sidebar graphRef={graphRef} svgRef={svgRef} />
             <Header />
             <div className="fp-graph d-flex align-items-center" onClick={() => smallScreen && dispatch(manualToggleElement({ name: "sidebar", value: false }))}>
               <Floormap graphRef={graphRef} svgRef={svgRef} />
