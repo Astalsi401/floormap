@@ -3,7 +3,6 @@ import { manualToggleElement, setSearchCondition } from "@store";
 import { resetViewbox } from "@functions";
 
 export const Header = () => {
-  console.count("Header rendered");
   const dispatch = useDispatch();
   const colors = useSelector((state) => state.elementStatus.colors);
   const floor = useSelector((state) => state.searchCondition.floor);

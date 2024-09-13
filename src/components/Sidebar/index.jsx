@@ -4,7 +4,6 @@ import { manualToggleElement } from "@store";
 import { Search, Advanced, ResultList, BoothInfo } from "./Elements";
 
 export const Sidebar = ({ svgRef, graphRef }) => {
-  console.count("Sidebar rendered");
   const dispatch = useDispatch();
   const sidebar = useSelector((state) => state.elementStatus.sidebar);
   const smallScreen = useSelector((state) => state.elementStatus.smallScreen);

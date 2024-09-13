@@ -4,7 +4,6 @@ import { manualToggleElement, toggleElement, setSearchCondition, setElementStatu
 import { zoomCalculator, dragCalculator } from "@functions";
 
 export const Advanced = () => {
-  console.count("Advanced rendered");
   const advanced = useSelector((state) => state.elementStatus.advanced);
   return (
     <div className={`fp-advanced py-5 ${advanced ? "active" : ""}`}>
@@ -19,7 +18,6 @@ export const Advanced = () => {
 };
 
 export const Search = () => {
-  console.count("Search rendered");
   const dispatch = useDispatch();
   const { string, regex, tag, floor, lang } = useSelector((state) => state.searchCondition);
   const sidebar = useSelector((state) => state.elementStatus.sidebar);
@@ -95,7 +93,6 @@ export const Search = () => {
 };
 
 export const ResultList = ({ svgRef, graphRef }) => {
-  console.count("ResultList rendered");
   const types = useSelector((state) => state.types);
   const data = useSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type) && types.includes(d.type) && d.sidebar && d.text.length > 0 && d.opacity > 0.1 && d.text.length !== 0);
   return (
@@ -108,7 +105,6 @@ export const ResultList = ({ svgRef, graphRef }) => {
 };
 
 export const BoothInfo = () => {
-  console.count("BoothInfo rendered");
   const dispatch = useDispatch();
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
   return (
@@ -232,7 +228,6 @@ const Event = ({ timeList, title, topic, active }) => {
 };
 
 const BoothInfoDetail = () => {
-  console.count("BoothInfoDetail rendered");
   const dispatch = useDispatch();
   const colors = useSelector((state) => state.elementStatus.colors);
   const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);

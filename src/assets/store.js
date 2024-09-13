@@ -80,7 +80,6 @@ const counterSlice = createSlice({
       state.floorData.loaded = true;
     },
     pageLoad: (state) => {
-      console.count("run pageLoad()");
       const params = new URLSearchParams(window.location.search);
       state.searchCondition = {
         string: params.get("string") || state.searchCondition.string,
@@ -132,7 +131,6 @@ const counterSlice = createSlice({
       document.title = state.mapText.title;
     },
     resize: (state) => {
-      console.count("run resize()");
       const smallScreen = window.innerWidth < 768;
       const sidebar = state.elementStatus.load ? (smallScreen ? state.elementStatus.sidebar : !smallScreen) : smallScreen ? false : true;
       const { innerHeight: height } = window;
