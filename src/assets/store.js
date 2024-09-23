@@ -50,6 +50,7 @@ const counterSlice = createSlice({
     floorData: { loaded: false, data: [], memoData: [], filterData: [] },
     types: ["booth", "room"],
     tooltip: { width: 200, margin: 20 },
+    selectedBooths: [],
   },
   reducers: {
     setData: (state, { payload: { data } }) => {
@@ -167,6 +168,11 @@ const counterSlice = createSlice({
         state.tooltip[key] = payload[key];
       });
     },
+    setStore: (state, { payload }) => {
+      Object.keys(payload).forEach((key) => {
+        state[key] = payload[key];
+      });
+    },
   },
 });
 
@@ -176,6 +182,6 @@ const store = configureStore({
 });
 
 export default store;
-export const { setTooltip, resize, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, drag } = counterSlice.actions;
+export const { setTooltip, resize, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, setStore } = counterSlice.actions;
 export const resizeAsync = () => (dispatch) => setTimeout(() => dispatch(resize()), 50);
 export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
