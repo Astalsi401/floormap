@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLoaderData, Await, useParams, useAsyncValue } from "react-router-dom";
 import { resizeAsync, manualToggleElement, pageLoad, setData } from "@store";
 import { Header, Sidebar, Floormap, Tooltip, Loading } from "@components";
+import { boothData } from "@functions";
 
 export const App = () => {
   const { data } = useLoaderData();
@@ -16,7 +17,6 @@ export const App = () => {
 };
 
 const FloormapApp = () => {
-  console.count("App rendered");
   const dispatch = useDispatch();
   const sidebarWidth = useSelector((state) => state.elementStatus.sidebarWidth);
   const tagsHeight = useSelector((state) => state.elementStatus.tagsHeight);
@@ -27,8 +27,9 @@ const FloormapApp = () => {
   const svgRef = useRef(null);
   const data = useAsyncValue();
   const { category } = useParams();
+
   useEffect(() => {
-    dispatch(setData({ data }));
+    dispatch(setData({ data: boothData(data) }));
     dispatch(pageLoad());
     dispatch(resizeAsync());
     window.addEventListener("resize", () => dispatch(resizeAsync()));

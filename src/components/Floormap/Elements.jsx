@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { icon_base64 } from "@icons";
-import { setElementStatus, setTooltip } from "@store";
+import store, { setElementStatus, setTooltip, setStore } from "@store";
 
 export const Elements = ({ type, size }) => {
   const dispatch = useDispatch();
@@ -19,7 +19,10 @@ export const Elements = ({ type, size }) => {
     icon: (d, i) => <Room key={d.id} d={d} i={i} size={size} />,
     booth: (d, i) => <Booth key={d.id} d={d} size={size} handleBoothClick={handleBoothClick} />,
   };
-  const handleBoothClick = (d) => distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoData.id === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
+  const handleBoothClick = (d) => {
+    distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoData.id === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
+    dispatch(setStore({ selectedBooths: d.booths || [] }));
+  };
   return <g className={`${type}-g`}>{data.filter((d) => d.type === type).map((d, i) => elementActions[type](d, i))}</g>;
 };
 const drawPath = (path) => path.map((p) => (p.node === "L" ? `${p.node}${p.x} ${p.y}` : `${p.node}${p.x1} ${p.y1} ${p.x2} ${p.y2} ${p.x} ${p.y}`)).join("") + "Z";
@@ -86,7 +89,6 @@ const BoothText = ({ t, j, lineHeight, opacity, boothWidth }) => {
     </text>
   );
 };
-
 const Booth = ({ d, size, handleBoothClick }) => {
   const dispatch = useDispatch();
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
@@ -94,25 +96,36 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const colors = useSelector((state) => state.elementStatus.colors);
   const width = useSelector((state) => state.tooltip.width);
   const margin = useSelector((state) => state.tooltip.margin);
+  const selectedBooths = useSelector((state) => state.selectedBooths);
   const fontSize = size * d.size;
+  const textShift = { x: d?.shift?.x || 0, y: d?.shift?.y || 0 };
   const lineHeight = fontSize * 1.2;
   const opacity = boothInfo && boothInfoData.id === d.id ? 1 : d.opacity;
   const { category } = useParams();
+  const handleBoothSelected = () => {
+    const prev = store.getState().selectedBooths;
+    dispatch(setStore({ selectedBooths: prev.includes(d.id) ? prev : [...prev, d.id] }));
+  };
   const handleAreaPage = ({ clientX, clientY }) => {
-    if (category !== "areas") return;
     const isLeft = clientX < window.innerWidth / 2;
     const x = isLeft ? clientX + margin : clientX - width - margin;
     dispatch(setTooltip({ x: x, y: clientY }));
   };
+  const handleMouseMove = (e) => {
+    e.ctrlKey && boothInfo && handleBoothSelected();
+    category === "areas" && handleAreaPage(e);
+  };
+  const activeTooltip = () => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, text: d.text.join(""), active: true }));
+  const initialTooltip = () => dispatch(setTooltip({ id: "", cat: "", text: "", active: false }));
   return (
-    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={() => handleBoothClick(d)} onMouseMove={handleAreaPage} onMouseEnter={() => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, text: d.text.join(""), active: true }))} onMouseLeave={() => dispatch(setTooltip({ id: "", cat: "", text: "", active: false }))}>
+    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""} ${selectedBooths.includes(d.id) ? "selected" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={() => handleBoothClick(d)} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
       <path stroke={"black"} fill={colors.scale(d.cat)} strokeWidth={1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />;
-      <g transform={`translate(${d.w / 2},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2})`} fontSize={fontSize}>
+      <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
         {d.text.map((t, j) => (
           <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} opacity={opacity} boothWidth={d.w} />
         ))}
       </g>
-      <text className="booth-id" fill="black" fillOpacity={opacity} fontSize={size * 0.3} x={20} y={d.h - 20}>
+      <text className="booth-id" fill="black" fillOpacity={opacity} fontSize={size * 0.3} x={20 + textShift.x} y={d.h - 20 + textShift.y}>
         {d.id}
       </text>
     </g>

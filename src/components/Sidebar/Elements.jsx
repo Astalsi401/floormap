@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, searchChange } from "@store";
-import { zoomCalculator, dragCalculator } from "@functions";
+import { manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, searchChange, setStore } from "@store";
+import { zoomCalculator, dragCalculator, getSearchParam } from "@functions";
 
 export const Advanced = () => {
   const advanced = useSelector((state) => state.elementStatus.advanced);
@@ -38,10 +38,10 @@ export const Search = () => {
   const checkText = (targetElements) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace("臺", "台"));
   const getFilterData = () =>
     data.reduce((res, d) => {
-      const tags = d.tag[lang];
+      const tags = d.tag[lang] || [];
       const corps = d.corps ? d.corps.map((corp) => corp.org[lang]) : [];
       const infos = d.corps ? d.corps.map((corp) => corp.info[lang]) : [];
-      const text = d.text[lang];
+      const text = d.text[lang] || [];
       const cat = d.cat[lang];
       const topic = d.topic[lang];
       const targets = [d.id, text.join(""), cat, topic, ...tags];
@@ -234,7 +234,9 @@ const BoothInfoDetail = () => {
   const mapText = useSelector((state) => state.mapText);
   const types = useSelector((state) => state.types);
   const data = useSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type));
+  const selectedBooths = useSelector((state) => state.selectedBooths);
   const { type, text, org, id, floor, cat, topic, tag, info, event, note, corpId } = boothInfoData;
+  const edit = getSearchParam("edit");
   const isBooth = type === "booth";
   const loc = isBooth ? [cat, topic] : [note];
   const tags = Object.keys(boothInfoData).length === 0 ? [] : [...loc, ...tag].filter((d) => d !== "");
@@ -253,6 +255,24 @@ const BoothInfoDetail = () => {
         <div className="fp-result-item-loc text-small">{isBooth ? `${id} / ${floor}F` : `${floor}F`}</div>
       </div>
       <div className="p-2 text-large">{org}</div>
+      {edit === 1 && (
+        <div className="fp-selected-booths p-2">
+          <div className="">已選擇的攤位：</div>
+          <button className="fp-btn" onClick={() => dispatch(setStore({ selectedBooths: [] }))}>
+            reset
+          </button>
+          <button className="fp-btn" onClick={() => navigator.clipboard.writeText(`"booths": [${selectedBooths.map((d) => `"${d}"`).join(", ")}], `)}>
+            save
+          </button>
+          <div className="fp-booth-tags d-flex flex-wrap p-2">
+            {selectedBooths.map((boothID) => (
+              <div key={`selected-booth-${boothID}`} className="fp-input-tag shadow text-small">
+                {boothID}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
       <div className="fp-booth-tags d-flex flex-wrap p-2">
         {tags.map((tag) => (
           <div key={`BoothInfoDetail-${corpId}-${tag}`} className="fp-input-tag shadow text-small" style={{ "--cat": colors.scale(tag) }} onClick={() => handleTagClick(tag)}>
