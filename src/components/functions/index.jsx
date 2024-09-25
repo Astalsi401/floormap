@@ -25,20 +25,18 @@ export class ColorPicker {
 }
 
 export const getMapElems = async ({ params: { year, category } }) => {
-  const data = async () => {
-    return {
-      elems: await fetch(`${import.meta.env.BASE_URL}/assets/json/elems.json`)
-        .then((res) => res.json())
-        .catch(() => []),
-      boothInfo: await fetch(`${import.meta.env.BASE_URL}/assets/json/${year}/${category}.json`)
-        .then((res) => res.json())
-        .catch(() => []),
-      boothPos: await fetch(`${import.meta.env.BASE_URL}/assets/json/boothPos.json`)
-        .then((res) => res.json())
-        .catch(() => []),
-    };
+  const data = {
+    elems: await fetch(`${import.meta.env.BASE_URL}/assets/json/elems.json`)
+      .then((res) => res.json())
+      .catch(() => []),
+    boothInfo: await fetch(import.meta.env.MODE === "development" ? `http://192.168.1.50:3002/api/booths/${year}` : `${import.meta.env.BASE_URL}/assets/json/${year}/${category}.json`)
+      .then((res) => res.json())
+      .catch(() => []),
+    boothPos: await fetch(`${import.meta.env.BASE_URL}/assets/json/boothPos.json`)
+      .then((res) => res.json())
+      .catch(() => []),
   };
-  return defer({ data: data() });
+  return defer({ data });
 };
 
 const prevTranslateScale = (svg) => {
@@ -104,7 +102,7 @@ export const boothData = ({ boothInfo, elems, boothPos }) => {
         const minY = pos.length > 0 ? Math.min(...pos.map((d) => d.y)) : d1.y;
         const start = pos.find((d) => d.x === Math.min(...pos.filter((d) => d.y === minY).map((d) => d.x)) && d.y === minY);
         filter.push(...(info?.booths ? info.booths.filter((d) => d !== d1.id) : []));
-        return { ...d1, ...info, w, h, x: pos.length > 0 ? start.x : d1.x, y: pos.length > 0 ? start.y : d1.y, p: pos.length > 0 ? path : defaultPath };
+        return { ...d1, ...info, w, h, x: info?.x || pos.length > 0 ? start.x : d1.x, y: info?.y || pos.length > 0 ? start.y : d1.y, p: info?.p || pos.length > 0 ? path : defaultPath };
       })
       .filter((d) => !filter.includes(d.id) && (edit === 1 || d?.text)),
     ...elems,

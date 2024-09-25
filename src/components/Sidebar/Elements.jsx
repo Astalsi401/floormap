@@ -149,21 +149,19 @@ const Category = ({ title, col }) => {
   );
 };
 
-const FilterIcon = () => {
-  return (
-    <>
-      <span />
-      <svg width="100%" height="100%" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-        <defs>
-          <path id="filter-bar" d="M0 0H350A20 20 90 1 1 350 40H0A20 20 90 1 1 0 0" />
-        </defs>
-        <use xlinkHref="#filter-bar" x={75} y={100} />
-        <use xlinkHref="#filter-bar" x={75} y={230} />
-        <use xlinkHref="#filter-bar" x={75} y={360} />
-      </svg>
-    </>
-  );
-};
+const FilterIcon = () => (
+  <>
+    <span />
+    <svg width="100%" height="100%" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <path id="filter-bar" d="M0 0H350A20 20 90 1 1 350 40H0A20 20 90 1 1 0 0" />
+      </defs>
+      <use xlinkHref="#filter-bar" x={75} y={100} />
+      <use xlinkHref="#filter-bar" x={75} y={230} />
+      <use xlinkHref="#filter-bar" x={75} y={360} />
+    </svg>
+  </>
+);
 
 const Result = ({ d, svgRef, graphRef }) => {
   const dispatch = useDispatch();
@@ -228,13 +226,9 @@ const Event = ({ timeList, title, topic, active }) => {
 };
 
 const BoothInfoDetail = () => {
-  const dispatch = useDispatch();
-  const colors = useSelector((state) => state.elementStatus.colors);
   const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);
-  const mapText = useSelector((state) => state.mapText);
   const types = useSelector((state) => state.types);
   const data = useSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type));
-  const selectedBooths = useSelector((state) => state.selectedBooths);
   const { type, text, org, id, floor, cat, topic, tag, info, event, note, corpId } = boothInfoData;
   const edit = getSearchParam("edit");
   const isBooth = type === "booth";
@@ -243,11 +237,6 @@ const BoothInfoDetail = () => {
   const booth = data.find((d) => d.id === id);
   const corps = booth && booth.corps ? booth.corps : [];
   const events = event.filter((d) => d.title !== "");
-  const handleTagClick = (value) => {
-    dispatch(setSearchCondition({ tag: value, string: "" }));
-    dispatch(setElementStatus({ boothInfo: false }));
-  };
-  const handleCorpClick = (corpId) => dispatch(setElementStatus({ boothInfoData: data.find((d) => d.corpId === corpId) }));
   return (
     <div className="fp-info pb-5">
       <div className="fp-info-item d-flex align-items-center px-2 py-1">
@@ -255,60 +244,95 @@ const BoothInfoDetail = () => {
         <div className="fp-result-item-loc text-small">{isBooth ? `${id} / ${floor}F` : `${floor}F`}</div>
       </div>
       <div className="p-2 text-large">{org}</div>
-      {edit === 1 && (
-        <div className="fp-selected-booths p-2">
-          <div className="">已選擇的攤位：</div>
-          <button className="fp-btn" onClick={() => dispatch(setStore({ selectedBooths: [] }))}>
-            reset
-          </button>
-          <button className="fp-btn" onClick={() => navigator.clipboard.writeText(`"booths": [${selectedBooths.map((d) => `"${d}"`).join(", ")}], `)}>
-            save
-          </button>
-          <div className="fp-booth-tags d-flex flex-wrap p-2">
-            {selectedBooths.map((boothID) => (
-              <div key={`selected-booth-${boothID}`} className="fp-input-tag shadow text-small">
-                {boothID}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+      {edit === 1 && <SelectedBooths />}
+      <BoothTags tags={tags} corpId={corpId} />
+      {corps.length > 1 && <BoothCoprs corps={corps} corpId={corpId} />}
+      {info && <BoothDescribe info={info} corpId={corpId} />}
+      {events.length > 0 && <BoothEvents events={events} />}
+    </div>
+  );
+};
+
+const SelectedBooths = () => {
+  const dispatch = useDispatch();
+  const selectedBooths = useSelector((state) => state.selectedBooths);
+  const reset = () => dispatch(setStore({ selectedBooths: [] }));
+  const copy = () => navigator.clipboard.writeText(`"booths": [${selectedBooths.map((d) => `"${d}"`).join(", ")}], `);
+  return (
+    <div className="fp-selected-booths p-2">
+      <div className="">已選擇的攤位：</div>
+      <button className="fp-btn" onClick={reset}>
+        reset
+      </button>
+      <button className="fp-btn" onClick={copy}>
+        save
+      </button>
       <div className="fp-booth-tags d-flex flex-wrap p-2">
-        {tags.map((tag) => (
-          <div key={`BoothInfoDetail-${corpId}-${tag}`} className="fp-input-tag shadow text-small" style={{ "--cat": colors.scale(tag) }} onClick={() => handleTagClick(tag)}>
-            {tag}
+        {selectedBooths.map((boothID) => (
+          <div key={`selected-booth-${boothID}`} className="fp-input-tag shadow text-small">
+            {boothID}
           </div>
         ))}
       </div>
-      {corps.length > 1 && (
-        <div className="p-2">
-          <div className="my-1 text-large">{mapText.exhibitor}</div>
-          <div className="my-1 fp-booth-tags d-flex flex-wrap">
-            {corps.map((d) => (
-              <div key={`BoothInfoDetail-${d.corpId}`} className="fp-input-tag shadow text-small" style={{ "--cat": d.corpId === corpId ? "rgb(0, 0, 128, 0.3)" : colors.scale("") }} onClick={() => handleCorpClick(d.corpId)}>
-                {d.org}
-              </div>
-            ))}
+    </div>
+  );
+};
+
+const BoothTags = ({ tags, corpId }) => {
+  const dispatch = useDispatch();
+  const colors = useSelector((state) => state.elementStatus.colors);
+  const handleTagClick = (value) => {
+    dispatch(setSearchCondition({ tag: value, string: "" }));
+    dispatch(setElementStatus({ boothInfo: false }));
+  };
+  return (
+    <div className="fp-booth-tags d-flex flex-wrap p-2">
+      {tags.map((tag) => (
+        <div key={`BoothInfoDetail-${corpId}-${tag}`} className="fp-input-tag shadow text-small" style={{ "--cat": colors.scale(tag) }} onClick={() => handleTagClick(tag)}>
+          {tag}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const BoothCoprs = ({ corps, corpId }) => {
+  const dispatch = useDispatch();
+  const exhibitor = useSelector((state) => state.mapText.exhibitor);
+  const colors = useSelector((state) => state.elementStatus.colors);
+  const handleCorpClick = (corpId) => dispatch(setElementStatus({ boothInfoData: data.find((d) => d.corpId === corpId) }));
+  return (
+    <div className="p-2">
+      <div className="my-1 text-large">{exhibitor}</div>
+      <div className="my-1 fp-booth-tags d-flex flex-wrap">
+        {corps.map((d) => (
+          <div key={`BoothInfoDetail-${d.corpId}`} className="fp-input-tag shadow text-small" style={{ "--cat": d.corpId === corpId ? "rgb(0, 0, 128, 0.3)" : colors.scale("") }} onClick={() => handleCorpClick(d.corpId)}>
+            {d.org}
           </div>
-        </div>
-      )}
-      {info && (
-        <div className="p-2 text-small">
-          {info.split("\n").map((d, i) => (
-            <div key={`BoothInfoDetail-describe-${corpId}-${d}-${i}`}>{d}</div>
-          ))}
-        </div>
-      )}
-      {events.length > 0 && (
-        <div className="p-2">
-          <div className="my-1 text-large">{mapText.activity}</div>
-          <div className="my-1">
-            {events.map((d, i) => (
-              <Event key={`BoothInfoDetail-event-${d.title}-${i}`} {...d} />
-            ))}
-          </div>
-        </div>
-      )}
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const BoothDescribe = ({ info, corpId }) => (
+  <div className="p-2 text-small">
+    {info.split("\n").map((d, i) => (
+      <div key={`BoothInfoDetail-describe-${corpId}-${d}-${i}`}>{d}</div>
+    ))}
+  </div>
+);
+
+const BoothEvents = ({ events }) => {
+  const activity = useSelector((state) => state.mapText.activity);
+  return (
+    <div className="p-2">
+      <div className="my-1 text-large">{activity}</div>
+      <div className="my-1">
+        {events.map((d, i) => (
+          <Event key={`BoothInfoDetail-event-${d.title}-${i}`} {...d} />
+        ))}
+      </div>
     </div>
   );
 };
