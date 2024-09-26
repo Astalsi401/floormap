@@ -95,10 +95,10 @@ export const boothData = ({ boothInfo, elems, boothPos }) => {
         const h = info?.h || (pos.length > 1 ? colMode * 300 : d1.h);
         const minY = pos.length > 1 ? Math.min(...pos.map((d) => d.y)) : d1.y;
         const start = pos.find((d) => d.x === Math.min(...pos.filter((d) => d.y === minY).map((d) => d.x)) && d.y === minY);
-        filter.push(...(info?.booths ? info.booths.filter((d) => d !== d1.id) : []));
+        filter.push(...(info?.booths?.filter((d) => d !== d1.id) || []));
         return { ...d1, ...info, w, h, x: info?.x || pos.length > 1 ? start.x : d1.x, y: info?.y || pos.length > 1 ? start.y : d1.y, p: path };
       })
-      .filter((d) => !filter.includes(d.id) && (edit === 1 || d?.text)),
+      .filter((d) => !filter.includes(d.id) && (edit === 1 || d?.cat?.tc?.length > 0 || d?.booths?.length > 0)),
     ...elems,
   ];
 };
