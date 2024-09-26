@@ -27,7 +27,6 @@ const FloormapApp = () => {
   const svgRef = useRef(null);
   const data = useAsyncValue();
   const { category } = useParams();
-
   useEffect(() => {
     dispatch(setData({ data: boothData(data) }));
     dispatch(pageLoad());

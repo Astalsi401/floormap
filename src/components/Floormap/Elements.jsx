@@ -2,12 +2,13 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { icon_base64 } from "@icons";
+import { getSearchParam } from "@functions";
 import store, { setElementStatus, setTooltip, setStore } from "@store";
 
 export const Elements = ({ type, size }) => {
   const dispatch = useDispatch();
   const floor = useSelector((state) => state.searchCondition.floor);
-  const data = useSelector((state) => state.floorData.filterData).filter((d) => d.floor === floor && d.draw);
+  const data = useSelector((state) => state.floorData.filterData).filter((d) => String(d.floor) === floor && d.draw && d.type === type);
   const distance = useSelector((state) => state.elementStatus.dragStatus.distance);
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
   const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);
@@ -23,7 +24,7 @@ export const Elements = ({ type, size }) => {
     distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoData.id === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
     dispatch(setStore({ selectedBooths: d.booths || [] }));
   };
-  return <g className={`${type}-g`}>{data.filter((d) => d.type === type).map((d, i) => elementActions[type](d, i))}</g>;
+  return <g className={`${type}-g`}>{data.map((d, i) => elementActions[type](d, i))}</g>;
 };
 const drawPath = (path) => path.map((p) => (p.node === "L" ? `${p.node}${p.x} ${p.y}` : `${p.node}${p.x1} ${p.y1} ${p.x2} ${p.y2} ${p.x} ${p.y}`)).join("") + "Z";
 const Wall = ({ d }) => <path stroke="black" fill={d.fill} strokeWidth={d.strokeWidth} d={`M${d.x} ${d.y}${drawPath(d.p)}`} />;
@@ -97,14 +98,17 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const width = useSelector((state) => state.tooltip.width);
   const margin = useSelector((state) => state.tooltip.margin);
   const selectedBooths = useSelector((state) => state.selectedBooths);
+  const edit = getSearchParam("edit") === 1;
+  const selected = edit && boothInfo && selectedBooths.includes(d.id);
   const fontSize = size * d.size;
   const textShift = { x: d?.shift?.x || 0, y: d?.shift?.y || 0 };
   const lineHeight = fontSize * 1.2;
   const opacity = boothInfo && boothInfoData.id === d.id ? 1 : d.opacity;
   const { category } = useParams();
-  const handleBoothSelected = () => {
+  const handleBoothSelected = ({ ctrlKey, shiftKey }) => {
     const prev = store.getState().selectedBooths;
-    dispatch(setStore({ selectedBooths: prev.includes(d.id) ? prev : [...prev, d.id] }));
+    ctrlKey && dispatch(setStore({ selectedBooths: prev.includes(d.id) ? prev : [...prev, d.id] }));
+    shiftKey && dispatch(setStore({ selectedBooths: prev.filter((select) => select !== d.id) }));
   };
   const handleAreaPage = ({ clientX, clientY }) => {
     const isLeft = clientX < window.innerWidth / 2;
@@ -112,14 +116,15 @@ const Booth = ({ d, size, handleBoothClick }) => {
     dispatch(setTooltip({ x: x, y: clientY }));
   };
   const handleMouseMove = (e) => {
-    e.ctrlKey && boothInfo && handleBoothSelected();
+    edit && boothInfo && handleBoothSelected(e);
     category === "areas" && handleAreaPage(e);
   };
+  const handleClick = () => handleBoothClick(d);
   const activeTooltip = () => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, text: d.text.join(""), active: true }));
   const initialTooltip = () => dispatch(setTooltip({ id: "", cat: "", text: "", active: false }));
   return (
-    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""} ${selectedBooths.includes(d.id) ? "selected" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={() => handleBoothClick(d)} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
-      <path stroke={"black"} fill={colors.scale(d.cat)} strokeWidth={1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />;
+    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""} ${selected ? "selected" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={handleClick} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
+      <path stroke={selected ? "red" : "black"} fill={selected ? "red" : colors.scale(d.cat)} strokeWidth={selected ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />;
       <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
         {d.text.map((t, j) => (
           <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} opacity={opacity} boothWidth={d.w} />

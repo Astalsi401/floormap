@@ -47,7 +47,7 @@ const counterSlice = createSlice({
       dragStatus: { moving: false, distance: 0 },
     },
     mapText: {},
-    floorData: { loaded: false, data: [], memoData: [], filterData: [] },
+    floorData: { loaded: false, data: [], filterData: [] },
     types: ["booth", "room"],
     tooltip: { width: 200, margin: 20 },
     selectedBooths: [],

@@ -81,28 +81,22 @@ export const getSearchParam = (name) => Number(new URL(window.location.href).sea
 
 export const boothData = ({ boothInfo, elems, boothPos }) => {
   const edit = getSearchParam("edit");
-  const defaultPath = [
-    { node: "L", x: 300, y: 0 },
-    { node: "L", x: 300, y: 300 },
-    { node: "L", x: 0, y: 300 },
-  ];
   const filter = [];
   return [
     ...boothPos
       .map((d1) => {
         const info = boothInfo.find((d2) => d1.id === d2.id);
-        const pos = boothPos.filter((d) => info?.booths?.includes(d.id)).map((d) => ({ x: d.x, y: d.y }));
-        const path = boothPath(pos);
+        const { pos, path } = pathDraw(boothPos, info);
         const yGroup = Object.groupBy(pos, (d) => d.y);
         const xGroup = Object.groupBy(pos, (d) => d.x);
         const { key: rowMode } = boothMode(yGroup);
         const { key: colMode } = boothMode(xGroup);
-        const w = info?.w || (pos.length > 0 ? rowMode * 300 : d1.w);
-        const h = info?.h || (pos.length > 0 ? colMode * 300 : d1.h);
-        const minY = pos.length > 0 ? Math.min(...pos.map((d) => d.y)) : d1.y;
+        const w = info?.w || (pos.length > 1 ? rowMode * 300 : d1.w);
+        const h = info?.h || (pos.length > 1 ? colMode * 300 : d1.h);
+        const minY = pos.length > 1 ? Math.min(...pos.map((d) => d.y)) : d1.y;
         const start = pos.find((d) => d.x === Math.min(...pos.filter((d) => d.y === minY).map((d) => d.x)) && d.y === minY);
         filter.push(...(info?.booths ? info.booths.filter((d) => d !== d1.id) : []));
-        return { ...d1, ...info, w, h, x: info?.x || pos.length > 0 ? start.x : d1.x, y: info?.y || pos.length > 0 ? start.y : d1.y, p: info?.p || pos.length > 0 ? path : defaultPath };
+        return { ...d1, ...info, w, h, x: info?.x || pos.length > 1 ? start.x : d1.x, y: info?.y || pos.length > 1 ? start.y : d1.y, p: path };
       })
       .filter((d) => !filter.includes(d.id) && (edit === 1 || d?.text)),
     ...elems,
@@ -110,6 +104,17 @@ export const boothData = ({ boothInfo, elems, boothPos }) => {
 };
 
 const boothMode = (posGroup) => Object.entries(Object.entries(posGroup).reduce((acc, [k, v]) => ({ ...acc, [v.length]: (acc[v.length] || 0) + 1 }), {})).reduce((acc, [k, v]) => ({ max: acc.max > v ? acc.max : v, key: acc.max > v ? acc.key : k }), { max: 0 });
+
+const pathDraw = (boothPos, info) => {
+  const defaultPath = [
+    { node: "L", x: 300, y: 0 },
+    { node: "L", x: 300, y: 300 },
+    { node: "L", x: 0, y: 300 },
+  ];
+  const pos = boothPos.filter((d) => info?.booths?.includes(d.id)).map((d) => ({ x: d.x, y: d.y }));
+  const path = info?.p.length > 0 ? info.p : pos.length > 1 ? boothPath(pos) : defaultPath;
+  return { pos, path };
+};
 
 const boothPath = (pos) => {
   let path = [];
@@ -146,4 +151,31 @@ const currentValue = (pos, key) => {
 const addPath = (path, val, prev, boothLen) => {
   const prevPath = path[path.length - 1];
   return val === prev ? [...path, { node: "L", x: prevPath.x, y: prevPath.y + boothLen }] : [...path, { node: "L", x: prevPath.x + (val - prev), y: prevPath.y }, { node: "L", x: prevPath.x + (val - prev), y: prevPath.y + boothLen }];
+};
+
+const checkText = (targetElements, regex) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace("臺", "台"));
+export const getFilterData = ({ data, types, tag, lang, regex }) => {
+  return data.reduce((res, d) => {
+    const tags = d.tag ? d.tag[lang] : [];
+    const corps = d.corps ? d.corps.map((corp) => corp.org[lang]) : [];
+    const infos = d.corps ? d.corps.map((corp) => corp.info[lang]) : [];
+    const text = d.text ? d.text[lang] : [];
+    const cat = d.cat ? d.cat[lang] : "";
+    const topic = d.topic ? d.topic[lang] : "";
+    const targets = [d.id, text.join(""), cat, topic, ...tags];
+    const isType = types.includes(d.type);
+    const hasTag = isType && tag.length === 0 ? true : [d.id, cat, topic, ...tags].includes(tag);
+    let hasText = isType && checkText([...targets, ...infos, ...corps], regex);
+    const opacity = (hasText && hasTag) || d.type === "icon" ? 0.8 : 0.1;
+    const events = d.event ? d.event.map((e) => ({ ...e, title: e.title[lang], topic: e.topic[lang] })) : [];
+    if (d.corps && d.corps.length > 0) {
+      d.corps.forEach((corp, i) => {
+        hasText = checkText([...targets, corp.info[lang], corp.org[lang]], regex);
+        res.push({ ...d, ...corp, text: text, size: d.size[lang], cat: cat, topic: topic, corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity: opacity, draw: i === 0, sidebar: hasText && hasTag });
+      });
+    } else {
+      res.push({ ...d, text: text, size: d.size ? d.size[lang] : 1, cat: cat, topic: topic, tag: tags, event: events, opacity: opacity, draw: true, sidebar: isType });
+    }
+    return res;
+  }, []);
 };

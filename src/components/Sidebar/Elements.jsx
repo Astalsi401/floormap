@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, searchChange, setStore } from "@store";
-import { zoomCalculator, dragCalculator, getSearchParam } from "@functions";
+import { manualToggleElement, toggleElement, setSearchCondition, setElementStatus, regexAsync, searchChange, setStore, setData } from "@store";
+import { zoomCalculator, dragCalculator, getSearchParam, getMapElems, boothData, getFilterData } from "@functions";
 
 export const Advanced = () => {
   const advanced = useSelector((state) => state.elementStatus.advanced);
@@ -35,37 +36,12 @@ export const Search = () => {
     dispatch(manualToggleElement({ name: "advanced", value: false }));
     dispatch(setSearchCondition({ [name]: value }));
   };
-  const checkText = (targetElements) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace("臺", "台"));
-  const getFilterData = () =>
-    data.reduce((res, d) => {
-      const tags = d.tag[lang] || [];
-      const corps = d.corps ? d.corps.map((corp) => corp.org[lang]) : [];
-      const infos = d.corps ? d.corps.map((corp) => corp.info[lang]) : [];
-      const text = d.text[lang] || [];
-      const cat = d.cat[lang];
-      const topic = d.topic[lang];
-      const targets = [d.id, text.join(""), cat, topic, ...tags];
-      const isType = types.includes(d.type);
-      const hasTag = isType && tag.length === 0 ? true : [d.id, cat, topic, ...tags].includes(tag);
-      let hasText = isType && checkText([...targets, ...infos, ...corps]);
-      const opacity = (hasText && hasTag) || d.type === "icon" ? 0.8 : 0.1;
-      const events = d.event ? d.event.map((e) => ({ ...e, title: e.title[lang], topic: e.topic[lang] })) : [];
-      if (d.corps.length > 0) {
-        d.corps.forEach((corp, i) => {
-          hasText = checkText([...targets, corp.info[lang], corp.org[lang]]);
-          res.push({ ...d, ...corp, text: text, size: d.size[lang], cat: d.cat[lang], topic: d.topic[lang], corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity: opacity, draw: i === 0, sidebar: hasText && hasTag });
-        });
-      } else {
-        res.push({ ...d, text: text, size: d.size[lang], cat: d.cat[lang], topic: d.topic[lang], tag: tags, event: events, opacity: opacity, draw: true, sidebar: isType });
-      }
-      return res;
-    }, []);
   useEffect(() => {
     if (inputTimer) return;
     dispatch(regexAsync());
   }, [string, inputTimer]);
   useEffect(() => {
-    dispatch(searchChange({ data: getFilterData() }));
+    dispatch(searchChange({ data: getFilterData({ data, types, tag, lang, regex }) }));
   }, [tag, floor, lang, regex]);
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -98,7 +74,7 @@ export const ResultList = ({ svgRef, graphRef }) => {
   return (
     <div className="fp-result pb-5">
       {data.map((d) => (
-        <Result key={`Result-${d.corpId ? d.corpId : d.id}`} d={d} svgRef={svgRef} graphRef={graphRef} />
+        <Result key={`Result-${d.corpId || d.id}`} d={d} svgRef={svgRef} graphRef={graphRef} />
       ))}
     </div>
   );
@@ -244,7 +220,7 @@ const BoothInfoDetail = () => {
         <div className="fp-result-item-loc text-small">{isBooth ? `${id} / ${floor}F` : `${floor}F`}</div>
       </div>
       <div className="p-2 text-large">{org}</div>
-      {edit === 1 && <SelectedBooths />}
+      {edit === 1 && <SelectedBooths id={id} />}
       <BoothTags tags={tags} corpId={corpId} />
       {corps.length > 1 && <BoothCoprs corps={corps} corpId={corpId} />}
       {info && <BoothDescribe info={info} corpId={corpId} />}
@@ -253,18 +229,35 @@ const BoothInfoDetail = () => {
   );
 };
 
-const SelectedBooths = () => {
+const SelectedBooths = ({ id }) => {
   const dispatch = useDispatch();
   const selectedBooths = useSelector((state) => state.selectedBooths);
+  const { regex, tag, lang } = useSelector((state) => state.searchCondition);
+  const types = useSelector((state) => state.types);
+  const { year, category } = useParams();
   const reset = () => dispatch(setStore({ selectedBooths: [] }));
-  const copy = () => navigator.clipboard.writeText(`"booths": [${selectedBooths.map((d) => `"${d}"`).join(", ")}], `);
+  const save = async () => {
+    navigator.clipboard.writeText(`"booths": [${selectedBooths.map((d) => `"${d}"`).join(", ")}], `);
+    import.meta.env.MODE === "development" &&
+      (await fetch(`http://localhost:3002/api/add-selected-booth/${year}/${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json; charset=utf-8" },
+        body: JSON.stringify(selectedBooths),
+      }));
+    let {
+      data: { data },
+    } = await getMapElems({ params: { year, category } });
+    data = boothData(data);
+    dispatch(setData({ data }));
+    dispatch(searchChange({ data: getFilterData({ data, types, tag, lang, regex }) }));
+  };
   return (
     <div className="fp-selected-booths p-2">
       <div className="">已選擇的攤位：</div>
       <button className="fp-btn" onClick={reset}>
         reset
       </button>
-      <button className="fp-btn" onClick={copy}>
+      <button className="fp-btn" onClick={save}>
         save
       </button>
       <div className="fp-booth-tags d-flex flex-wrap p-2">
