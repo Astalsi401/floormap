@@ -238,7 +238,7 @@ const SelectedBooths = ({ id }) => {
   const reset = () => dispatch(setStore({ selectedBooths: [] }));
   const save = async () => {
     import.meta.env.MODE === "development" &&
-      (await fetch(`http://localhost:3002/api/add-selected-booth/${year}/${id}`, {
+      (await fetch(`http://192.168.1.50:3002/api/add-selected-booth/${year}/${id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json; charset=utf-8" },
         body: JSON.stringify(selectedBooths),
