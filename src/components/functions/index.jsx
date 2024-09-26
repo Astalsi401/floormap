@@ -102,20 +102,17 @@ export const boothData = ({ boothInfo, elems, boothPos }) => {
     ...elems,
   ];
 };
-
-const boothMode = (posGroup) => Object.entries(Object.entries(posGroup).reduce((acc, [k, v]) => ({ ...acc, [v.length]: (acc[v.length] || 0) + 1 }), {})).reduce((acc, [k, v]) => ({ max: acc.max > v ? acc.max : v, key: acc.max > v ? acc.key : k }), { max: 0 });
-
 const pathDraw = (boothPos, info) => {
   const defaultPath = [
     { node: "L", x: 300, y: 0 },
     { node: "L", x: 300, y: 300 },
     { node: "L", x: 0, y: 300 },
   ];
-  const pos = boothPos.filter((d) => info?.booths?.includes(d.id)).map((d) => ({ x: d.x, y: d.y }));
+  const pos = boothPos.filter((d) => (info?.booths ? info?.booths?.includes(d.id) : false)).map((d) => ({ x: d.x, y: d.y }));
   const path = info?.p.length > 0 ? info.p : pos.length > 1 ? boothPath(pos) : defaultPath;
   return { pos, path };
 };
-
+const boothMode = (posGroup) => Object.entries(Object.entries(posGroup).reduce((acc, [k, v]) => ({ ...acc, [v.length]: (acc[v.length] || 0) + 1 }), {})).reduce((acc, [k, v]) => ({ max: acc.max > v ? acc.max : v, key: acc.max > v ? acc.key : k }), { max: 0 });
 const boothPath = (pos) => {
   let path = [];
   const posGroup = Object.groupBy(pos, (d) => d.y);
