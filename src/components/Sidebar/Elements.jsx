@@ -237,7 +237,6 @@ const SelectedBooths = ({ id }) => {
   const { year, category } = useParams();
   const reset = () => dispatch(setStore({ selectedBooths: [] }));
   const save = async () => {
-    navigator.clipboard.writeText(`"booths": [${selectedBooths.map((d) => `"${d}"`).join(", ")}], `);
     import.meta.env.MODE === "development" &&
       (await fetch(`http://localhost:3002/api/add-selected-booth/${year}/${id}`, {
         method: "POST",
