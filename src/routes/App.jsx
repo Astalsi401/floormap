@@ -1,7 +1,7 @@
 import { Suspense, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLoaderData, Await, useParams, useAsyncValue } from "react-router-dom";
-import { resizeAsync, manualToggleElement, pageLoad, setData } from "@store";
+import { resizeAsync, setElementStatus, pageLoad, setData } from "@store";
 import { Header, Sidebar, Floormap, Tooltip, Loading } from "@components";
 import { boothData } from "@functions";
 
@@ -52,7 +52,7 @@ const FloormapApp = () => {
           <div className="fp-main" style={{ "--sidebar-width": `${sidebarWidth}px`, "--tags-height": `${tagsHeight}px` }}>
             <Sidebar graphRef={graphRef} svgRef={svgRef} />
             <Header />
-            <div className="fp-graph d-flex align-items-center" onClick={() => smallScreen && dispatch(manualToggleElement({ name: "sidebar", value: false }))}>
+            <div className="fp-graph d-flex align-items-center" onClick={() => smallScreen && dispatch(setElementStatus({ sidebar: false }))}>
               <Floormap graphRef={graphRef} svgRef={svgRef} />
             </div>
           </div>

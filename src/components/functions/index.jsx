@@ -29,7 +29,7 @@ export const getMapElems = async ({ params: { year, category } }) => {
     elems: await fetch(`${import.meta.env.BASE_URL}/assets/json/elems.json`)
       .then((res) => res.json())
       .catch(() => []),
-    boothInfo: await fetch(import.meta.env.MODE === "development" ? `http://192.168.1.50:3002/api/booths/${year}` : `${import.meta.env.BASE_URL}/assets/json/${year}/${category}.json`)
+    boothInfo: await fetch(import.meta.env.MODE === "development" ? `${import.meta.env.VITE_SERVER_URL}/api/booths/${year}` : `${import.meta.env.BASE_URL}/assets/json/${year}/${category}.json`)
       .then((res) => res.json())
       .catch(() => []),
     boothPos: await fetch(`${import.meta.env.BASE_URL}/assets/json/boothPos.json`)
@@ -98,7 +98,7 @@ export const boothData = ({ boothInfo, elems, boothPos }) => {
         filter.push(...(info?.booths?.filter((d) => d !== d1.id) || []));
         return { ...d1, ...info, w, h, x: info?.x || pos.length > 1 ? start.x : d1.x, y: info?.y || pos.length > 1 ? start.y : d1.y, p: path };
       })
-      .filter((d) => !filter.includes(d.id) && (edit === 1 || d?.cat?.tc?.length > 0 || d?.booths?.length > 0)),
+      .filter((d) => !filter.includes(d.id) && (edit === 1 || d?.cat?.tc?.length > 0 || d?.booths?.length > 0)), //   刪除已包含在其他攤位的攤位、非編輯模式下隱藏未設定展區(cat)與booths的攤位
     ...elems,
   ];
 };
@@ -171,10 +171,10 @@ export const getFilterData = ({ data, types, tag, lang, regex }) => {
     if (d.corps && d.corps.length > 0) {
       d.corps.forEach((corp, i) => {
         hasText = checkText([...targets, corp.info[lang], corp.org[lang]], regex);
-        res.push({ ...d, ...corp, text: text, size: d.size[lang], cat: cat, topic: topic, corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity: opacity, draw: i === 0, sidebar: hasText && hasTag });
+        res.push({ ...d, ...corp, text: text, size: d?.size?.[lang] || 1, cat: cat, topic: topic, corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity: opacity, draw: i === 0, sidebar: hasText && hasTag });
       });
     } else {
-      res.push({ ...d, text: text, size: d.size ? d.size[lang] : 1, cat: cat, topic: topic, tag: tags, event: events, opacity: opacity, draw: true, sidebar: isType });
+      res.push({ ...d, text: text, size: d?.size?.[lang] || 1, cat: cat, topic: topic, tag: tags, event: events, opacity: opacity, draw: true, sidebar: isType });
     }
     return res;
   }, []);

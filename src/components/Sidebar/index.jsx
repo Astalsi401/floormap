@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { manualToggleElement } from "@store";
+import { setElementStatus } from "@store";
 import { Search, Advanced, ResultList, BoothInfo } from "./Elements";
 
 export const Sidebar = ({ svgRef, graphRef }) => {
@@ -9,7 +9,7 @@ export const Sidebar = ({ svgRef, graphRef }) => {
   const smallScreen = useSelector((state) => state.elementStatus.smallScreen);
   const { category } = useParams();
   return (
-    <div className={`fp-sidebar shadow ${sidebar ? "active" : ""} ${category === "areas" ? "d-none" : ""}`} onClick={() => dispatch(manualToggleElement({ name: "sidebar", value: true }))}>
+    <div className={`fp-sidebar shadow ${sidebar ? "active" : ""} ${category === "areas" ? "d-none" : ""}`} onClick={() => dispatch(setElementStatus({ sidebar: true }))}>
       <Search />
       {(sidebar || smallScreen) && (
         <>

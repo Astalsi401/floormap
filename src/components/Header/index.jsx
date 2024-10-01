@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { manualToggleElement, setSearchCondition } from "@store";
+import { setSearchCondition, setElementStatus } from "@store";
 import { resetViewbox } from "@functions";
 
 export const Header = () => {
@@ -51,7 +51,7 @@ export const Header = () => {
           </svg>
         </div>
       </div>
-      <div className="gap-1 d-flex flex-wrap align-items-center">
+      <div className="py-1 gap-1 d-flex flex-wrap align-items-center">
         <div>{mapText.header}：</div>
         {tags.map((tag) => (
           <div
@@ -60,7 +60,7 @@ export const Header = () => {
             style={{ "--cat": colors.scale(tag) }}
             onClick={() => {
               dispatch(setSearchCondition({ tag }));
-              dispatch(manualToggleElement({ name: "boothInfo", value: false }));
+              dispatch(setElementStatus({ boothInfo: false }));
             }}
           >
             {tag}

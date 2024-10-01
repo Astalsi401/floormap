@@ -3,11 +3,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { icon_base64 } from "@icons";
 import { getSearchParam } from "@functions";
-import store, { setElementStatus, setTooltip, setStore } from "@store";
+import store, { setElementStatus, setTooltip, setEditForm, initEditForm } from "@store";
 
 export const Elements = ({ type, size }) => {
   const dispatch = useDispatch();
   const floor = useSelector((state) => state.searchCondition.floor);
+  const lang = useSelector((state) => state.searchCondition.lang);
   const data = useSelector((state) => state.floorData.filterData).filter((d) => String(d.floor) === floor && d.draw && d.type === type);
   const distance = useSelector((state) => state.elementStatus.dragStatus.distance);
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
@@ -22,7 +23,7 @@ export const Elements = ({ type, size }) => {
   };
   const handleBoothClick = (d) => {
     distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoData.id === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
-    dispatch(setStore({ selectedBooths: d.booths || [] }));
+    initEditForm({ id: d.id })(dispatch);
   };
   return <g className={`${type}-g`}>{data.map((d, i) => elementActions[type](d, i))}</g>;
 };
@@ -97,18 +98,18 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const colors = useSelector((state) => state.elementStatus.colors);
   const width = useSelector((state) => state.tooltip.width);
   const margin = useSelector((state) => state.tooltip.margin);
-  const selectedBooths = useSelector((state) => state.selectedBooths);
+  const booths = useSelector((state) => state.editForm.booths);
   const edit = getSearchParam("edit") === 1;
-  const selected = edit && boothInfo && selectedBooths.includes(d.id);
+  const selected = edit && boothInfo && booths.includes(d.id);
   const fontSize = size * d.size;
   const textShift = { x: d?.shift?.x || 0, y: d?.shift?.y || 0 };
   const lineHeight = fontSize * 1.2;
   const opacity = boothInfo && boothInfoData.id === d.id ? 1 : d.opacity;
   const { category } = useParams();
   const handleBoothSelected = ({ ctrlKey, shiftKey }) => {
-    const prev = store.getState().selectedBooths;
-    ctrlKey && dispatch(setStore({ selectedBooths: prev.includes(d.id) ? prev : [...prev, d.id] }));
-    shiftKey && dispatch(setStore({ selectedBooths: prev.filter((select) => select !== d.id) }));
+    const prev = store.getState().editForm.booths;
+    ctrlKey && dispatch(setEditForm({ booths: prev.includes(d.id) ? prev : [...prev, d.id] }));
+    shiftKey && dispatch(setEditForm({ booths: prev.filter((select) => select !== d.id) }));
   };
   const handleAreaPage = ({ clientX, clientY }) => {
     const isLeft = clientX < window.innerWidth / 2;
@@ -124,7 +125,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const initialTooltip = () => dispatch(setTooltip({ id: "", cat: "", text: "", active: false }));
   return (
     <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""} ${selected ? "selected" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={handleClick} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
-      <path stroke={selected ? "red" : "black"} fill={selected ? "red" : colors.scale(d.cat)} strokeWidth={selected ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />;
+      <path stroke={selected ? "rgb(207, 97, 97)" : "black"} fill={selected ? "rgb(207, 97, 97)" : colors.scale(d.cat)} strokeWidth={selected ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />;
       <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
         {d.text.map((t, j) => (
           <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} opacity={opacity} boothWidth={d.w} />
