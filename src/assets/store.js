@@ -1,10 +1,14 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import { ColorPicker } from "@functions";
+import { ColorPicker, getMapElems, getFilterData, boothData } from "@functions";
 
+export const areas = {
+  tc: ["全齡健康展區", "年度主題館", "醫療機構展區", "智慧醫療展區", "精準醫療展區"],
+  en: ["Consumer Health Products", "Featured Pavilions", "Medical Institutes & Hospitals", "Medical Devices & Equipment", "Diagnostics, Laboratory Equipment & Services"],
+};
 const defaultMapText = {
   categories: {
-    tc: ["全齡健康展區", "年度主題館", "醫療機構展區", "智慧醫療展區", "精準醫療展區", "活動進行中"],
-    en: ["Consumer Health Products", "Featured Pavilions", "Medical Institutes & Hospitals", "Medical Devices & Equipment", "Diagnostics, Laboratory Equipment & Services", "Event in progress"],
+    tc: [...areas.tc, "活動進行中"],
+    en: [...areas.en, "Event in progress"],
   },
   link: { tc: "zh", en: "en" },
   title: { tc: "展場平面圖", en: "Floor Plan" },
@@ -50,13 +54,14 @@ const counterSlice = createSlice({
     floorData: { loaded: false, data: [], filterData: [] },
     types: ["booth", "room"],
     tooltip: { width: 200, margin: 20 },
-    selectedBooths: [],
+    editForm: {},
   },
   reducers: {
     setData: (state, { payload: { data } }) => {
       state.floorData.data = data.map((d, i) => {
         let eventTime = [],
           textFormat = { tc: [], en: [] },
+          textString = { tc: "", en: "" },
           tags = d.tag ? d.tag : textFormat;
         if (d.event) {
           const now = new Date();
@@ -76,7 +81,7 @@ const counterSlice = createSlice({
           }));
           tags = eventTime.some((e) => e.active) ? { tc: [...tags.tc, mapText.event.tc], en: [...tags.en, mapText.event.en] } : tags;
         }
-        return { ...d, id: d.id ? d.id : `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat ? d.cat : textFormat, topic: d.topic ? d.topic : { tc: "", en: "" }, tag: tags, text: d.text ? d.text : textFormat, size: d.size ? d.size : { tc: 1, en: 1 }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${d.id}-${i}` })) : [] };
+        return { ...d, id: d.id || `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat || textString, topic: d.topic || textString, tag: tags, text: d.text || textFormat, size: d.size || { tc: 1, en: 1 }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${corp._id}-${i}` || `${d.id}-${i}` })) : [] };
       });
       state.floorData.loaded = true;
     },
@@ -157,15 +162,17 @@ const counterSlice = createSlice({
         state.elementStatus.dragStatus[key] = payload[key];
       });
     },
-    manualToggleElement: (state, { payload: { name, value } }) => {
-      state.elementStatus[name] = value;
-    },
     toggleElement: (state, { payload: { name } }) => {
       state.elementStatus[name] = !state.elementStatus[name];
     },
     setTooltip: (state, { payload }) => {
       Object.keys(payload).forEach((key) => {
         state.tooltip[key] = payload[key];
+      });
+    },
+    setEditForm: (state, { payload }) => {
+      Object.keys(payload).forEach((key) => {
+        state.editForm[key] = payload[key];
       });
     },
     setStore: (state, { payload }) => {
@@ -182,6 +189,28 @@ const store = configureStore({
 });
 
 export default store;
-export const { setTooltip, resize, pageLoad, setData, searchChange, toggleElement, manualToggleElement, setSearchCondition, setElementStatus, setDragStatus, setStore } = counterSlice.actions;
+export const { setTooltip, resize, pageLoad, setData, searchChange, toggleElement, setSearchCondition, setElementStatus, setDragStatus, setStore, setEditForm } = counterSlice.actions;
 export const resizeAsync = () => (dispatch) => setTimeout(() => dispatch(resize()), 50);
 export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
+export const initEditForm =
+  ({ id }) =>
+  (dispatch) => {
+    const { booths, text, cat, corps } = store.getState().floorData.data.find((d) => d.id === id);
+    dispatch(setEditForm({ booths, text, cat, corps }));
+    // dispatch(setEditForm({ booths: booths || [], text: { [lang]: text }, cat: { [lang]: cat, [lang_]: areas[lang_][areas[lang].indexOf(cat)] }, corps: corps || [] }));
+  };
+export const saveEditForm =
+  ({ year, category, id, types, tag, lang, regex }) =>
+  async (dispatch) => {
+    await fetch(`${import.meta.env.VITE_SERVER_URL}/api/update-booth/${year}/${id}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify(store.getState().editForm),
+    });
+    let {
+      data: { data },
+    } = await getMapElems({ params: { year, category } });
+    data = boothData(data);
+    dispatch(setData({ data }));
+    dispatch(searchChange({ data: getFilterData({ data, types, tag, lang, regex }) }));
+  };
