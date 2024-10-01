@@ -335,3 +335,25 @@
     transform: translateX(100%);
   }
 }
+
+.fp-selected-category {
+  select {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+  }
+}
+
+.edit-icon {
+  cursor: pointer;
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+[data-placeholder]:empty:before {
+  content: attr(data-placeholder);
+  color: var(--fp-unactive);
+  font-style: italic;
+}
