@@ -21,7 +21,6 @@ const Result = ({ d, svgRef, graphRef }) => {
   const sidebar = useSelector((state) => state.elementStatus.sidebar);
   const sidebarWidth = useSelector((state) => state.elementStatus.sidebarWidth);
   const tagsHeight = useSelector((state) => state.elementStatus.tagsHeight);
-  const lang = useSelector((state) => state.searchCondition.lang);
   const isBooth = d.type === "booth";
   const id = isBooth ? `${d.id}-${d.org}` : `${d.text.join("")}-${d.floor}`;
   const bg = isBooth ? colors.scale(d.cat) : "#acacac";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import store, { setSearchCondition, setElementStatus, initEditForm } from "@store";
+import { setSearchCondition, setElementStatus, initEditForm } from "@store";
 
 export const BoothTags = ({ tags, corpId }) => {
   const dispatch = useDispatch();
