@@ -8,7 +8,6 @@ import store, { setElementStatus, setTooltip, setEditForm, initEditForm } from "
 export const Elements = ({ type, size }) => {
   const dispatch = useDispatch();
   const floor = useSelector((state) => state.searchCondition.floor);
-  const lang = useSelector((state) => state.searchCondition.lang);
   const data = useSelector((state) => state.floorData.filterData).filter((d) => String(d.floor) === floor && d.draw && d.type === type);
   const distance = useSelector((state) => state.elementStatus.dragStatus.distance);
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
