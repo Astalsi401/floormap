@@ -106,7 +106,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const opacity = boothInfo && boothInfoData.id === d.id ? 1 : d.opacity;
   const { category } = useParams();
   const handleBoothSelected = ({ ctrlKey, shiftKey }) => {
-    const prev = store.getState().editForm.booths;
+    const prev = store.getState().editForm.booths || [];
     ctrlKey && dispatch(setEditForm({ booths: prev.includes(d.id) ? prev : [...prev, d.id] }));
     shiftKey && dispatch(setEditForm({ booths: prev.filter((select) => select !== d.id) }));
   };
