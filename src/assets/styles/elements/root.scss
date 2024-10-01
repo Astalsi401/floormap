@@ -99,12 +99,24 @@ $index: (tools, tags, sidebar);
   }
 }
 
+@each $side, $side-value in (w: width, h: height) {
+  @each $value in (25, 50, 75, 100) {
+    .#{$side}-#{$value} {
+      #{$side-value}: calc(1% * #{$value});
+    }
+  }
+}
+
 .gap-1 {
   gap: 5px;
 }
 
 .shadow {
   box-shadow: 0 0 var(--fp-sidebar-px) var(--fp-unactive);
+}
+
+.shadow-inset {
+  box-shadow: inset 0 0 1px var(--fp-unactive);
 }
 
 * {
