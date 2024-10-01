@@ -15,7 +15,7 @@ export const SelectedBooths = () => {
         reset
       </button>
       <div className="fp-booth-tags d-flex flex-wrap py-2">
-        {booths.map((boothID) => (
+        {booths?.map((boothID) => (
           <div key={`selected-booth-${boothID}`} className="fp-input-tag shadow text-small">
             {boothID}
           </div>
@@ -32,7 +32,7 @@ export const SelectedCategory = () => {
   const editCat = useSelector((state) => state.editForm.cat)[lang];
   const handleChange = ({ target: { value } }) => {
     const lang_ = lang === "tc" ? "en" : "tc";
-    dispatch(setEditForm({ ...store.getState().editForm, cat: { [lang]: value, [lang_]: areas[lang_][areas[lang].indexOf(value)] } }));
+    dispatch(setEditForm({ cat: { [lang]: value, [lang_]: areas[lang_][areas[lang].indexOf(value)] } }));
   };
   return (
     <div className="fp-selected-category p-2">

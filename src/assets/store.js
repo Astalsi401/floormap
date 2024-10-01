@@ -197,7 +197,6 @@ export const initEditForm =
   (dispatch) => {
     const { booths, text, cat, corps } = store.getState().floorData.data.find((d) => d.id === id);
     dispatch(setEditForm({ booths, text, cat, corps }));
-    // dispatch(setEditForm({ booths: booths || [], text: { [lang]: text }, cat: { [lang]: cat, [lang_]: areas[lang_][areas[lang].indexOf(cat)] }, corps: corps || [] }));
   };
 export const saveEditForm =
   ({ year, category, id, types, tag, lang, regex }) =>

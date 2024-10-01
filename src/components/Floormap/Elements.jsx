@@ -99,7 +99,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const margin = useSelector((state) => state.tooltip.margin);
   const booths = useSelector((state) => state.editForm.booths);
   const edit = getSearchParam("edit") === 1;
-  const selected = edit && boothInfo && booths.includes(d.id);
+  const selected = edit && boothInfo && booths?.includes(d.id);
   const fontSize = size * d.size;
   const textShift = { x: d?.shift?.x || 0, y: d?.shift?.y || 0 };
   const lineHeight = fontSize * 1.2;
