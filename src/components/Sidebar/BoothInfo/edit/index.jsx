@@ -85,9 +85,15 @@ export const BoothName = ({ className, name, value, placeholder }) => {
   return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
 };
 
-const EditIcon = () => (
-  <svg className="edit-icon mx-1" fill="none" viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" xmlns="http://www.w3.org/2000/svg">
-    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-  </svg>
-);
+export const FontSize = () => {
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state.searchCondition.lang);
+  const size = useSelector((state) => state.editForm.size)[lang];
+  const handleChange = (e) => dispatch(setEditForm({ size: { ...store.getState().editForm.size, [lang]: Number(e.target.value) } }));
+  return (
+    <div className="fp-edit-fontsize p-2">
+      字體大小: {size}
+      <input className="d-block w-100" type="range" min={0.3} max={1} step={0.05} value={size} onChange={handleChange} />
+    </div>
+  );
+};

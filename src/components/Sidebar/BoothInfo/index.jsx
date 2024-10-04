@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setElementStatus } from "@store";
 import { getSearchParam } from "@functions";
-import { BoothName, SelectedBooths, SelectedCategory, SelectedSave } from "./edit";
+import { BoothName, SelectedBooths, SelectedCategory, SelectedSave, FontSize } from "./edit";
 import { BoothTags, BoothCoprs, BoothDescribe, BoothEvents } from "./normal";
 
 export const BoothInfo = () => {
@@ -35,12 +35,13 @@ const BoothInfoDetail = () => {
   return (
     <div className="fp-info pb-5">
       <div className="fp-info-item d-flex align-items-center px-2 py-1">
-        {isEdit && isHost ? <BoothName className="fp-result-item-name text-x-large text-bold" name="text" value={text} placeholder="請輸入單位簡稱" /> : <div className="fp-result-item-name text-x-large text-bold">{text.join("")}</div>}
+        {isBooth && isEdit && isHost ? <BoothName className="fp-result-item-name text-x-large text-bold" name="text" value={text} placeholder="請輸入單位簡稱" /> : <div className="fp-result-item-name text-x-large text-bold">{text.join("")}</div>}
         <div className="fp-result-item-loc text-small">{isBooth ? `${id} / ${floor}F` : `${floor}F`}</div>
       </div>
       <div className="p-2 text-large">{org}</div>
-      {isEdit && isHost && <SelectedBooths />}
-      {isEdit && isHost && <SelectedCategory />}
+      {isBooth && isEdit && isHost && <FontSize id={id} />}
+      {isBooth && isEdit && isHost && <SelectedBooths />}
+      {isBooth && isEdit && isHost && <SelectedCategory />}
       {!isEdit && <BoothTags tags={tags} corpId={corpId} />}
       {corps.length > 1 && <BoothCoprs corps={corps} corpId={corpId} data={data} />}
       {info && <BoothDescribe info={info} corpId={corpId} />}

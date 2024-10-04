@@ -98,9 +98,11 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const width = useSelector((state) => state.tooltip.width);
   const margin = useSelector((state) => state.tooltip.margin);
   const booths = useSelector((state) => state.editForm.booths);
+  const lang = useSelector((state) => state.searchCondition.lang);
+  const editSize = useSelector((state) => state.editForm?.size?.[lang]);
   const edit = getSearchParam("edit") === 1;
   const selected = edit && boothInfo && booths?.includes(d.id);
-  const fontSize = size * d.size;
+  const fontSize = size * (boothInfoData.id === d.id ? editSize || d.size : d.size);
   const textShift = { x: d?.shift?.x || 0, y: d?.shift?.y || 0 };
   const lineHeight = fontSize * 1.2;
   const opacity = boothInfo && boothInfoData.id === d.id ? 1 : d.opacity;
@@ -124,7 +126,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const initialTooltip = () => dispatch(setTooltip({ id: "", cat: "", text: "", active: false }));
   return (
     <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""} ${selected ? "selected" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={handleClick} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
-      <path stroke={selected ? "rgb(207, 97, 97)" : "black"} fill={selected ? "rgb(207, 97, 97)" : colors.scale(d.cat)} strokeWidth={selected ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />;
+      <path stroke={selected ? "rgb(207, 97, 97)" : "black"} fill={selected ? "rgb(207, 97, 97)" : colors.scale(d.cat)} strokeWidth={selected ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />
       <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
         {d.text.map((t, j) => (
           <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} opacity={opacity} boothWidth={d.w} />

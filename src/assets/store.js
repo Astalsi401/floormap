@@ -195,8 +195,8 @@ export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearc
 export const initEditForm =
   ({ id }) =>
   (dispatch) => {
-    const { booths, text, cat, corps } = store.getState().floorData.data.find((d) => d.id === id);
-    dispatch(setEditForm({ booths, text, cat, corps }));
+    const { booths, text, cat, corps, size } = store.getState().floorData.data.find((d) => d.id === id);
+    dispatch(setEditForm({ booths, text, cat, corps, size }));
   };
 export const saveEditForm =
   ({ year, category, id, types, tag, lang, regex }) =>
