@@ -1,7 +1,7 @@
 import { Suspense, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLoaderData, Await, useParams, useAsyncValue } from "react-router-dom";
-import { resizeAsync, setElementStatus, pageLoad, setData } from "@store";
+import { resizeAsync, setElementStatus, pageLoadAsync, setData } from "@store";
 import { Header, Sidebar, Floormap, Tooltip, Loading } from "@components";
 import { boothData } from "@functions";
 
@@ -29,7 +29,7 @@ const FloormapApp = () => {
   const { category } = useParams();
   useEffect(() => {
     dispatch(setData({ data: boothData(data) }));
-    dispatch(pageLoad());
+    dispatch(pageLoadAsync());
     dispatch(resizeAsync());
     window.addEventListener("resize", () => dispatch(resizeAsync()));
     return () => window.removeEventListener("resize", () => dispatch(resizeAsync()));

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleElement, setElementStatus, setSearchCondition, regexAsync, searchChange } from "@store";
+import { setElementStatus, setSearchCondition, regexAsync, searchChange } from "@store";
 import { getFilterData } from "@functions";
 
 export const Search = () => {
@@ -35,7 +35,7 @@ export const Search = () => {
   }, [string, tag, floor, lang]);
   return (
     <div className="fp-search d-flex align-items-center justify-content-center">
-      <div className={`fp-filter px-1 ${advanced ? "active" : ""}`} onClick={() => dispatch(toggleElement({ name: "advanced" }))}>
+      <div className={`fp-filter px-1 ${advanced ? "active" : ""}`} onClick={() => dispatch(setElementStatus({ advanced: !store.getState().elementStatus.advanced }))}>
         <FilterIcon />
       </div>
       <div className="fp-input d-flex flex-wrap align-items-center px-1">

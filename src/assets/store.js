@@ -86,26 +86,6 @@ const counterSlice = createSlice({
       });
       state.floorData.loaded = true;
     },
-    pageLoad: (state) => {
-      const params = new URLSearchParams(window.location.search);
-      state.searchCondition = {
-        string: params.get("string") || state.searchCondition.string,
-        regex: params.get("regex") || state.searchCondition.regex,
-        tag: params.get("tag") || state.searchCondition.tag,
-        floor: params.get("floor") || state.searchCondition.floor,
-        lang: params.get("lang") || (/^zh/i.test(navigator.language) ? "tc" : "en"),
-      };
-      state.mapText = Object.keys(defaultMapText).reduce((acc, key) => {
-        acc[key] = defaultMapText[key][state.searchCondition.lang];
-        return acc;
-      }, {});
-      state.elementStatus = {
-        ...state.elementStatus,
-        isMobile: /windows phone|android|iPad|iPhone|iPod/i.test(navigator.userAgent || window.opera),
-        height: window.innerHeight - state.elementStatus.tagsHeight,
-        colors: new ColorPicker(["rgba(237,125,49,0.6)", "rgba(153,204,255,1)", "rgba(255,255,0,0.6)", "rgba(0,112,192,0.6)", "rgba(112,48,160,0.6)", "rgb(128, 0, 75, 0.2)"], state.mapText.categories, "rgba(255,255,255)"),
-      };
-    },
     setSearchCondition: (state, { payload }) => {
       Object.keys(payload).forEach((key) => {
         switch (key) {
@@ -163,9 +143,6 @@ const counterSlice = createSlice({
         state.elementStatus.dragStatus[key] = payload[key];
       });
     },
-    toggleElement: (state, { payload: { name } }) => {
-      state.elementStatus[name] = !state.elementStatus[name];
-    },
     setTooltip: (state, { payload }) => {
       Object.keys(payload).forEach((key) => {
         state.tooltip[key] = payload[key];
@@ -190,7 +167,21 @@ const store = configureStore({
 });
 
 export default store;
-export const { setTooltip, resize, pageLoad, setData, searchChange, toggleElement, setSearchCondition, setElementStatus, setDragStatus, setStore, setEditForm } = counterSlice.actions;
+export const { setTooltip, resize, setData, searchChange, setSearchCondition, setElementStatus, setDragStatus, setStore, setEditForm } = counterSlice.actions;
+export const pageLoadAsync = () => (dispatch) => {
+  const { string, regex, tag, floor } = store.getState().searchCondition;
+  const params = new URLSearchParams(window.location.search);
+  dispatch(setSearchCondition({ string: params.get("string") || string, regex: params.get("regex") || regex, tag: params.get("tag") || tag, floor: params.get("floor") || floor, lang: params.get("lang") || (/^zh/i.test(navigator.language) ? "tc" : "en") }));
+  dispatch(
+    setStore({
+      mapText: Object.keys(defaultMapText).reduce((acc, key) => {
+        acc[key] = defaultMapText[key][store.getState().searchCondition.lang];
+        return acc;
+      }, {}),
+    })
+  );
+  dispatch(setElementStatus({ isMobile: /windows phone|android|iPad|iPhone|iPod/i.test(navigator.userAgent || window.opera), height: window.innerHeight - store.getState().elementStatus.tagsHeight, colors: new ColorPicker(["rgba(237,125,49,0.6)", "rgba(153,204,255,1)", "rgba(255,255,0,0.6)", "rgba(0,112,192,0.6)", "rgba(112,48,160,0.6)", "rgb(128, 0, 75, 0.2)"], store.getState().mapText.categories, "rgba(255,255,255)") }));
+};
 export const resizeAsync = () => (dispatch) => setTimeout(() => dispatch(resize()), 50);
 export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
 export const initEditForm =

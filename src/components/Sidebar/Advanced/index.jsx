@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { toggleElement, setSearchCondition } from "@store";
+import store, { setElementStatus, setSearchCondition } from "@store";
 
 export const Advanced = () => {
   const advanced = useSelector((state) => state.elementStatus.advanced);
@@ -35,7 +35,7 @@ const Category = ({ title, col }) => {
             className="fp-category px-4 py-1"
             onClick={() => {
               dispatch(setSearchCondition({ tag: d }));
-              dispatch(toggleElement({ name: "advanced" }));
+              dispatch(setElementStatus({ advanced: !store.getState().elementStatus.advanced }));
             }}
           >
             {d} ({sum[d]})
