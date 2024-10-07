@@ -64,10 +64,10 @@ const Room = ({ d, i, size, handleBoothClick }) => {
     </g>
   );
 };
-const BoothText = ({ t, j, lineHeight, opacity, boothWidth }) => {
+const BoothText = ({ t, j, lineHeight, fontSize, opacity, boothWidth }) => {
   const textRef = useRef();
-  const [text, setText] = useState(t);
   const getTextWidth = useCallback(() => {
+    textRef.current.textContent = t;
     let self = textRef.current,
       textLength = self.getComputedTextLength(),
       txt = self.textContent;
@@ -79,16 +79,9 @@ const BoothText = ({ t, j, lineHeight, opacity, boothWidth }) => {
     return txt;
   });
   useEffect(() => {
-    setText(t);
-  }, [t]);
-  useEffect(() => {
     getTextWidth();
-  }, [text]);
-  return (
-    <text key={`key-${j}`} ref={textRef} textAnchor="middle" fontWeight="bold" fill="black" fillOpacity={opacity} y={j * lineHeight}>
-      {text}
-    </text>
-  );
+  }, [t, fontSize]);
+  return <text key={`key-${j}`} ref={textRef} textAnchor="middle" fontWeight="bold" fill="black" fillOpacity={opacity} y={j * lineHeight} />;
 };
 const Booth = ({ d, size, handleBoothClick }) => {
   const dispatch = useDispatch();
@@ -129,7 +122,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
       <path stroke={selected ? "rgb(207, 97, 97)" : "black"} fill={selected ? "rgb(207, 97, 97)" : colors.scale(d.cat)} strokeWidth={selected ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />
       <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
         {d.text.map((t, j) => (
-          <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} opacity={opacity} boothWidth={d.w} />
+          <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} fontSize={fontSize} opacity={opacity} boothWidth={d.w} />
         ))}
       </g>
       <text className="booth-id" fill="black" fillOpacity={opacity} fontSize={size * 0.3} x={20 + textShift.x} y={d.h - 20 + textShift.y}>
