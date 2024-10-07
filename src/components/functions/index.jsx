@@ -1,4 +1,5 @@
 import { defer } from "react-router-dom";
+import { defaultFontSize } from "@store";
 
 export class ColorPicker {
   constructor(colors_, categories_, unknow_) {
@@ -171,10 +172,10 @@ export const getFilterData = ({ data, types, tag, lang, regex }) => {
     if (d.corps && d.corps.length > 0) {
       d.corps.forEach((corp, i) => {
         hasText = checkText([...targets, corp.info[lang], corp.org[lang]], regex);
-        res.push({ ...d, ...corp, text: text, size: d?.size?.[lang] || 1, cat: cat, topic: topic, corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity: opacity, draw: i === 0, sidebar: hasText && hasTag });
+        res.push({ ...d, ...corp, text: text, size: d?.size?.[lang] || defaultFontSize, cat: cat, topic: topic, corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity: opacity, draw: i === 0, sidebar: hasText && hasTag });
       });
     } else {
-      res.push({ ...d, text: text, size: d?.size?.[lang] || 1, cat: cat, topic: topic, tag: tags, event: events, opacity: opacity, draw: true, sidebar: isType });
+      res.push({ ...d, text: text, size: d?.size?.[lang] || defaultFontSize, cat: cat, topic: topic, tag: tags, event: events, opacity: opacity, draw: true, sidebar: isType });
     }
     return res;
   }, []);
