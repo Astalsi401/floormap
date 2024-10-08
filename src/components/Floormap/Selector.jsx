@@ -11,7 +11,7 @@ export const Selector = ({ graphRef, svgRef }) => {
   };
   return (
     <>
-      <div className="fp-select-floor shadow" onChange={({ target: { name, value } }) => dispatch(setSearchCondition({ [name]: value }))}>
+      <div className="fp-select-floor shadow">
         {["4", "1"].map((d) => (
           <label key={`floor-${d}`}>
             <input type="radio" name="floor" value={d} checked={searchCondition.floor === d} onChange={({ target: { name, value } }) => dispatch(setSearchCondition({ [name]: value }))} />
