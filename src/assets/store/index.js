@@ -3,9 +3,44 @@ import { ColorPicker, getMapElems, getFilterData, boothData } from "@functions";
 
 export default store;
 export { defaultMapText, defaultFontSize, areas };
-export const { setData, setFloorData, setSearchCondition, setElementStatus, setDragStatus, setStore, setTooltip, setEditForm } = actions;
+export const { setFloorData, setSearchCondition, setElementStatus, setDragStatus, setStore, setTooltip, setEditForm } = actions;
 
 const mapTextLangChange = (lang) => Object.keys(defaultMapText).reduce((acc, key) => ({ ...acc, [key]: defaultMapText[key][lang] }), {});
+
+export const dataFormat =
+  ({ data }) =>
+  (dispatch) => {
+    dispatch(
+      setFloorData({
+        data: data.map((d, i) => {
+          let eventTime = [],
+            textFormat = { tc: [], en: [] },
+            textString = { tc: "", en: "" },
+            tags = d.tag ? d.tag : textFormat;
+          if (d.event) {
+            const now = new Date();
+            eventTime = d.event.map((e) => ({
+              ...e,
+              timeList: e.timeList.map((time) => ({ start: new Date(time.start), end: new Date(time.end) })),
+              active: e.timeList.some((time) => {
+                const start = new Date(time.start);
+                const end = new Date(time.end);
+                const nowDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+                const startDate = new Date(`${start.getFullYear()}-${start.getMonth() + 1}-${start.getDate()} 00:00:00`);
+                const endDate = new Date(`${end.getFullYear()}-${end.getMonth() + 1}-${end.getDate()} 23:59:59`);
+                const startTime = new Date(`${nowDate} ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}`);
+                const endTime = new Date(`${nowDate} ${end.getHours()}:${end.getMinutes()}:${end.getSeconds()}`);
+                return startDate < now && now < endDate && startTime < now && now < endTime && (e.title.tc.length > 0 || e.title.en.length > 0);
+              }),
+            }));
+            tags = eventTime.some((e) => e.active) ? { tc: [...tags.tc, mapText.event.tc], en: [...tags.en, mapText.event.en] } : tags;
+          }
+          return { ...d, id: d.id || `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat || textString, topic: d.topic || textString, tag: tags, text: d.text || textFormat, size: d.size || { tc: defaultFontSize, en: defaultFontSize }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${corp._id}-${i}` || `${d.id}-${i}` })) : [] };
+        }),
+        loaded: true,
+      })
+    );
+  };
 
 export const pageLoadAsync = () => (dispatch) => {
   const { string, regex, tag, floor, lang } = store.getState().searchCondition;
@@ -55,10 +90,7 @@ export const saveEditForm =
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(store.getState().editForm),
     });
-    let {
-      data: { data },
-    } = await getMapElems({ params: { year, category } });
-    data = boothData(data);
-    dispatch(setData({ data }));
+    const data = await getMapElems({ params: { year, category } }).then(({ data: { data } }) => boothData(data));
+    dataFormat({ data })(dispatch);
     searchChangeAsync({ filterData: getFilterData({ data, types, tag, lang, regex }) })(dispatch);
   };

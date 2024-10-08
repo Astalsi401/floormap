@@ -58,42 +58,10 @@ const counterSlice = createSlice({
     editForm: {},
   },
   reducers: {
-    setData: (state, { payload: { data } }) => {
-      state.floorData.data = data.map((d, i) => {
-        let eventTime = [],
-          textFormat = { tc: [], en: [] },
-          textString = { tc: "", en: "" },
-          tags = d.tag ? d.tag : textFormat;
-        if (d.event) {
-          const now = new Date();
-          eventTime = d.event.map((e) => ({
-            ...e,
-            timeList: e.timeList.map((time) => ({ start: new Date(time.start), end: new Date(time.end) })),
-            active: e.timeList.some((time) => {
-              const start = new Date(time.start);
-              const end = new Date(time.end);
-              const nowDate = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
-              const startDate = new Date(`${start.getFullYear()}-${start.getMonth() + 1}-${start.getDate()} 00:00:00`);
-              const endDate = new Date(`${end.getFullYear()}-${end.getMonth() + 1}-${end.getDate()} 23:59:59`);
-              const startTime = new Date(`${nowDate} ${start.getHours()}:${start.getMinutes()}:${start.getSeconds()}`);
-              const endTime = new Date(`${nowDate} ${end.getHours()}:${end.getMinutes()}:${end.getSeconds()}`);
-              return startDate < now && now < endDate && startTime < now && now < endTime && (e.title.tc.length > 0 || e.title.en.length > 0);
-            }),
-          }));
-          tags = eventTime.some((e) => e.active) ? { tc: [...tags.tc, mapText.event.tc], en: [...tags.en, mapText.event.en] } : tags;
-        }
-        return { ...d, id: d.id || `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat || textString, topic: d.topic || textString, tag: tags, text: d.text || textFormat, size: d.size || { tc: defaultFontSize, en: defaultFontSize }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${corp._id}-${i}` || `${d.id}-${i}` })) : [] };
-      });
-      state.floorData.loaded = true;
-    },
-    setFloorData: (state, { payload }) => {
-      Object.keys(payload).forEach((key) => {
-        state.floorData[key] = payload[key];
-      });
-    },
-    setSearchCondition: (state, { payload }) => {
-      Object.keys(payload).forEach((key) => {
-        switch (key) {
+    setFloorData: (state, { payload }) => Object.entries(payload).forEach(([k, v]) => (state.floorData[k] = v)),
+    setSearchCondition: (state, { payload }) =>
+      Object.entries(payload).forEach(([k, v]) => {
+        switch (k) {
           case "regex":
             state.searchCondition.regex = new RegExp(
               regexEscape(state.searchCondition.string.replace("臺", "台"))
@@ -105,35 +73,14 @@ const counterSlice = createSlice({
             );
             break;
           default:
-            state.searchCondition[key] = payload[key];
+            state.searchCondition[k] = v;
         }
-      });
-    },
-    setElementStatus: (state, { payload }) => {
-      Object.keys(payload).forEach((key) => {
-        state.elementStatus[key] = payload[key];
-      });
-    },
-    setDragStatus: (state, { payload }) => {
-      Object.keys(payload).forEach((key) => {
-        state.elementStatus.dragStatus[key] = payload[key];
-      });
-    },
-    setTooltip: (state, { payload }) => {
-      Object.keys(payload).forEach((key) => {
-        state.tooltip[key] = payload[key];
-      });
-    },
-    setEditForm: (state, { payload }) => {
-      Object.keys(payload).forEach((key) => {
-        state.editForm[key] = payload[key];
-      });
-    },
-    setStore: (state, { payload }) => {
-      Object.keys(payload).forEach((key) => {
-        state[key] = payload[key];
-      });
-    },
+      }),
+    setElementStatus: (state, { payload }) => Object.entries(payload).forEach(([k, v]) => (state.elementStatus[k] = v)),
+    setDragStatus: (state, { payload }) => Object.entries(payload).forEach(([k, v]) => (state.elementStatus.dragStatus[k] = v)),
+    setTooltip: (state, { payload }) => Object.entries(payload).forEach(([k, v]) => (state.tooltip[k] = v)),
+    setEditForm: (state, { payload }) => Object.entries(payload).forEach(([k, v]) => (state.editForm[k] = v)),
+    setStore: (state, { payload }) => Object.entries(payload).forEach(([k, v]) => (state[k] = v)),
   },
 });
 
