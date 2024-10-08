@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setElementStatus, setSearchCondition, regexAsync, searchChange } from "@store";
+import store, { setElementStatus, setSearchCondition, regexAsync, searchChangeAsync } from "@store";
 import { getFilterData } from "@functions";
 
 export const Search = () => {
@@ -26,7 +26,7 @@ export const Search = () => {
     dispatch(regexAsync());
   }, [string, inputTimer]);
   useEffect(() => {
-    dispatch(searchChange({ data: getFilterData({ data, types, tag, lang, regex }) }));
+    searchChangeAsync({ filterData: getFilterData({ data, types, tag, lang, regex }) })(dispatch);
   }, [tag, floor, lang, regex]);
   useEffect(() => {
     const url = new URL(window.location.href);

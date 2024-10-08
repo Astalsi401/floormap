@@ -1,12 +1,12 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
-import { ColorPicker, getMapElems, getFilterData, boothData } from "@functions";
+import { ColorPicker } from "@functions";
 
 export const defaultFontSize = 0.45;
 export const areas = {
   tc: ["全齡健康展區", "年度主題館", "醫療機構展區", "智慧醫療展區", "精準醫療展區"],
   en: ["Consumer Health Products", "Featured Pavilions", "Medical Institutes & Hospitals", "Medical Devices & Equipment", "Diagnostics, Laboratory Equipment & Services"],
 };
-const defaultMapText = {
+export const defaultMapText = {
   categories: {
     tc: [...areas.tc, "活動進行中"],
     en: [...areas.en, "Event in progress"],
@@ -86,6 +86,11 @@ const counterSlice = createSlice({
       });
       state.floorData.loaded = true;
     },
+    setFloorData: (state, { payload }) => {
+      Object.keys(payload).forEach((key) => {
+        state.floorData[key] = payload[key];
+      });
+    },
     setSearchCondition: (state, { payload }) => {
       Object.keys(payload).forEach((key) => {
         switch (key) {
@@ -103,35 +108,6 @@ const counterSlice = createSlice({
             state.searchCondition[key] = payload[key];
         }
       });
-    },
-    searchChange: (state, { payload: { data } }) => {
-      state.floorData.filterData = data;
-      state.mapText = Object.keys(defaultMapText).reduce((acc, key) => {
-        acc[key] = defaultMapText[key][state.searchCondition.lang];
-        return acc;
-      }, {});
-      state.elementStatus = {
-        ...state.elementStatus,
-        boothInfoData: Object.keys(state.elementStatus.boothInfoData).length === 0 ? {} : state.floorData.filterData.find((d) => d.id === state.elementStatus.boothInfoData.id && d.corpId === state.elementStatus.boothInfoData.corpId),
-        colors: state.elementStatus.colors.categories(state.mapText.categories),
-      };
-      document.title = state.mapText.title;
-    },
-    resize: (state) => {
-      const smallScreen = window.innerWidth < 768;
-      const sidebar = state.elementStatus.load ? (smallScreen ? state.elementStatus.sidebar : !smallScreen) : smallScreen ? false : true;
-      const { innerHeight: height } = window;
-      const sidebarWidth = smallScreen ? (sidebar ? height * 0.6 : height - 117) : sidebar ? 300 : 30;
-      const tagsHeight = smallScreen ? 100 : 80;
-      state.elementStatus = {
-        ...state.elementStatus,
-        height: height - state.elementStatus.tagsHeight,
-        load: true,
-        smallScreen: smallScreen,
-        sidebar: sidebar,
-        sidebarWidth: sidebarWidth,
-        tagsHeight: tagsHeight,
-      };
     },
     setElementStatus: (state, { payload }) => {
       Object.keys(payload).forEach((key) => {
@@ -167,41 +143,4 @@ const store = configureStore({
 });
 
 export default store;
-export const { setTooltip, resize, setData, searchChange, setSearchCondition, setElementStatus, setDragStatus, setStore, setEditForm } = counterSlice.actions;
-export const pageLoadAsync = () => (dispatch) => {
-  const { string, regex, tag, floor } = store.getState().searchCondition;
-  const params = new URLSearchParams(window.location.search);
-  dispatch(setSearchCondition({ string: params.get("string") || string, regex: params.get("regex") || regex, tag: params.get("tag") || tag, floor: params.get("floor") || floor, lang: params.get("lang") || (/^zh/i.test(navigator.language) ? "tc" : "en") }));
-  dispatch(
-    setStore({
-      mapText: Object.keys(defaultMapText).reduce((acc, key) => {
-        acc[key] = defaultMapText[key][store.getState().searchCondition.lang];
-        return acc;
-      }, {}),
-    })
-  );
-  dispatch(setElementStatus({ isMobile: /windows phone|android|iPad|iPhone|iPod/i.test(navigator.userAgent || window.opera), height: window.innerHeight - store.getState().elementStatus.tagsHeight, colors: new ColorPicker(["rgba(237,125,49,0.6)", "rgba(153,204,255,1)", "rgba(255,255,0,0.6)", "rgba(0,112,192,0.6)", "rgba(112,48,160,0.6)", "rgb(128, 0, 75, 0.2)"], store.getState().mapText.categories, "rgba(255,255,255)") }));
-};
-export const resizeAsync = () => (dispatch) => setTimeout(() => dispatch(resize()), 50);
-export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
-export const initEditForm =
-  ({ id }) =>
-  (dispatch) => {
-    const { booths, text, cat, corps, size } = store.getState().floorData.data.find((d) => d.id === id);
-    dispatch(setEditForm({ booths: booths?.length > 0 ? booths : [id], text, cat, corps, size }));
-  };
-export const saveEditForm =
-  ({ year, category, id, types, tag, lang, regex }) =>
-  async (dispatch) => {
-    await fetch(`${import.meta.env.VITE_SERVER_URL}/api/update-booth/${year}/${id}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify(store.getState().editForm),
-    });
-    let {
-      data: { data },
-    } = await getMapElems({ params: { year, category } });
-    data = boothData(data);
-    dispatch(setData({ data }));
-    dispatch(searchChange({ data: getFilterData({ data, types, tag, lang, regex }) }));
-  };
+export const actions = counterSlice.actions;
