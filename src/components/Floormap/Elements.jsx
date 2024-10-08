@@ -11,7 +11,7 @@ export const Elements = ({ type, size }) => {
   const data = useSelector((state) => state.floorData.filterData).filter((d) => String(d.floor) === floor && d.draw && d.type === type);
   const distance = useSelector((state) => state.elementStatus.dragStatus.distance);
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
-  const boothInfoDataID = useSelector((state) => state.elementStatus.boothInfoData.id);
+  const boothInfoId = useSelector((state) => state.elementStatus.boothInfoData.id);
   const elementActions = {
     wall: (d, i) => <Wall key={d.id} d={d} />,
     pillar: (d, i) => <Pillar key={d.id} d={d} />,
@@ -21,7 +21,7 @@ export const Elements = ({ type, size }) => {
     booth: (d, i) => <Booth key={d.id} d={d} size={size} handleBoothClick={handleBoothClick} />,
   };
   const handleBoothClick = (d) => {
-    distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoDataID === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
+    distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoId === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
     initEditForm({ id: d.id })(dispatch);
   };
   return <g className={`${type}-g`}>{data.map((d, i) => elementActions[type](d, i))}</g>;
