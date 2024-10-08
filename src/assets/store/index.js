@@ -53,10 +53,10 @@ export const resizeAsync = () => (dispatch) => {
   const elementStatus = store.getState().elementStatus;
   const smallScreen = window.innerWidth < 768;
   const sidebar = elementStatus.load ? (smallScreen ? elementStatus.sidebar : !smallScreen) : smallScreen ? false : true;
-  const { innerHeight: height } = window;
-  const sidebarWidth = smallScreen ? (sidebar ? height * 0.6 : height - 117) : sidebar ? 300 : 30;
+  const { innerHeight, innerWidth } = window;
+  const sidebarWidth = smallScreen ? (sidebar ? innerHeight * 0.6 : innerHeight - 117) : sidebar ? 300 : 30;
   const tagsHeight = smallScreen ? 100 : 80;
-  setTimeout(() => dispatch(setElementStatus({ height: height - elementStatus.tagsHeight, load: true, smallScreen, sidebar, sidebarWidth, tagsHeight })), 50);
+  setTimeout(() => dispatch(setElementStatus({ width: innerWidth - (smallScreen ? 0 : sidebarWidth), height: innerHeight - elementStatus.tagsHeight, load: true, smallScreen, sidebar, sidebarWidth, tagsHeight })), 50);
 };
 
 export const searchChangeAsync =

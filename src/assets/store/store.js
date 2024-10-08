@@ -39,6 +39,7 @@ const counterSlice = createSlice({
     elementStatus: {
       load: false,
       isMobile: true,
+      width: 0,
       height: 0,
       colors: new ColorPicker(["rgba(237,125,49,0.6)", "rgba(153,204,255,1)", "rgba(255,255,0,0.6)", "rgba(0,112,192,0.6)", "rgba(112,48,160,0.6)", "rgb(128, 0, 75, 0.2)"], defaultMapText.categories["tc"], "rgba(255,255,255)"),
       boothInfoData: {},

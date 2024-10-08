@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setSearchCondition, setElementStatus } from "@store";
+import store, { setSearchCondition, setElementStatus } from "@store";
 import { resetViewbox } from "@functions";
 
 export const Header = () => {
@@ -9,6 +9,7 @@ export const Header = () => {
   const mapText = useSelector((state) => state.mapText);
   const tags = [mapText.event, ...mapText.headerTags];
   const download = async () => {
+    const { width, height } = store.getState().elementStatus;
     const svg = document.querySelector("#floormap");
     resetViewbox({ svg });
     let blob;
@@ -16,8 +17,8 @@ export const Header = () => {
     const canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
     const resolution = 3840;
-    const scale = resolution / svg.clientWidth;
-    Object.assign(canvas, { width: resolution, height: scale * svg.clientHeight });
+    const scale = resolution / width;
+    Object.assign(canvas, { width: resolution, height: scale * height });
     const ctx = canvas.getContext("2d");
     const image = new Image();
     blob = await new Promise((resolve) => {
