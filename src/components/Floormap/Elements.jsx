@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { icon_base64 } from "@icons";
@@ -11,7 +11,7 @@ export const Elements = ({ type, size }) => {
   const data = useSelector((state) => state.floorData.filterData).filter((d) => String(d.floor) === floor && d.draw && d.type === type);
   const distance = useSelector((state) => state.elementStatus.dragStatus.distance);
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
-  const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);
+  const boothInfoDataID = useSelector((state) => state.elementStatus.boothInfoData.id);
   const elementActions = {
     wall: (d, i) => <Wall key={d.id} d={d} />,
     pillar: (d, i) => <Pillar key={d.id} d={d} />,
@@ -21,7 +21,7 @@ export const Elements = ({ type, size }) => {
     booth: (d, i) => <Booth key={d.id} d={d} size={size} handleBoothClick={handleBoothClick} />,
   };
   const handleBoothClick = (d) => {
-    distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoData.id === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
+    distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoDataID === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
     initEditForm({ id: d.id })(dispatch);
   };
   return <g className={`${type}-g`}>{data.map((d, i) => elementActions[type](d, i))}</g>;
@@ -64,41 +64,18 @@ const Room = ({ d, i, size, handleBoothClick }) => {
     </g>
   );
 };
-const BoothText = ({ t, j, lineHeight, fontSize, opacity, boothWidth }) => {
-  const textRef = useRef();
-  const getTextWidth = useCallback(() => {
-    textRef.current.textContent = t;
-    let self = textRef.current,
-      textLength = self.getComputedTextLength(),
-      txt = self.textContent;
-    while (textLength > boothWidth && txt.length > 0) {
-      txt = txt.slice(0, -1);
-      self.textContent = txt + "\u2026";
-      textLength = self.getComputedTextLength();
-    }
-    return txt;
-  });
-  useEffect(() => {
-    getTextWidth();
-  }, [t, fontSize]);
-  return <text key={`key-${j}`} ref={textRef} textAnchor="middle" fontWeight="bold" fill="black" fillOpacity={opacity} y={j * lineHeight} />;
-};
 const Booth = ({ d, size, handleBoothClick }) => {
   const dispatch = useDispatch();
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
-  const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);
+  const boothInfoId = useSelector((state) => state.elementStatus.boothInfoData.id);
   const colors = useSelector((state) => state.elementStatus.colors);
   const width = useSelector((state) => state.tooltip.width);
   const margin = useSelector((state) => state.tooltip.margin);
   const booths = useSelector((state) => state.editForm.booths);
-  const lang = useSelector((state) => state.searchCondition.lang);
-  const editSize = useSelector((state) => state.editForm?.size?.[lang]);
   const edit = getSearchParam("edit") === 1;
   const selected = edit && boothInfo && booths?.includes(d.id);
-  const fontSize = size * (boothInfoData.id === d.id ? editSize || d.size : d.size);
   const textShift = { x: d?.shift?.x || 0, y: d?.shift?.y || 0 };
-  const lineHeight = fontSize * 1.2;
-  const opacity = boothInfo && boothInfoData.id === d.id ? 1 : d.opacity;
+  const opacity = boothInfo && boothInfoId === d.id ? 1 : d.opacity;
   const { category } = useParams();
   const handleBoothSelected = ({ ctrlKey, shiftKey }) => {
     const prev = store.getState().editForm.booths || [];
@@ -118,16 +95,45 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const activeTooltip = () => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, text: d.text.join(""), active: true }));
   const initialTooltip = () => dispatch(setTooltip({ id: "", cat: "", text: "", active: false }));
   return (
-    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""} ${selected ? "selected" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={handleClick} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
+    <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={handleClick} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
       <path stroke={selected ? "rgb(207, 97, 97)" : "black"} fill={selected ? "rgb(207, 97, 97)" : colors.scale(d.cat)} strokeWidth={selected ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />
-      <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
-        {d.text.map((t, j) => (
-          <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} fontSize={fontSize} opacity={opacity} boothWidth={d.w} />
-        ))}
-      </g>
+      <BoothTextGroup d={d} size={size} textShift={textShift} opacity={opacity} />
       <text className="booth-id" fill="black" fillOpacity={opacity} fontSize={size * 0.3} x={20 + textShift.x} y={d.h - 20 + textShift.y}>
         {d.id}
       </text>
     </g>
   );
+};
+const BoothTextGroup = ({ d, size, textShift, opacity }) => {
+  const boothInfoId = useSelector((state) => state.elementStatus.boothInfoData.id);
+  const lang = useSelector((state) => state.searchCondition.lang);
+  const editSize = useSelector((state) => state.editForm?.size?.[lang]);
+  const fontSize = size * (boothInfoId === d.id ? editSize || d.size : d.size);
+  const lineHeight = fontSize * 1.2;
+  return (
+    <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
+      {d.text.map((t, j) => (
+        <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} fontSize={fontSize} opacity={opacity} boothWidth={d.w} />
+      ))}
+    </g>
+  );
+};
+const BoothText = ({ t, j, lineHeight, fontSize, opacity, boothWidth }) => {
+  const textRef = useRef();
+  const getTextWidth = useCallback(() => {
+    textRef.current.textContent = t;
+    let self = textRef.current,
+      textLength = self.getComputedTextLength(),
+      txt = self.textContent;
+    while (textLength > boothWidth && txt.length > 0) {
+      txt = txt.slice(0, -1);
+      self.textContent = txt + "\u2026";
+      textLength = self.getComputedTextLength();
+    }
+    return txt;
+  });
+  useEffect(() => {
+    getTextWidth();
+  }, [t, fontSize]);
+  return <text key={`key-${j}`} ref={textRef} textAnchor="middle" fontWeight="bold" fill="black" fillOpacity={opacity} y={j * lineHeight} />;
 };
