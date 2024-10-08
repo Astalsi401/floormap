@@ -51,15 +51,13 @@ const Room = ({ d, i, size, handleBoothClick }) => {
           </text>
         ))}
       </g>
-      {d.icon.length > 0 ? (
+      {d.icon.length > 0 && (
         <>
           <clipPath id={`${d.type}-${d.floor}-${i}`}>
             <rect className="icon" width={icon_l} height={icon_l} x={(d.w - icon_l) / 2} y={(d.h - icon_l) / 2} />
           </clipPath>
           <image width={icon_l} height={icon_l} x={(d.w - icon_l) / 2} y={(d.h - icon_l) / 2} visibility="visible" clipPath={`url(#icon-${d.floor}-${i})`} xlinkHref={icon_base64[d.icon]} opacity={1} />
         </>
-      ) : (
-        <></>
       )}
     </g>
   );
