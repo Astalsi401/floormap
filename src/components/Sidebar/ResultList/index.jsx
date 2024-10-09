@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchCondition, setElementStatus, initEditForm } from "@store";
 import { zoomCalculator, dragCalculator, getSearchParam } from "@functions";
+import { useMemo } from "react";
 
 export const ResultList = ({ svgRef, graphRef }) => {
   const types = useSelector((state) => state.types);
@@ -22,10 +23,7 @@ const Result = ({ d, svgRef, graphRef }) => {
   const sidebarWidth = useSelector((state) => state.elementStatus.sidebarWidth);
   const tagsHeight = useSelector((state) => state.elementStatus.tagsHeight);
   const isBooth = d.type === "booth";
-  const id = isBooth ? `${d.id}-${d.org}` : `${d.text.join("")}-${d.floor}`;
-  const bg = isBooth ? colors.scale(d.cat) : "#acacac";
-  const name = isBooth ? d.org : d.text.join("");
-  const loc = isBooth ? `${d.id} / ${d.floor}F` : `${d.floor}F`;
+  const { id, bg, name, loc } = useMemo(() => ({ id: isBooth ? `${d.id}-${d.org}` : `${d.text.join("")}-${d.floor}`, bg: isBooth ? colors.scale(d.cat) : "#acacac", name: isBooth ? d.org : d.text.join(""), loc: isBooth ? `${d.id} / ${d.floor}F` : `${d.floor}F` }), [isBooth, d, colors]);
   const handleResultClick = () => {
     if (!sidebar) return;
     initEditForm({ id: d.id })(dispatch);
