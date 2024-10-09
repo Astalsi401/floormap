@@ -35,7 +35,7 @@ export const dataFormat =
             }));
             tags = eventTime.some((e) => e.active) ? { tc: [...tags.tc, mapText.event.tc], en: [...tags.en, mapText.event.en] } : tags;
           }
-          return { ...d, id: d.id || `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat || textString, topic: d.topic || textString, tag: tags, text: d.text || textFormat, size: d.size || { tc: defaultFontSize, en: defaultFontSize }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${corp._id}-${i}` || `${d.id}-${i}` })) : [] };
+          return { ...d, id: d.id || `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat || textString, topic: d.topic || textString, tag: tags, text: d.text || textFormat, size: d.size || { tc: defaultFontSize, en: defaultFontSize }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: corp._id ? `${corp._id}-${i}` : `${d.id}-${i}` })) : [] };
         }),
         loaded: true,
       })
@@ -92,5 +92,5 @@ export const saveEditForm =
     });
     const data = await getMapElems({ params: { year, category } }).then(({ data: { data } }) => boothData(data));
     dataFormat({ data })(dispatch);
-    searchChangeAsync({ filterData: getFilterData({ data, types, tag, lang, regex }) })(dispatch);
+    searchChangeAsync({ filterData: getFilterData({ data: store.getState().floorData.data, types, tag, lang, regex }) })(dispatch);
   };

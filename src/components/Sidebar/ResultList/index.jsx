@@ -8,7 +8,7 @@ export const ResultList = ({ svgRef, graphRef }) => {
   return (
     <div className="fp-result pb-5">
       {data.map((d) => (
-        <Result key={`Result-${d.corpId || d.id}`} d={d} svgRef={svgRef} graphRef={graphRef} />
+        <Result key={`Result-${d.corpId ?? d.id}`} d={d} svgRef={svgRef} graphRef={graphRef} />
       ))}
     </div>
   );

@@ -24,7 +24,6 @@ export const BoothCoprs = ({ corps, corpId, data }) => {
   const dispatch = useDispatch();
   const exhibitor = useSelector((state) => state.mapText.exhibitor);
   const colors = useSelector((state) => state.elementStatus.colors);
-  const lang = useSelector((state) => state.searchCondition.lang);
   const handleCorpClick = ({ currentCorpId, d }) => {
     dispatch(setElementStatus({ boothInfoData: data.find((d) => d.corpId === currentCorpId) }));
     initEditForm({ id: d.id })(dispatch);

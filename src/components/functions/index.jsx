@@ -155,8 +155,8 @@ const addPath = (path, val, prev, boothLen) => {
 };
 
 const checkText = (targetElements, regex) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace("臺", "台"));
-export const getFilterData = ({ data, types, tag, lang, regex }) => {
-  return data.reduce((res, d) => {
+export const getFilterData = ({ data, types, tag, lang, regex }) =>
+  data.reduce((res, d) => {
     const tags = d.tag ? d.tag[lang] : [];
     const corps = d.corps ? d.corps.map((corp) => corp.org[lang]) : [];
     const infos = d.corps ? d.corps.map((corp) => corp.info[lang]) : [];
@@ -179,4 +179,3 @@ export const getFilterData = ({ data, types, tag, lang, regex }) => {
     }
     return res;
   }, []);
-};
