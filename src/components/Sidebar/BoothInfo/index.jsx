@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import store, { setElementStatus } from "@store";
 import { getSearchParam } from "@functions";
-import { BoothName, SelectedBooths, SelectedCategory, SelectedSave, FontSize } from "./edit";
+import { BoothName, SelectedBooths, SelectedCategory, FontSize, SelectedSave } from "./edit";
 import { BoothTags, BoothCoprs, BoothDescribe, BoothEvents } from "./normal";
 
 export const BoothInfo = () => {
@@ -43,7 +43,7 @@ const BoothInfoDetail = () => {
       {isBooth && isEdit && isHost && <SelectedCategory />}
       {!isEdit && <BoothTags tags={tags} corpId={corpId} />}
       {corps.length > 1 && <BoothCoprs id={id} corps={corps} corpId={corpId} data={data} />}
-      {info && <BoothDescribe info={info} corpId={corpId} />}
+      {info && (isBooth && isEdit ? <></> : <BoothDescribe info={info} corpId={corpId} />)}
       {events.length > 0 && <BoothEvents events={events} />}
       {isEdit && <SelectedSave id={id} />}
     </div>

@@ -21,7 +21,8 @@ export const Elements = ({ type, size }) => {
     booth: (d, i) => <Booth key={d.id} d={d} size={size} handleBoothClick={handleBoothClick} />,
   };
   const handleBoothClick = (d) => {
-    distance === 0 && dispatch(setElementStatus(boothInfo && boothInfoId === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
+    if (distance !== 0) return;
+    dispatch(setElementStatus(boothInfo && boothInfoId === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
     initEditForm({ id: d.id })(dispatch);
   };
   return <g className={`${type}-g`}>{data.map((d, i) => elementActions[type](d, i))}</g>;
@@ -86,7 +87,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
     dispatch(setTooltip({ x: x, y: clientY }));
   };
   const handleMouseMove = (e) => {
-    edit && boothInfo && handleBoothSelected(e);
+    edit && boothInfo && (e.ctrlKey || e.shiftKey) && handleBoothSelected(e);
     category === "areas" && handleAreaPage(e);
   };
   const handleClick = () => handleBoothClick(d);
