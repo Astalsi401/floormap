@@ -11,7 +11,6 @@ export const Search = () => {
   const colors = useSelector((state) => state.elementStatus.colors);
   const mapText = useSelector((state) => state.mapText);
   const data = useSelector((state) => state.floorData.data);
-  const types = useSelector((state) => state.types);
   const searched = string.length === 0 && tag.length === 0;
   const [inputTimer, setInputTimer] = useState(null);
   const handleInput = ({ target: { name, value } }) => {
@@ -26,7 +25,7 @@ export const Search = () => {
     dispatch(regexAsync());
   }, [string, inputTimer]);
   useEffect(() => {
-    searchChangeAsync({ filterData: getFilterData({ data, types, tag, lang, regex }) })(dispatch);
+    searchChangeAsync({ filterData: getFilterData({ data, tag, lang, regex }) })(dispatch);
   }, [tag, floor, lang, regex]);
   useEffect(() => {
     const url = new URL(window.location.href);

@@ -1,5 +1,5 @@
 import { defer } from "react-router-dom";
-import { defaultFontSize } from "@store";
+import store, { defaultFontSize } from "@store";
 
 export class ColorPicker {
   constructor(colors_, categories_, unknow_) {
@@ -155,7 +155,7 @@ const addPath = (path, val, prev, boothLen) => {
 };
 
 const checkText = (targetElements, regex) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace("臺", "台"));
-export const getFilterData = ({ data, types, tag, lang, regex }) =>
+export const getFilterData = ({ data, tag, lang, regex }) =>
   data.reduce((res, d) => {
     const tags = d.tag ? d.tag[lang] : [];
     const corps = d.corps ? d.corps.map((corp) => corp.org[lang]) : [];
@@ -164,7 +164,7 @@ export const getFilterData = ({ data, types, tag, lang, regex }) =>
     const cat = d.cat ? d.cat[lang] : "";
     const topic = d.topic ? d.topic[lang] : "";
     const targets = [d.id, text.join(""), cat, topic, ...tags];
-    const isType = types.includes(d.type);
+    const isType = store.getState().types.includes(d.type);
     const hasTag = isType && tag.length === 0 ? true : [d.id, cat, topic, ...tags].includes(tag);
     let hasText = isType && checkText([...targets, ...infos, ...corps], regex);
     const opacity = (hasText && hasTag) || d.type === "icon" ? 0.8 : 0.1;

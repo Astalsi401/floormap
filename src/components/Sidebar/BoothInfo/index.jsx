@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { setElementStatus } from "@store";
+import store, { setElementStatus } from "@store";
 import { getSearchParam } from "@functions";
 import { BoothName, SelectedBooths, SelectedCategory, SelectedSave, FontSize } from "./edit";
 import { BoothTags, BoothCoprs, BoothDescribe, BoothEvents } from "./normal";
@@ -20,8 +20,7 @@ export const BoothInfo = () => {
 };
 
 const BoothInfoDetail = () => {
-  const types = useSelector((state) => state.types);
-  const data = useSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type));
+  const data = useSelector((state) => state.floorData.filterData).filter((d) => store.getState().types.includes(d.type));
   const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);
   const { type, text, org, id, floor, cat, topic, tag, info, event, note, corpId } = boothInfoData;
   const isEdit = getSearchParam("edit") === 1;

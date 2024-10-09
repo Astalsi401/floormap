@@ -83,14 +83,13 @@ export const initEditForm =
     dispatch(setEditForm({ booths: booths?.length > 0 ? booths : [id], text, cat, corps, size }));
   };
 export const saveEditForm =
-  ({ year, category, id, types, tag, lang, regex }) =>
+  async ({ year, category, id, tag, lang, regex }) =>
   async (dispatch) => {
     await fetch(`${import.meta.env.VITE_SERVER_URL}/api/update-booth/${year}/${id}`, {
       method: "POST",
       headers: { "Content-Type": "application/json; charset=utf-8" },
       body: JSON.stringify(store.getState().editForm),
     });
-    const data = await getMapElems({ params: { year, category } }).then(({ data: { data } }) => boothData(data));
-    dataFormat({ data })(dispatch);
-    searchChangeAsync({ filterData: getFilterData({ data: store.getState().floorData.data, types, tag, lang, regex }) })(dispatch);
+    dataFormat({ data: await getMapElems({ params: { year, category } }).then(({ data: { data } }) => boothData(data)) })(dispatch);
+    searchChangeAsync({ filterData: getFilterData({ data: store.getState().floorData.data, tag, lang, regex }) })(dispatch);
   };

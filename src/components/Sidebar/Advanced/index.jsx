@@ -17,8 +17,7 @@ export const Advanced = () => {
 
 const Category = ({ title, col }) => {
   const dispatch = useDispatch();
-  const types = useSelector((state) => state.types);
-  const data = useSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type));
+  const data = useSelector((state) => state.floorData.filterData).filter((d) => store.getState().types.includes(d.type));
   const sum = data.reduce((acc, d) => {
     const key = d[col];
     acc[key] ? acc[key]++ : (acc[key] = 1);

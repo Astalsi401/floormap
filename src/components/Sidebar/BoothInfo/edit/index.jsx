@@ -51,11 +51,10 @@ export const SelectedCategory = () => {
 export const SelectedSave = ({ id }) => {
   const dispatch = useDispatch();
   const { regex, tag, lang } = useSelector((state) => state.searchCondition);
-  const types = useSelector((state) => state.types);
   const { year, category } = useParams();
   return (
     <div className="fp-selected-save p-2">
-      <button className="fp-btn" onClick={() => saveEditForm({ year, category, id, types, tag, lang, regex })(dispatch)}>
+      <button className="fp-btn" onClick={() => saveEditForm({ year, category, id, tag, lang, regex })(dispatch)}>
         save
       </button>
     </div>
