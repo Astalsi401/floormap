@@ -1,0 +1,31 @@
+.fp-tags {
+  position: absolute;
+  z-index: index($list: $index, $value: tags);
+  overflow-x: auto;
+  top: 0;
+  right: 0;
+  width: calc(100% - var(--sidebar-width));
+  height: var(--tags-height);
+  background-color: var(--fp-search-bg);
+  transition: width var(--fp-time);
+}
+
+@media (max-width: 768px) {
+  .fp-tags {
+    width: 100%;
+  }
+}
+
+.logo {
+  display: block;
+  img {
+    height: var(--fp-icon-size);
+    object-fit: contain;
+  }
+}
+
+.fp-download {
+  cursor: pointer;
+  width: var(--fp-icon-size);
+  height: var(--fp-icon-size);
+}

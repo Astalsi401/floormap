@@ -1,0 +1,11 @@
+.fp-advanced {
+  inset: calc(var(--fp-search-box-height) + var(--fp-sidebar-px)) 0 0 0;
+  overflow-y: auto;
+}
+
+.fp-category {
+  cursor: pointer;
+  &:hover {
+    background-color: var(--fp-hover-bg);
+  }
+}

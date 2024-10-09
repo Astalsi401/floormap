@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ContentEditable from "react-contenteditable";
-import store, { setEditForm, saveEditForm, areas } from "@store";
+import store, { setFloorData, setEditForm, saveEditForm, areas } from "@store";
 
 export const SelectedBooths = () => {
   const dispatch = useDispatch();
@@ -51,12 +51,22 @@ export const SelectedCategory = () => {
 export const SelectedSave = ({ id }) => {
   const dispatch = useDispatch();
   const { regex, tag, lang } = useSelector((state) => state.searchCondition);
+  const saving = useSelector((state) => state.floorData.saving);
   const { year, category } = useParams();
+  const handleSave = () => {
+    if (saving) return;
+    dispatch(setFloorData({ saving: true }));
+    saveEditForm({ year, category, id, tag, lang, regex })(dispatch);
+  };
   return (
     <div className="fp-selected-save p-2">
-      <button className="fp-btn" onClick={() => saveEditForm({ year, category, id, tag, lang, regex })(dispatch)}>
+      <div className={`fp-save-btn d-flex align-items-center justify-content-center mx-auto shadow text-bold ${saving ? "saving" : ""}`} onClick={handleSave}>
         save
-      </button>
+        <span style={{ "--i": 0 }}></span>
+        <span style={{ "--i": 1 }}></span>
+        <span style={{ "--i": 2 }}></span>
+        <span style={{ "--i": 3 }}></span>
+      </div>
     </div>
   );
 };

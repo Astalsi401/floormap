@@ -1,0 +1,45 @@
+.fp-info {
+  height: calc(100% - var(--fp-icon-size));
+  overflow-y: auto;
+}
+
+.fp-booth-info {
+  inset: 0;
+}
+.fp-booth-info-name {
+  width: calc(100% - var(--fp-icon-size));
+}
+
+.fp-booth-tags {
+  gap: 5px;
+}
+
+.fp-event {
+  background-color: var(--fp-sidebar-bg);
+  position: relative;
+  &.active {
+    --bg: rgb(128, 0, 75, 0.6);
+    position: relative;
+    overflow: hidden;
+    span {
+      position: absolute;
+      inset: 0;
+      rotate: calc(var(--i) * 90deg);
+      border-image: linear-gradient(90deg, transparent, var(--bg)) 1;
+      border-top: 4px solid var(--bg);
+      transform: translateX(-100%);
+      animation-name: event-active;
+      animation-duration: calc(var(--fp-time) * 10);
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+  }
+}
+@keyframes event-active {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
