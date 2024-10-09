@@ -25,8 +25,8 @@ export class ColorPicker {
   };
 }
 
-export const getMapElems = async ({ params: { year, category } }) => {
-  const data = {
+export const getMapElems = ({ params: { year, category } }) => {
+  const data = (async () => ({
     elems: await fetch(`${import.meta.env.BASE_URL}/assets/json/elems.json`)
       .then((res) => res.json())
       .catch(() => []),
@@ -36,7 +36,7 @@ export const getMapElems = async ({ params: { year, category } }) => {
     boothPos: await fetch(`${import.meta.env.BASE_URL}/assets/json/boothPos.json`)
       .then((res) => res.json())
       .catch(() => []),
-  };
+  }))();
   return defer({ data });
 };
 
