@@ -4,7 +4,7 @@ import { zoomCalculator, dragCalculator, getSearchParam } from "@functions";
 
 export const ResultList = ({ svgRef, graphRef }) => {
   const types = useSelector((state) => state.types);
-  const data = useSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type) && types.includes(d.type) && d.sidebar && ((d.text.length > 0 && d.opacity > 0.1) || getSearchParam("edit")));
+  const data = useSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type) && types.includes(d.type) && d.sidebar && d.opacity > 0.1 && (d.text.length > 0 || getSearchParam("edit")));
   return (
     <div className="fp-result pb-5">
       {data.map((d) => (
