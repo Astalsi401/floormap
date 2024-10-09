@@ -20,20 +20,20 @@ export const BoothTags = ({ tags, corpId }) => {
   );
 };
 
-export const BoothCoprs = ({ corps, corpId, data }) => {
+export const BoothCoprs = ({ id, corps, corpId, data }) => {
   const dispatch = useDispatch();
   const exhibitor = useSelector((state) => state.mapText.exhibitor);
   const colors = useSelector((state) => state.elementStatus.colors);
-  const handleCorpClick = ({ currentCorpId, d }) => {
+  const handleCorpClick = ({ currentCorpId }) => {
     dispatch(setElementStatus({ boothInfoData: data.find((d) => d.corpId === currentCorpId) }));
-    initEditForm({ id: d.id })(dispatch);
+    initEditForm({ id })(dispatch);
   };
   return (
     <div className="p-2">
       <div className="my-1 text-large">{exhibitor}</div>
       <div className="my-1 fp-booth-tags d-flex flex-wrap">
         {corps.map((d) => (
-          <div key={`BoothInfoDetail-${d.corpId}`} className="fp-input-tag shadow text-small" style={{ "--cat": d.corpId === corpId ? "rgb(0, 0, 128, 0.3)" : colors.scale("") }} onClick={() => handleCorpClick({ currentCorpId: d.corpId, d })}>
+          <div key={`BoothInfoDetail-${d.corpId}`} className="fp-input-tag shadow text-small" style={{ "--cat": d.corpId === corpId ? "rgb(0, 0, 128, 0.3)" : colors.scale("") }} onClick={() => handleCorpClick({ currentCorpId: d.corpId })}>
             {d.org}
           </div>
         ))}

@@ -42,7 +42,7 @@ const BoothInfoDetail = () => {
       {isBooth && isEdit && isHost && <SelectedBooths />}
       {isBooth && isEdit && isHost && <SelectedCategory />}
       {!isEdit && <BoothTags tags={tags} corpId={corpId} />}
-      {corps.length > 1 && <BoothCoprs corps={corps} corpId={corpId} data={data} />}
+      {corps.length > 1 && <BoothCoprs id={id} corps={corps} corpId={corpId} data={data} />}
       {info && <BoothDescribe info={info} corpId={corpId} />}
       {events.length > 0 && <BoothEvents events={events} />}
       {isEdit && <SelectedSave id={id} />}
