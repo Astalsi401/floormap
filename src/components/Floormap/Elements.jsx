@@ -9,7 +9,6 @@ export const Elements = ({ type, size }) => {
   const dispatch = useDispatch();
   const floor = useSelector((state) => state.searchCondition.floor);
   const data = useSelector((state) => state.floorData.filterData).filter((d) => String(d.floor) === floor && d.draw && d.type === type);
-  const distance = useSelector((state) => state.elementStatus.dragStatus.distance);
   const boothInfo = useSelector((state) => state.elementStatus.boothInfo);
   const boothInfoId = useSelector((state) => state.elementStatus.boothInfoData.id);
   const elementActions = {
@@ -21,7 +20,7 @@ export const Elements = ({ type, size }) => {
     booth: (d, i) => <Booth key={d.id} d={d} size={size} handleBoothClick={handleBoothClick} />,
   };
   const handleBoothClick = (d) => {
-    if (distance !== 0) return;
+    if (store.getState().elementStatus.dragStatus.distance !== 0) return;
     dispatch(setElementStatus(boothInfo && boothInfoId === d.id ? { boothInfo: false } : { boothInfo: true, boothInfoData: d }));
     initEditForm({ id: d.id })(dispatch);
   };
