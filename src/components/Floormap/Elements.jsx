@@ -31,7 +31,7 @@ const Wall = ({ d }) => <path stroke="black" fill={d.fill} strokeWidth={d.stroke
 const Pillar = ({ d }) => <path fill="rgba(0, 0, 0, 0.2)" d={`M${d.x} ${d.y}${drawPath(d.p.map((p) => ({ node: p.node, x: p.x + d.x, y: p.y + d.y })))}`} />;
 const Text = ({ d }) => (
   <text textAnchor="middle" fontWeight="bold" fill={d.color} fontSize={400 * d.size} x={d.x} y={d.y}>
-    {d.text.join("")}
+    {d.text.replace("\n", "")}
   </text>
 );
 const Room = ({ d, i, size, handleBoothClick }) => {
@@ -44,8 +44,8 @@ const Room = ({ d, i, size, handleBoothClick }) => {
   return (
     <g className={`${d.type}${opacity === 1 ? " active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={d.type === "room" ? () => handleBoothClick(d) : null}>
       <path stroke={"black"} strokeWidth={d.strokeWidth} fill={d.text.length === 0 || d.type === "icon" ? "none" : "#f1f1f1"} fillOpacity={d.opacity} d={`M0 0${drawPath(d.p)}`} />
-      <g transform={`translate(${d.w / 2},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2})`} fontSize={fontSize}>
-        {d.text.map((t, j) => (
+      <g transform={`translate(${d.w / 2},${d.h / 2 - ((d.text.split("\n").length - 1) * lineHeight) / 2})`} fontSize={fontSize}>
+        {d.text.split("\n").map((t, j) => (
           <text key={`text-${i}-${j}`} textAnchor="middle" fontWeight="bold" fill="black" fillOpacity={d.opacity} y={j * lineHeight}>
             {t}
           </text>
@@ -90,7 +90,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
     category === "areas" && handleAreaPage(e);
   };
   const handleClick = () => handleBoothClick(d);
-  const activeTooltip = () => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, text: d.text.join(""), active: true }));
+  const activeTooltip = () => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, text: d.text.replace("\n", ""), active: true }));
   const initialTooltip = () => dispatch(setTooltip({ id: "", cat: "", text: "", active: false }));
   return (
     <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={handleClick} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
@@ -109,8 +109,8 @@ const BoothTextGroup = ({ d, size, textShift, opacity }) => {
   const fontSize = size * (boothInfoId === d.id ? editSize || d.size : d.size);
   const lineHeight = fontSize * 1.2;
   return (
-    <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
-      {d.text.map((t, j) => (
+    <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.split("\n").length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
+      {d.text.split("\n").map((t, j) => (
         <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} fontSize={fontSize} opacity={opacity} boothWidth={d.w} />
       ))}
     </g>

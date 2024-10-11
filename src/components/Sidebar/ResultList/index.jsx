@@ -23,7 +23,7 @@ const Result = ({ d, svgRef, graphRef }) => {
   const sidebarWidth = useSelector((state) => state.elementStatus.sidebarWidth);
   const tagsHeight = useSelector((state) => state.elementStatus.tagsHeight);
   const isBooth = d.type === "booth";
-  const { id, bg, name, loc } = useMemo(() => ({ id: isBooth ? `${d.id}-${d.org}` : `${d.text.join("")}-${d.floor}`, bg: isBooth ? colors.scale(d.cat) : "#acacac", name: isBooth ? d.org : d.text.join(""), loc: isBooth ? `${d.id} / ${d.floor}F` : `${d.floor}F` }), [isBooth, d, colors]);
+  const { id, bg, name, loc } = useMemo(() => ({ id: isBooth ? `${d.id}-${d.org}` : `${d.text.replace("\n", "")}-${d.floor}`, bg: isBooth ? colors.scale(d.cat) : "#acacac", name: isBooth ? d.org : d.text.replace("\n", ""), loc: isBooth ? `${d.id} / ${d.floor}F` : `${d.floor}F` }), [isBooth, d, colors]);
   const handleResultClick = () => {
     if (!sidebar) return;
     initEditForm({ id: d.id })(dispatch);

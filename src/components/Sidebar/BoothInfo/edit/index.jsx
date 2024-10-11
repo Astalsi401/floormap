@@ -74,7 +74,12 @@ export const SelectedSave = ({ id }) => {
 export const BoothName = ({ className, name, value, placeholder }) => {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.searchCondition.lang);
-  const content = useRef({ [lang]: (value || []).map((d) => `<div>${d}</div>`).join("") });
+  const content = useRef({
+    [lang]: (value || "")
+      .split("\n", "")
+      .map((d) => `<div>${d}</div>`)
+      .join(""),
+  });
   const handleChange = (e) => {
     content.current[lang] = e.target.value;
     dispatch(
@@ -84,13 +89,17 @@ export const BoothName = ({ className, name, value, placeholder }) => {
           [lang]: content.current[lang]
             .replace(/^<div>|<br>|<\/div>$/g, "")
             .split("</div><div>")
-            .filter((d) => d.length > 0),
+            .filter((d) => d.length > 0)
+            .join("\n"),
         },
       })
     );
   };
   const current = store.getState()?.editForm?.[name]?.[lang] || value || [];
-  content.current[lang] = current.map((d) => `<div>${d}</div>`).join("");
+  content.current[lang] = current
+    .split("\n")
+    .map((d) => `<div>${d}</div>`)
+    .join("");
   return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
 };
 

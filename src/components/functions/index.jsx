@@ -160,10 +160,10 @@ export const getFilterData = ({ data, tag, lang, regex }) =>
     const tags = d.tag ? d.tag[lang] : [];
     const corps = d.corps ? d.corps.map((corp) => corp.org[lang]) : [];
     const infos = d.corps ? d.corps.map((corp) => corp.info[lang]) : [];
-    const text = d.text ? d.text[lang] : [];
+    const text = d.text ? d.text[lang] : "";
     const cat = d.cat ? d.cat[lang] : "";
     const topic = d.topic ? d.topic[lang] : "";
-    const targets = [d.id, text.join(""), cat, topic, ...tags];
+    const targets = [d.id, text.replace("\n", ""), cat, topic, ...tags];
     const isType = store.getState().types.includes(d.type);
     const hasTag = isType && tag.length === 0 ? true : [d.id, cat, topic, ...tags].includes(tag);
     let hasText = isType && checkText([...targets, ...infos, ...corps], regex);
@@ -172,7 +172,7 @@ export const getFilterData = ({ data, tag, lang, regex }) =>
     if (d.corps && d.corps.length > 0) {
       d.corps.forEach((corp, i) => {
         hasText = checkText([...targets, corp.info[lang], corp.org[lang]], regex);
-        res.push({ ...d, ...corp, text: text, size: d?.size?.[lang] || defaultFontSize, cat, topic, corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity, draw: i === 0, sidebar: hasText && hasTag });
+        res.push({ ...d, ...corp, text, size: d?.size?.[lang] || defaultFontSize, cat, topic, corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity, draw: i === 0, sidebar: hasText && hasTag });
       });
     } else {
       res.push({ ...d, text, size: d?.size?.[lang] || defaultFontSize, cat, topic, tag: tags, event: events, opacity, draw: true, sidebar: isType });
