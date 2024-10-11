@@ -39,7 +39,7 @@ const BoothInfoDetail = () => {
       </div>
       <div className="p-2 text-large">{org}</div>
       {isBooth && isEdit && isHost && <FontSize id={id} />}
-      {isBooth && isEdit && isHost && <SelectedBooths />}
+      {isBooth && isEdit && isHost && <SelectedBooths id={id} />}
       {isBooth && isEdit && isHost && <SelectedCategory />}
       {!isEdit && <BoothTags tags={tags} corpId={corpId} />}
       {corps.length > 1 && <BoothCoprs id={id} corps={corps} corpId={corpId} data={data} />}

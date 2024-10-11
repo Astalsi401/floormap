@@ -78,7 +78,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const handleBoothSelected = ({ ctrlKey, shiftKey }) => {
     const prev = store.getState().editForm.booths || [];
     ctrlKey && dispatch(setEditForm({ booths: prev.includes(d.id) ? prev : [...prev, d.id] }));
-    shiftKey && dispatch(setEditForm({ booths: prev.filter((select) => select !== d.id) }));
+    shiftKey && dispatch(setEditForm({ booths: prev.filter((select) => select !== d.id || select === boothInfoId) }));
   };
   const handleAreaPage = ({ clientX, clientY }) => {
     const isLeft = clientX < window.innerWidth / 2;

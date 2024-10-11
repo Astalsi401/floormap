@@ -5,10 +5,10 @@ import ContentEditable from "react-contenteditable";
 import store, { setFloorData, setEditForm, saveEditForm, areas } from "@store";
 import { contentEditor } from "@functions";
 
-export const SelectedBooths = () => {
+export const SelectedBooths = ({ id }) => {
   const dispatch = useDispatch();
   const booths = useSelector((state) => state.editForm.booths);
-  const reset = () => dispatch(setEditForm({ booths: [] }));
+  const reset = () => dispatch(setEditForm({ booths: [id] }));
   return (
     <div className="fp-selected-booths p-2">
       <div className="">選擇攤位</div>
