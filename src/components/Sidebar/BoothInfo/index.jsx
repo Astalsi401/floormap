@@ -43,7 +43,7 @@ const BoothInfoDetail = () => {
       {isBooth && isEdit && isHost && <SelectedCategory />}
       {!isEdit && <BoothTags tags={tags} corpId={corpId} />}
       {corps.length > 1 && <BoothCoprs id={id} corps={corps} corpId={corpId} data={data} />}
-      {info && (isBooth && isEdit ? <></> : <BoothDescribe info={info} corpId={corpId} />)}
+      {isBooth && isEdit ? <BoothName className="p-2 text-small" name="info" value={info} placeholder="請輸入簡介" /> : info && <BoothDescribe info={info} corpId={corpId} />}
       {events.length > 0 && <BoothEvents events={events} />}
       {isEdit && <SelectedSave id={id} />}
     </div>

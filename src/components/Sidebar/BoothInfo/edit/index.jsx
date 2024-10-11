@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ContentEditable from "react-contenteditable";
 import store, { setFloorData, setEditForm, saveEditForm, areas } from "@store";
+import { contentEditor } from "@functions";
 
 export const SelectedBooths = () => {
   const dispatch = useDispatch();
@@ -74,12 +75,7 @@ export const SelectedSave = ({ id }) => {
 export const BoothName = ({ className, name, value, placeholder }) => {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.searchCondition.lang);
-  const content = useRef({
-    [lang]: (value || "")
-      .split("\n", "")
-      .map((d) => `<div>${d}</div>`)
-      .join(""),
-  });
+  const content = useRef({ [lang]: contentEditor(value || "") });
   const handleChange = (e) => {
     content.current[lang] = e.target.value;
     dispatch(
@@ -95,11 +91,7 @@ export const BoothName = ({ className, name, value, placeholder }) => {
       })
     );
   };
-  const current = store.getState()?.editForm?.[name]?.[lang] || value || [];
-  content.current[lang] = current
-    .split("\n")
-    .map((d) => `<div>${d}</div>`)
-    .join("");
+  content.current[lang] = contentEditor(store.getState()?.editForm?.[name]?.[lang] || value || "");
   return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
 };
 

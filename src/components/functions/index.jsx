@@ -179,3 +179,10 @@ export const getFilterData = ({ data, tag, lang, regex }) =>
     }
     return res;
   }, []);
+
+export const contentEditor = (string) =>
+  string
+    .split("\n")
+    .filter((d) => d.length > 0)
+    .map((d) => `<div>${d}</div>`)
+    .join("");
