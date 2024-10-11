@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { icon_base64 } from "@icons";
@@ -69,16 +69,21 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const colors = useSelector((state) => state.elementStatus.colors);
   const width = useSelector((state) => state.tooltip.width);
   const margin = useSelector((state) => state.tooltip.margin);
-  const booths = useSelector((state) => state.editForm.booths);
   const edit = getSearchParam("edit") === 1;
-  const selected = edit && boothInfo && booths?.includes(d.id);
+  const [selected, setSelected] = useState(false);
   const textShift = { x: d?.shift?.x || 0, y: d?.shift?.y || 0 };
   const opacity = boothInfo && boothInfoId === d.id ? 1 : d.opacity;
   const { category } = useParams();
   const handleBoothSelected = ({ ctrlKey, shiftKey }) => {
     const prev = store.getState().editForm.booths || [];
-    ctrlKey && dispatch(setEditForm({ booths: prev.includes(d.id) ? prev : [...prev, d.id] }));
-    shiftKey && dispatch(setEditForm({ booths: prev.filter((select) => select !== d.id || select === boothInfoId) }));
+    if (ctrlKey) {
+      dispatch(setEditForm({ booths: prev.includes(d.id) ? prev : [...prev, d.id] }));
+      setSelected(true);
+    }
+    if (shiftKey) {
+      dispatch(setEditForm({ booths: prev.filter((select) => select !== d.id || select === boothInfoId) }));
+      setSelected(false);
+    }
   };
   const handleAreaPage = ({ clientX, clientY }) => {
     const isLeft = clientX < window.innerWidth / 2;
@@ -92,6 +97,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const handleClick = () => handleBoothClick(d);
   const activeTooltip = () => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, text: d.text.replace("\n", ""), active: true }));
   const initialTooltip = () => dispatch(setTooltip({ id: "", cat: "", text: "", active: false }));
+  useEffect(() => setSelected(edit && boothInfo && store.getState().editForm.booths?.includes(d.id)), [edit, boothInfoId]);
   return (
     <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={handleClick} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
       <path stroke={selected ? "rgb(207, 97, 97)" : "black"} fill={selected ? "rgb(207, 97, 97)" : colors.scale(d.cat)} strokeWidth={selected ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />
