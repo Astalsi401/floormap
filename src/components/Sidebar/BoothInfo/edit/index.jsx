@@ -11,10 +11,12 @@ export const SelectedBooths = ({ id }) => {
   const reset = () => dispatch(setEditForm({ booths: [id] }));
   return (
     <div className="fp-selected-booths p-2">
-      <div className="">選擇攤位</div>
-      <button className="fp-btn" onClick={reset}>
-        reset
-      </button>
+      <div className="">
+        選擇攤位
+        <button className="fp-btn mx-2 shadow" onClick={reset}>
+          重設攤位
+        </button>
+      </div>
       <div className="fp-booth-tags d-flex flex-wrap py-2">
         {booths?.map((boothID) => (
           <div key={`selected-booth-${boothID}`} className="fp-input-tag shadow text-small">
@@ -61,13 +63,13 @@ export const SelectedSave = ({ id }) => {
   };
   return (
     <div className="fp-selected-save p-2">
-      <div className={`fp-save-btn d-flex align-items-center justify-content-center mx-auto shadow text-bold ${saving ? "saving" : ""}`} onClick={handleSave}>
-        save
+      <button className={`fp-btn fp-save-btn d-flex align-items-center justify-content-center mx-auto shadow text-bold ${saving ? "saving" : ""}`} onClick={handleSave}>
+        儲存變更
         <span style={{ "--i": 0 }}></span>
         <span style={{ "--i": 1 }}></span>
         <span style={{ "--i": 2 }}></span>
         <span style={{ "--i": 3 }}></span>
-      </div>
+      </button>
     </div>
   );
 };

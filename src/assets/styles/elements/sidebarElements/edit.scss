@@ -12,11 +12,15 @@
   font-style: italic;
 }
 
-.fp-save-btn {
+.fp-btn {
   --bg: var(--fp-main);
   cursor: pointer;
+  border: none;
+}
+
+.fp-save-btn {
   position: relative;
-  width: 60px;
+  width: 70px;
   aspect-ratio: 2 / 1;
   overflow: hidden;
   span {
@@ -41,6 +45,7 @@
   }
   &.saving {
     cursor: wait;
+    background-color: var(--fp-sidebar-bg);
     color: var(--fp-unactive);
     span {
       &:nth-child(even) {
