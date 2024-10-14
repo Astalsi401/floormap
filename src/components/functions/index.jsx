@@ -30,7 +30,7 @@ export const getMapElems = ({ params: { year, category } }) => {
     elems: await fetch(`${import.meta.env.BASE_URL}/assets/json/elems.json`)
       .then((res) => res.json())
       .catch(() => []),
-    boothInfo: await fetch(import.meta.env.MODE === "development" ? `${import.meta.env.VITE_SERVER_URL}/api/booths/${year}` : `${import.meta.env.BASE_URL}/assets/json/${year}/${category}.json`)
+    boothInfo: await fetch(import.meta.env.MODE === "development" ? `${import.meta.env.VITE_SERVER_URL}/api/get/${category}/${year}` : `${import.meta.env.BASE_URL}/assets/json/${year}/${category}.json`)
       .then((res) => res.json())
       .catch(() => []),
     boothPos: await fetch(`${import.meta.env.BASE_URL}/assets/json/boothPos.json`)
