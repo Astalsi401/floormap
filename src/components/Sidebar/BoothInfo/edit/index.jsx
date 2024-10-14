@@ -5,6 +5,43 @@ import ContentEditable from "react-contenteditable";
 import store, { setFloorData, setEditForm, saveEditForm, areas } from "@store";
 import { textToHTML, htmlToText } from "@functions";
 
+export const BoothName = ({ className, name, value, placeholder }) => {
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state.searchCondition.lang);
+  const content = useRef({ [lang]: textToHTML(value || "") });
+  content.current[lang] = textToHTML(store.getState()?.editForm?.[name]?.[lang] || value || "");
+  const handleChange = (e) => {
+    content.current[lang] = htmlToText(e.target.value);
+    dispatch(setEditForm({ [name]: { ...store.getState().editForm?.[name], [lang]: content.current[lang] } }));
+  };
+  return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
+};
+
+export const CorpInfo = ({ className, name, value, placeholder, corpId }) => {
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state.searchCondition.lang);
+  const content = useRef({ [lang]: textToHTML(value || "") });
+  content.current[lang] = textToHTML(store.getState()?.editForm.corps?.[name]?.[lang] || value || "");
+  const handleChange = (e) => {
+    content.current[lang] = htmlToText(e.target.value);
+    dispatch(setEditForm({ corps: store.getState().editForm.corps.map((d) => (d.corpId === corpId ? { ...d, [name]: { ...d[name], [lang]: content.current[lang] } } : d)) }));
+  };
+  return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
+};
+
+export const FontSize = () => {
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state.searchCondition.lang);
+  const size = useSelector((state) => state.editForm.size)[lang];
+  const handleChange = (e) => dispatch(setEditForm({ size: { ...store.getState().editForm.size, [lang]: Number(e.target.value) } }));
+  return (
+    <div className="fp-edit-fontsize p-2">
+      字體大小: {size}
+      <input className="d-block w-100" type="range" min={0.25} max={1} step={0.05} value={size} onChange={handleChange} />
+    </div>
+  );
+};
+
 export const SelectedBooths = ({ id }) => {
   const dispatch = useDispatch();
   const booths = useSelector((state) => state.editForm.booths);
@@ -51,7 +88,7 @@ export const SelectedCategory = () => {
   );
 };
 
-export const SelectedSave = ({ id }) => {
+export const SaveBtn = ({ id }) => {
   const dispatch = useDispatch();
   const { regex, tag, lang } = useSelector((state) => state.searchCondition);
   const saving = useSelector((state) => state.floorData.saving);
@@ -70,43 +107,6 @@ export const SelectedSave = ({ id }) => {
         <span style={{ "--i": 2 }}></span>
         <span style={{ "--i": 3 }}></span>
       </button>
-    </div>
-  );
-};
-
-export const BoothName = ({ className, name, value, placeholder }) => {
-  const dispatch = useDispatch();
-  const lang = useSelector((state) => state.searchCondition.lang);
-  const content = useRef({ [lang]: textToHTML(value || "") });
-  content.current[lang] = textToHTML(store.getState()?.editForm?.[name]?.[lang] || value || "");
-  const handleChange = (e) => {
-    content.current[lang] = htmlToText(e.target.value);
-    dispatch(setEditForm({ [name]: { ...store.getState().editForm?.[name], [lang]: content.current[lang] } }));
-  };
-  return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
-};
-
-export const BoothCorpInfo = ({ className, name, value, placeholder, corpId }) => {
-  const dispatch = useDispatch();
-  const lang = useSelector((state) => state.searchCondition.lang);
-  const content = useRef({ [lang]: textToHTML(value || "") });
-  content.current[lang] = textToHTML(store.getState()?.editForm.corps?.[name]?.[lang] || value || "");
-  const handleChange = (e) => {
-    content.current[lang] = htmlToText(e.target.value);
-    dispatch(setEditForm({ corps: store.getState().editForm.corps.map((d) => (d.corpId === corpId ? { ...d, [name]: { ...d[name], [lang]: content.current[lang] } } : d)) }));
-  };
-  return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
-};
-
-export const FontSize = () => {
-  const dispatch = useDispatch();
-  const lang = useSelector((state) => state.searchCondition.lang);
-  const size = useSelector((state) => state.editForm.size)[lang];
-  const handleChange = (e) => dispatch(setEditForm({ size: { ...store.getState().editForm.size, [lang]: Number(e.target.value) } }));
-  return (
-    <div className="fp-edit-fontsize p-2">
-      字體大小: {size}
-      <input className="d-block w-100" type="range" min={0.25} max={1} step={0.05} value={size} onChange={handleChange} />
     </div>
   );
 };
