@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import store, { setElementStatus } from "@store";
 import { getSearchParam } from "@functions";
 import { BoothName, CorpInfo, SelectedBooths, SelectedCategory, FontSize, SaveBtn } from "./edit";
-import { BoothTags, BoothCoprs, BoothDescribe, BoothEvents } from "./normal";
+import { BoothTags, BoothCoprs, CorpDescribe, BoothEvents } from "./normal";
 
 export const BoothInfo = () => {
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const BoothInfoDetail = () => {
       {isBooth && isEdit && isHost && <SelectedCategory />}
       {!isEdit && <BoothTags tags={tags} corpId={corpId} />}
       {corps.length > 1 && <BoothCoprs id={id} corps={corps} corpId={corpId} data={data} />}
-      {isBooth && isEdit && corps.length > 0 ? <CorpInfo className="p-2 text-small" name="info" value={info} placeholder="請輸入簡介" corpId={corpId} /> : info && <BoothDescribe info={info} corpId={corpId} />}
+      {isBooth && isEdit && corps.length > 0 ? <CorpInfo className="p-2 text-small" name="info" value={info} placeholder="請輸入簡介" corpId={corpId} /> : info && <CorpDescribe info={info} corpId={corpId} />}
       {events.length > 0 && <BoothEvents events={events} />}
       {isEdit && <SaveBtn id={id} />}
     </div>

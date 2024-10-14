@@ -42,7 +42,7 @@ export const BoothCoprs = ({ id, corps, corpId, data }) => {
   );
 };
 
-export const BoothDescribe = ({ info, corpId }) => (
+export const CorpDescribe = ({ info, corpId }) => (
   <div className="p-2 text-small">
     {info.split("\n").map((d, i) => (
       <div key={`BoothInfoDetail-describe-${corpId}-${d}-${i}`}>{d}</div>
