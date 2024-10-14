@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { setElementStatus } from "@store";
 import { Search, Advanced, ResultList, BoothInfo } from "./Elements";
+import { getSearchParam } from "@functions";
 
 export const Sidebar = ({ svgRef, graphRef }) => {
   const dispatch = useDispatch();
@@ -9,7 +10,7 @@ export const Sidebar = ({ svgRef, graphRef }) => {
   const smallScreen = useSelector((state) => state.elementStatus.smallScreen);
   const { category } = useParams();
   return (
-    <div className={`fp-sidebar shadow ${sidebar ? "active" : ""} ${category === "areas" ? "d-none" : ""}`} onClick={() => dispatch(setElementStatus({ sidebar: true }))}>
+    <div className={`fp-sidebar shadow ${sidebar ? "active" : ""} ${category === "areas" && getSearchParam("edit") === 0 ? "d-none" : ""}`} onClick={() => dispatch(setElementStatus({ sidebar: true }))}>
       <Search />
       {(sidebar || smallScreen) && (
         <>

@@ -92,7 +92,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
   };
   const handleMouseMove = (e) => {
     edit && boothInfo && (e.ctrlKey || e.shiftKey) && handleBoothSelected(e);
-    category === "areas" && handleAreaPage(e);
+    category === "areas" && !edit && handleAreaPage(e);
   };
   const handleClick = () => handleBoothClick(d);
   const activeTooltip = () => dispatch(setTooltip({ id: `No. ${d.id}`, cat: d.cat, text: d.text.replace("\n", ""), active: true }));

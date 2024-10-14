@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLoaderData, Await, useParams, useAsyncValue } from "react-router-dom";
 import { resizeAsync, setElementStatus, pageLoadAsync, dataFormat } from "@store";
 import { Header, Sidebar, Floormap, Tooltip, Loading } from "@components";
-import { boothData } from "@functions";
+import { boothData, getSearchParam } from "@functions";
 
 export const App = () => {
   const { data } = useLoaderData();
@@ -38,27 +38,24 @@ const FloormapApp = () => {
     dispatch(resizeAsync());
   }, [sidebar, smallScreen]);
   if (loaded) {
-    switch (category) {
-      case "areas":
-        return (
-          <div className="fp-main" style={{ "--sidebar-width": `${0}px`, "--tags-height": `${0}px` }}>
-            <Sidebar graphRef={graphRef} svgRef={svgRef} />
+    if (category === "booths" || getSearchParam("edit") == 1) {
+      return (
+        <div className="fp-main" style={{ "--sidebar-width": `${sidebarWidth}px`, "--tags-height": `${tagsHeight}px` }}>
+          <Sidebar graphRef={graphRef} svgRef={svgRef} />
+          <Header />
+          <div className="fp-graph d-flex align-items-center" onClick={() => smallScreen && dispatch(setElementStatus({ sidebar: false }))}>
             <Floormap graphRef={graphRef} svgRef={svgRef} />
-            <Tooltip />
           </div>
-        );
-      case "booths":
-        return (
-          <div className="fp-main" style={{ "--sidebar-width": `${sidebarWidth}px`, "--tags-height": `${tagsHeight}px` }}>
-            <Sidebar graphRef={graphRef} svgRef={svgRef} />
-            <Header />
-            <div className="fp-graph d-flex align-items-center" onClick={() => smallScreen && dispatch(setElementStatus({ sidebar: false }))}>
-              <Floormap graphRef={graphRef} svgRef={svgRef} />
-            </div>
-          </div>
-        );
-      default:
-        break;
+        </div>
+      );
+    } else if (category === "areas") {
+      return (
+        <div className="fp-main" style={{ "--sidebar-width": `${0}px`, "--tags-height": `${0}px` }}>
+          <Sidebar graphRef={graphRef} svgRef={svgRef} />
+          <Floormap graphRef={graphRef} svgRef={svgRef} />
+          <Tooltip />
+        </div>
+      );
     }
   }
 };
