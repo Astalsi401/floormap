@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import store, { setElementStatus } from "@store";
 import { getSearchParam } from "@functions";
-import { BoothName, SelectedBooths, SelectedCategory, FontSize, SelectedSave } from "./edit";
+import { BoothName, BoothCorpInfo, SelectedBooths, SelectedCategory, FontSize, SelectedSave } from "./edit";
 import { BoothTags, BoothCoprs, BoothDescribe, BoothEvents } from "./normal";
 
 export const BoothInfo = () => {
@@ -37,13 +37,13 @@ const BoothInfoDetail = () => {
         {isBooth && isEdit && isHost ? <BoothName className="fp-result-item-name text-x-large text-bold" name="text" value={text} placeholder="請輸入單位簡稱" /> : <div className="fp-result-item-name text-x-large text-bold">{text.replace("\n", "")}</div>}
         <div className="fp-result-item-loc text-small">{isBooth ? `${id} / ${floor}F` : `${floor}F`}</div>
       </div>
-      <div className="p-2 text-large">{org}</div>
+      {isBooth && isEdit && corps.length > 0 ? <BoothCorpInfo className="p-2 text-large" name="org" value={org} placeholder="請輸入單位全名" corpId={corpId} /> : <div className="p-2 text-large">{org}</div>}
       {isBooth && isEdit && isHost && <FontSize id={id} />}
       {isBooth && isEdit && isHost && <SelectedBooths id={id} />}
       {isBooth && isEdit && isHost && <SelectedCategory />}
       {!isEdit && <BoothTags tags={tags} corpId={corpId} />}
       {corps.length > 1 && <BoothCoprs id={id} corps={corps} corpId={corpId} data={data} />}
-      {isBooth && isEdit ? <BoothName className="p-2 text-small" name="info" value={info} placeholder="請輸入簡介" /> : info && <BoothDescribe info={info} corpId={corpId} />}
+      {isBooth && isEdit && corps.length > 0 ? <BoothCorpInfo className="p-2 text-small" name="info" value={info} placeholder="請輸入簡介" corpId={corpId} /> : info && <BoothDescribe info={info} corpId={corpId} />}
       {events.length > 0 && <BoothEvents events={events} />}
       {isEdit && <SelectedSave id={id} />}
     </div>

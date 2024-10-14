@@ -180,9 +180,16 @@ export const getFilterData = ({ data, tag, lang, regex }) =>
     return res;
   }, []);
 
-export const contentEditor = (string) =>
+export const textToHTML = (string) =>
   string
     .split("\n")
     .filter((d) => d.length > 0)
     .map((d) => `<div>${d}</div>`)
     .join("");
+
+export const htmlToText = (string) =>
+  string
+    .replace(/^<div>|<br>|<\/div>$/g, "")
+    .split("</div><div>")
+    .filter((d) => d.length > 0)
+    .join("\n");

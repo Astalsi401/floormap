@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ContentEditable from "react-contenteditable";
 import store, { setFloorData, setEditForm, saveEditForm, areas } from "@store";
-import { contentEditor } from "@functions";
+import { textToHTML, htmlToText } from "@functions";
 
 export const SelectedBooths = ({ id }) => {
   const dispatch = useDispatch();
@@ -77,23 +77,24 @@ export const SelectedSave = ({ id }) => {
 export const BoothName = ({ className, name, value, placeholder }) => {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.searchCondition.lang);
-  const content = useRef({ [lang]: contentEditor(value || "") });
+  const content = useRef({ [lang]: textToHTML(value || "") });
+  content.current[lang] = textToHTML(store.getState()?.editForm?.[name]?.[lang] || value || "");
   const handleChange = (e) => {
-    content.current[lang] = e.target.value;
-    dispatch(
-      setEditForm({
-        [name]: {
-          ...store.getState().editForm?.[name],
-          [lang]: content.current[lang]
-            .replace(/^<div>|<br>|<\/div>$/g, "")
-            .split("</div><div>")
-            .filter((d) => d.length > 0)
-            .join("\n"),
-        },
-      })
-    );
+    content.current[lang] = htmlToText(e.target.value);
+    dispatch(setEditForm({ [name]: { ...store.getState().editForm?.[name], [lang]: content.current[lang] } }));
   };
-  content.current[lang] = contentEditor(store.getState()?.editForm?.[name]?.[lang] || value || "");
+  return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
+};
+
+export const BoothCorpInfo = ({ className, name, value, placeholder, corpId }) => {
+  const dispatch = useDispatch();
+  const lang = useSelector((state) => state.searchCondition.lang);
+  const content = useRef({ [lang]: textToHTML(value || "") });
+  content.current[lang] = textToHTML(store.getState()?.editForm.corps?.[name]?.[lang] || value || "");
+  const handleChange = (e) => {
+    content.current[lang] = htmlToText(e.target.value);
+    dispatch(setEditForm({ corps: store.getState().editForm.corps.map((d) => (d.corpId === corpId ? { ...d, [name]: { ...d[name], [lang]: content.current[lang] } } : d)) }));
+  };
   return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
 };
 
