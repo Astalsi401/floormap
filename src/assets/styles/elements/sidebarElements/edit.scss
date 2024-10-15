@@ -35,12 +35,12 @@
     &:nth-child(even) {
       transform: translateX(-50%) rotate(90deg);
       border-left: 2px solid var(--bg);
-      border-image: linear-gradient(0deg, var(--fp-sidebar-bg), var(--bg)) 1;
+      border-image: linear-gradient(0deg, transparent, var(--bg)) 1;
     }
     &:nth-child(odd) {
       transform: translateX(-100%);
       border-top: 2px solid var(--bg);
-      border-image: linear-gradient(90deg, var(--fp-sidebar-bg), var(--bg)) 1;
+      border-image: linear-gradient(90deg, transparent, var(--bg)) 1;
     }
   }
   &.saving {
