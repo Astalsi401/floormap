@@ -1,15 +1,18 @@
 export const Loading = () => (
   <div className="fp-loading">
     <div className="loading">
-      <span>
-        <span style={{ "--i": 0 }}>L</span>
-        <span style={{ "--i": 1 }}>o</span>
-        <span style={{ "--i": 2 }}>a</span>
-        <span style={{ "--i": 3 }}>d</span>
-        <span style={{ "--i": 4 }}>i</span>
-        <span style={{ "--i": 5 }}>n</span>
-        <span style={{ "--i": 6 }}>g</span>
-      </span>
+      <div className="loading-block left">
+        <div style={{ "--i": 0, "--t": 0 }}></div>
+        <div style={{ "--i": 1, "--t": 1 }}></div>
+        <div style={{ "--i": 2, "--t": 6 }}></div>
+        <div style={{ "--i": 3, "--t": 7 }}></div>
+      </div>
+      <div className="loading-block right">
+        <div style={{ "--i": 0, "--t": 2 }}></div>
+        <div style={{ "--i": 1, "--t": 3 }}></div>
+        <div style={{ "--i": 2, "--t": 4 }}></div>
+        <div style={{ "--i": 3, "--t": 5 }}></div>
+      </div>
     </div>
   </div>
 );
