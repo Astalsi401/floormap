@@ -6,7 +6,6 @@
 }
 
 .loading {
-  --bg: rgb(55, 67, 121);
   --d: 1.5s;
   --bw: 2px;
   position: relative;
@@ -31,8 +30,8 @@
     inset: 0;
     rotate: calc(var(--i) * 90deg);
     transform: translateX(-100%);
-    border-image: linear-gradient(90deg, transparent, var(--bg)) 1;
-    border-top: 2px solid var(--bg);
+    border-image: linear-gradient(90deg, transparent, var(--fp-main)) 1;
+    border-top: 2px solid var(--fp-main);
     animation-name: loading-border;
     animation-delay: calc(var(--d) / 8 * var(--t));
     animation-duration: var(--d);
