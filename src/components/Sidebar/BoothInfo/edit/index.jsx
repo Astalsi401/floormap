@@ -3,30 +3,34 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ContentEditable from "react-contenteditable";
 import store, { setFloorData, setEditForm, saveEditForm, areas } from "@store";
-import { textToHTML, htmlToText } from "@functions";
 
-export const BoothName = ({ className, name, value, placeholder }) => {
+const getCurrentText = ({ name, lang, corpId }) => (corpId ? store.getState()?.editForm.corps.find((d) => d.corpId === corpId)?.[name]?.[lang] : store.getState()?.editForm?.[name]?.[lang]);
+const updateText = ({ name, lang, corpId, content }) => (corpId ? { corps: store.getState().editForm.corps.map((d) => (d.corpId === corpId ? { ...d, [name]: { ...d[name], [lang]: content.current[lang] } } : d)) } : { [name]: { ...store.getState().editForm?.[name], [lang]: content.current[lang] } });
+const textToHTML = (string) =>
+  string
+    .split("\n")
+    .filter((d) => d.length > 0)
+    .map((d) => `<div>${d}</div>`)
+    .join("");
+
+const htmlToText = (string) =>
+  string
+    .replace(/^<div>|<br>|<\/div>$/g, "")
+    .split("</div><div>")
+    .filter((d) => d.length > 0)
+    .join("\n");
+
+export const BoothText = ({ className, name, value, placeholder, corpId }) => {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.searchCondition.lang);
   const content = useRef({ [lang]: textToHTML(value || "") });
-  content.current[lang] = textToHTML(store.getState()?.editForm?.[name]?.[lang] || value || "");
+  content.current[lang] = textToHTML(getCurrentText({ name, lang, corpId }) || value || ""); // 確保語言切換重新渲染後優先使用已編輯但未儲存的文字
   const handleChange = (e) => {
     content.current[lang] = htmlToText(e.target.value);
-    dispatch(setEditForm({ [name]: { ...store.getState().editForm?.[name], [lang]: content.current[lang] } }));
+    dispatch(setEditForm(updateText({ name, lang, corpId, content })));
   };
-  return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
-};
-
-export const CorpInfo = ({ className, name, value, placeholder, corpId }) => {
-  const dispatch = useDispatch();
-  const lang = useSelector((state) => state.searchCondition.lang);
-  const content = useRef({ [lang]: textToHTML(value || "") });
-  content.current[lang] = textToHTML(store.getState()?.editForm.corps?.[name]?.[lang] || value || "");
-  const handleChange = (e) => {
-    content.current[lang] = htmlToText(e.target.value);
-    dispatch(setEditForm({ corps: store.getState().editForm.corps.map((d) => (d.corpId === corpId ? { ...d, [name]: { ...d[name], [lang]: content.current[lang] } } : d)) }));
-  };
-  return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />;
+  const onBlur = (e) => (e.target.innerHTML = e.target.innerHTML.replace(/<br>/g, ""));
+  return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} onBlur={onBlur} data-placeholder={placeholder} />;
 };
 
 export const FontSize = () => {
