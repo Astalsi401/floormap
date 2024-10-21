@@ -1,4 +1,4 @@
-export const Loading = () => (
+export const PageLoading = () => (
   <div className="fp-loading">
     <div className="loading">
       <div className="loading-block left">
@@ -14,5 +14,17 @@ export const Loading = () => (
         <div style={{ "--i": 3, "--t": 5 }}></div>
       </div>
     </div>
+  </div>
+);
+
+export const BtnLoading = ({ loading, onClick, text }) => (
+  <div className="fp-selected-save p-2">
+    <button className={`fp-btn fp-save-btn d-flex align-items-center justify-content-center mx-auto shadow text-bold ${loading ? "saving" : ""}`} onClick={onClick}>
+      {text}
+      <span style={{ "--i": 0 }}></span>
+      <span style={{ "--i": 1 }}></span>
+      <span style={{ "--i": 2 }}></span>
+      <span style={{ "--i": 3 }}></span>
+    </button>
   </div>
 );

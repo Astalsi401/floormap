@@ -1,7 +1,7 @@
-import { Loading } from "./Loading";
+import { PageLoading, BtnLoading } from "./Loading";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
 import { Floormap } from "./Floormap";
 import { Tooltip } from "./Tooltip";
 
-export { Loading, Header, Sidebar, Floormap, Tooltip };
+export { PageLoading, BtnLoading, Header, Sidebar, Floormap, Tooltip };

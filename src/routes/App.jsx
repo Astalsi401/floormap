@@ -2,13 +2,13 @@ import { Suspense, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLoaderData, Await, useParams, useAsyncValue } from "react-router-dom";
 import { resizeAsync, setElementStatus, pageLoadAsync, dataFormat } from "@store";
-import { Header, Sidebar, Floormap, Tooltip, Loading } from "@components";
+import { Header, Sidebar, Floormap, Tooltip, PageLoading } from "@components";
 import { boothData, getSearchParam } from "@functions";
 
 export const App = () => {
   const { data } = useLoaderData();
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<PageLoading />}>
       <Await resolve={data}>
         <FloormapApp />
       </Await>
