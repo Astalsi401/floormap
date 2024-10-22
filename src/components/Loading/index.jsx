@@ -18,7 +18,7 @@ export const PageLoading = () => (
 );
 
 export const BtnLoading = ({ loading, onClick, text }) => (
-  <div className="fp-selected-save p-2">
+  <div className="fp-loading-btn p-2">
     <button className={`fp-btn fp-save-btn d-flex align-items-center justify-content-center mx-auto shadow text-bold ${loading ? "saving" : ""}`} onClick={onClick}>
       {text}
       <span style={{ "--i": 0 }}></span>
