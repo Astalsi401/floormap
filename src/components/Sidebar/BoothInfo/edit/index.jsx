@@ -3,34 +3,30 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ContentEditable from "react-contenteditable";
 import store, { setFloorData, setEditForm, saveEditForm, areas } from "@store";
+import { BtnLoading } from "@components";
 
+const textToHTML = (string) => {
+  let res = string.replace(/\n$/, "<br>").split("\n");
+  return res.length > 1 ? res.map((d) => (d === "" ? "" : `<div>${d}</div>`)).join("") : res[0];
+};
+const htmlToText = (string) => string.replace(/^<div>|<\/div>$/g, "").replace(/<\/div><div>|<br>/g, "\n");
 const getCurrentText = ({ name, lang, corpId }) => (corpId ? store.getState()?.editForm.corps.find((d) => d.corpId === corpId)?.[name]?.[lang] : store.getState()?.editForm?.[name]?.[lang]);
-const updateText = ({ name, lang, corpId, content }) => (corpId ? { corps: store.getState().editForm.corps.map((d) => (d.corpId === corpId ? { ...d, [name]: { ...d[name], [lang]: content.current[lang] } } : d)) } : { [name]: { ...store.getState().editForm?.[name], [lang]: content.current[lang] } });
-const textToHTML = (string) =>
-  string
-    .split("\n")
-    .filter((d) => d.length > 0)
-    .map((d) => `<div>${d}</div>`)
-    .join("");
-
-const htmlToText = (string) =>
-  string
-    .replace(/^<div>|<br>|<\/div>$/g, "")
-    .split("</div><div>")
-    .filter((d) => d.length > 0)
-    .join("\n");
+const updateText = ({ name, lang, corpId, content }) => (corpId ? { corps: store.getState().editForm.corps.map((d) => (d.corpId === corpId ? { ...d, [name]: { ...d[name], [lang]: htmlToText(content.current[lang]) } } : d)) } : { [name]: { ...store.getState().editForm?.[name], [lang]: htmlToText(content.current[lang]) } });
 
 export const BoothText = ({ className, name, value, placeholder, corpId }) => {
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.searchCondition.lang);
   const content = useRef({ [lang]: textToHTML(value || "") });
-  content.current[lang] = textToHTML(getCurrentText({ name, lang, corpId }) || value || ""); // 確保語言切換重新渲染後優先使用已編輯但未儲存的文字
+  content.current[lang] = textToHTML(getCurrentText({ name, lang, corpId }) ?? value ?? ""); // 確保語言切換重新渲染後優先使用已編輯但未儲存的文字
   const handleChange = (e) => {
-    content.current[lang] = htmlToText(e.target.value);
+    content.current[lang] = e.target.value === "<br>" ? "" : e.target.value;
     dispatch(setEditForm(updateText({ name, lang, corpId, content })));
   };
-  const onBlur = (e) => (e.target.innerHTML = e.target.innerHTML.replace(/<br>/g, ""));
-  return <ContentEditable className={className} html={content.current[lang]} onChange={handleChange} onBlur={onBlur} data-placeholder={placeholder} />;
+  return (
+    <div className={className}>
+      <ContentEditable html={content.current[lang]} onChange={handleChange} data-placeholder={placeholder} />
+    </div>
+  );
 };
 
 export const FontSize = () => {
@@ -92,6 +88,16 @@ export const SelectedCategory = () => {
   );
 };
 
+export const AddCorp = () => {
+  const dispatch = useDispatch();
+  const handleClick = () => {};
+  return (
+    <div className="fp-input-tag shadow text-small" style={{ "--cat": "rgb(207, 97, 97)" }} onClick={handleClick}>
+      +
+    </div>
+  );
+};
+
 export const SaveBtn = ({ id }) => {
   const dispatch = useDispatch();
   const { regex, tag, lang } = useSelector((state) => state.searchCondition);
@@ -102,15 +108,5 @@ export const SaveBtn = ({ id }) => {
     dispatch(setFloorData({ saving: true }));
     saveEditForm({ year, category, id, tag, lang, regex })(dispatch);
   };
-  return (
-    <div className="fp-selected-save p-2">
-      <button className={`fp-btn fp-save-btn d-flex align-items-center justify-content-center mx-auto shadow text-bold ${saving ? "saving" : ""}`} onClick={handleSave}>
-        儲存變更
-        <span style={{ "--i": 0 }}></span>
-        <span style={{ "--i": 1 }}></span>
-        <span style={{ "--i": 2 }}></span>
-        <span style={{ "--i": 3 }}></span>
-      </button>
-    </div>
-  );
+  return <BtnLoading loading={saving} onClick={handleSave} text="儲存變更" />;
 };

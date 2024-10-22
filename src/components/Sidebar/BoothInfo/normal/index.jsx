@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSearchCondition, setElementStatus, initEditForm } from "@store";
+import { getSearchParam } from "@functions";
 
 export const BoothTags = ({ tags, corpId }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,9 @@ export const BoothCoprs = ({ id, corps, corpId, data }) => {
   const dispatch = useDispatch();
   const exhibitor = useSelector((state) => state.mapText.exhibitor);
   const colors = useSelector((state) => state.elementStatus.colors);
+  const currentCorps = useSelector((state) => state.editForm.corps);
+  const lang = useSelector((state) => state.searchCondition.lang);
+  const isEdit = getSearchParam("edit") === 1;
   const handleCorpClick = ({ currentCorpId }) => {
     dispatch(setElementStatus({ boothInfoData: data.find((d) => d.corpId === currentCorpId) }));
     initEditForm({ id })(dispatch);
@@ -32,9 +36,9 @@ export const BoothCoprs = ({ id, corps, corpId, data }) => {
     <div className="p-2">
       <div className="my-1 text-large">{exhibitor}</div>
       <div className="my-1 fp-booth-tags d-flex flex-wrap">
-        {corps.map((d) => (
+        {(isEdit ? currentCorps : corps).map((d) => (
           <div key={`BoothInfoDetail-${d.corpId}`} className="fp-input-tag shadow text-small" style={{ "--cat": d.corpId === corpId ? "rgb(0, 0, 128, 0.3)" : colors.scale("") }} onClick={() => handleCorpClick({ currentCorpId: d.corpId })}>
-            {d.org}
+            {isEdit ? d.org[lang] : d.org}
           </div>
         ))}
       </div>
