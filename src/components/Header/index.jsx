@@ -19,8 +19,7 @@ export const Header = () => {
     const canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
     const resolution = 3840;
-    const scale = resolution / width;
-    Object.assign(canvas, { width: resolution, height: scale * height });
+    Object.assign(canvas, { width: resolution, height: (resolution / width) * height });
     const ctx = canvas.getContext("2d");
     const image = new Image();
     const blob = await new Promise((resolve) => {
