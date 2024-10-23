@@ -1,5 +1,5 @@
 import store, { actions, defaultMapText, defaultFontSize, areas } from "./store";
-import { ColorPicker, getMapElems, getFilterData, boothData } from "@functions";
+import { ColorPicker, getMapElems, getFilterData } from "@functions";
 
 export default store;
 export { defaultMapText, defaultFontSize, areas };
@@ -85,6 +85,6 @@ export const saveEditForm =
     const {
       data: { data },
     } = await getMapElems({ params: { year, category } });
-    dataFormat({ data: boothData(await data) })(dispatch);
+    dataFormat({ data: await data })(dispatch);
     searchChangeAsync({ filterData: getFilterData({ data: store.getState().floorData.data, tag, lang, regex }) })(dispatch);
   };

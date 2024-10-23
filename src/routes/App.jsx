@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useLoaderData, Await, useParams, useAsyncValue } from "react-router-dom";
 import { resizeAsync, setElementStatus, pageLoadAsync, dataFormat } from "@store";
 import { Header, Sidebar, Floormap, Tooltip, PageLoading } from "@components";
-import { boothData, getSearchParam } from "@functions";
+import { getSearchParam } from "@functions";
 
 export const App = () => {
   const { data } = useLoaderData();
@@ -28,7 +28,7 @@ const FloormapApp = () => {
   const data = useAsyncValue();
   const { category } = useParams();
   useEffect(() => {
-    dataFormat({ data: boothData(data) })(dispatch);
+    dataFormat({ data })(dispatch);
     dispatch(pageLoadAsync());
     dispatch(resizeAsync());
     window.addEventListener("resize", () => dispatch(resizeAsync()));

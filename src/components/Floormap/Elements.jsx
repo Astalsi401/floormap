@@ -100,7 +100,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
   useEffect(() => setSelected(edit && boothInfo && store.getState().editForm.booths?.includes(d.id)), [edit, boothInfoId]);
   return (
     <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={handleClick} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
-      <path stroke={selected ? "rgb(207, 97, 97)" : "black"} fill={selected ? "rgb(207, 97, 97)" : colors.scale(d.cat)} strokeWidth={selected ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />
+      <path stroke={selected && boothInfo ? "rgb(207, 97, 97)" : "black"} fill={selected && boothInfo ? "rgb(207, 97, 97)" : colors.scale(d.cat)} strokeWidth={selected && boothInfo ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />
       <BoothTextGroup d={d} size={size} textShift={textShift} opacity={opacity} />
       <text className="booth-id" fill="black" fillOpacity={opacity} fontSize={size * 0.3} x={20 + textShift.x} y={d.h - 20 + textShift.y}>
         {d.id}
