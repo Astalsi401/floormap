@@ -2,7 +2,7 @@
   flex-wrap: nowrap;
   min-height: var(--fp-search-box-height);
   background-color: var(--fp-search-bg);
-  .fp-toggle:not(.active) {
+  .fp-toggle:not(.active, .loading) {
     opacity: 0;
     cursor: default;
   }
@@ -156,22 +156,41 @@
 }
 
 .fp-toggle {
-  span {
-    width: 80%;
-    &::before,
-    &::after {
-      top: calc(var(--i) * 5px);
-    }
-  }
-  &.active {
+  position: relative;
+  &:not(.loading) {
     span {
-      background-color: var(--fp-search-bg);
+      width: 80%;
       &::before,
       &::after {
-        top: 0;
-        transform: rotate(calc(var(--i) * 45deg));
+        top: calc(var(--i) * 5px);
       }
     }
+    &.active {
+      span {
+        background-color: var(--fp-search-bg);
+        &::before,
+        &::after {
+          top: 0;
+          transform: rotate(calc(var(--i) * 45deg));
+        }
+      }
+    }
+  }
+  &.loading {
+    border: 1px solid transparent;
+    border-left-color: var(--fp-unactive);
+    border-radius: 50%;
+    scale: 0.5;
+    animation: input-loading var(--fp-time) linear infinite;
+  }
+}
+
+@keyframes input-loading {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
   }
 }
 
