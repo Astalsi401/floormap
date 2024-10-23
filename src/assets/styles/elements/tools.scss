@@ -39,7 +39,6 @@
   top: calc(var(--tags-height) + 20px + var(--fp-icon-size) * 2);
 }
 .fp-zoom {
-  transition: left var(--fp-time);
   left: calc(var(--sidebar-width) + 10px);
   gap: 10px;
 }

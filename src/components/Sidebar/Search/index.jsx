@@ -22,7 +22,7 @@ export const Search = () => {
   };
   useEffect(() => {
     if (inputTimer) return;
-    dispatch(regexAsync());
+    regexAsync()(dispatch);
   }, [string, inputTimer]);
   useEffect(() => {
     searchChangeAsync({ filterData: getFilterData({ data, tag, lang, regex }) })(dispatch);
@@ -45,7 +45,7 @@ export const Search = () => {
         )}
         <input className="fp-input-text d-block text-large" name="string" type="text" value={string} onChange={handleInput} placeholder={mapText.searchPlaceholder} />
       </div>
-      <div className={`fp-toggle d-flex align-items-center justify-content-center ${searched ? "" : "active"}`} title={searched ? "" : mapText.clear} onClick={() => sidebar && dispatch(setSearchCondition({ string: "" }))}>
+      <div className={`fp-toggle d-flex align-items-center justify-content-center ${searched ? "" : "active"} ${inputTimer ? "loading" : ""}`} title={searched ? "" : mapText.clear} onClick={() => sidebar && dispatch(setSearchCondition({ string: "" }))}>
         <span />
       </div>
     </div>

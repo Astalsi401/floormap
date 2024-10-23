@@ -7,7 +7,6 @@
   width: calc(100% - var(--sidebar-width));
   height: var(--tags-height);
   background-color: var(--fp-search-bg);
-  transition: width var(--fp-time);
 }
 
 @media (max-width: 768px) {

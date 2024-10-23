@@ -8,7 +8,7 @@
   z-index: index($list: $index, $value: sidebar);
   overflow: hidden;
   transform: translateX(calc(-100% + var(--sidebar-width)));
-  transition: transform var(--fp-time), height var(--fp-time);
+  transition: transform var(--fp-time);
 }
 @media (max-width: 768px) {
   .fp-sidebar {
