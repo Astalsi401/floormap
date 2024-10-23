@@ -1,12 +1,14 @@
 import { useSelector, useDispatch } from "react-redux";
 import store, { setSearchCondition, setElementStatus } from "@store";
 import { resetViewbox } from "@functions";
+import { useParams } from "react-router-dom";
 
 export const Header = () => {
   const dispatch = useDispatch();
   const colors = useSelector((state) => state.elementStatus.colors);
   const floor = useSelector((state) => state.searchCondition.floor);
   const mapText = useSelector((state) => state.mapText);
+  const { year } = useParams();
   const tags = [mapText.event, ...mapText.headerTags];
   const download = async () => {
     await new Promise((resolve) => setTimeout(resolve, 50));
@@ -44,7 +46,7 @@ export const Header = () => {
       <div className="d-flex">
         <div className="flex-grow-1">
           <a href={`https://expo.taiwan-healthcare.org/${mapText.link}/`} className="logo d-block">
-            <img className="d-block mx-auto" src={`${import.meta.env.BASE_URL}/assets/images/expo-header-icon.png`} alt="Healthcare Expo Taiwan Logo" />
+            <img className="d-block mx-auto" src={`${import.meta.env.BASE_URL}/assets/images/expo-header-icon-${year}.png`} alt="Healthcare Expo Taiwan Logo" />
           </a>
         </div>
         <div className="fp-download flex-shrink-0" title={mapText.download} onClick={download}>
