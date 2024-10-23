@@ -15,7 +15,6 @@ export const Header = () => {
     const { width, height } = store.getState().elementStatus;
     const svg = document.querySelector("#floormap");
     resetViewbox({ svg });
-    let blob;
     const svgString = new XMLSerializer().serializeToString(svg);
     const canvas = document.createElement("canvas");
     document.body.appendChild(canvas);
@@ -24,14 +23,14 @@ export const Header = () => {
     Object.assign(canvas, { width: resolution, height: scale * height });
     const ctx = canvas.getContext("2d");
     const image = new Image();
-    blob = await new Promise((resolve) => {
+    const blob = await new Promise((resolve) => {
       image.onload = () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
         canvas.toBlob(resolve, "image/png");
         document.body.removeChild(canvas);
       };
-      image.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString);
+      image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgString)}`;
     });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
