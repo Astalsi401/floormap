@@ -67,7 +67,10 @@ export const searchChangeAsync =
     document.title = store.getState().mapText.title;
   };
 
-export const regexAsync = () => (dispatch) => setTimeout(() => dispatch(setSearchCondition({ regex: "update" })), 50);
+export const regexAsync = () => async (dispatch) => {
+  new Promise((resolve) => setTimeout(resolve, 50));
+  dispatch(setSearchCondition({ regex: "update" }));
+};
 export const initEditForm =
   ({ id }) =>
   (dispatch) => {
