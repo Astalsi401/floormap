@@ -80,14 +80,9 @@ export const initEditForm =
 export const saveEditForm =
   ({ year, category, id, tag, lang, regex }) =>
   async (dispatch) => {
-    await fetch(`${import.meta.env.VITE_SERVER_URL}/api/update/${category}/${year}/${id}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json; charset=utf-8" },
-      body: JSON.stringify(store.getState().editForm),
-    });
     const {
       data: { data },
-    } = await getMapElems({ params: { year, category } });
+    } = await getMapElems({ params: { year, category, id }, postData: store.getState().editForm });
     dataFormat({ data: await data })(dispatch);
     searchChangeAsync({ filterData: getFilterData({ data: store.getState().floorData.data, tag, lang, regex }) })(dispatch);
   };

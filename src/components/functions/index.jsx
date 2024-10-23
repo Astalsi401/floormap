@@ -25,19 +25,33 @@ export class ColorPicker {
   };
 }
 
-export const getMapElems = ({ params: { year, category } }) => {
-  const data = (async () =>
-    boothData({
-      elems: await fetch(`${import.meta.env.BASE_URL}/assets/json/elems.json`)
-        .then((res) => res.json())
-        .catch(() => []),
-      boothInfo: await fetch(import.meta.env.MODE === "development" ? `${import.meta.env.VITE_SERVER_URL}/api/get/${category}/${year}` : `${import.meta.env.BASE_URL}/assets/json/${year}/${category}.json`)
-        .then((res) => res.json())
-        .catch(() => []),
-      boothPos: await fetch(`${import.meta.env.BASE_URL}/assets/json/boothPos.json`)
-        .then((res) => res.json())
-        .catch(() => []),
-    }))();
+class FetchData {
+  constructor() {
+    this.errorHandler = (error) => {
+      console.error(error);
+    };
+  }
+  get = async (url, errorHandler) =>
+    await fetch(url)
+      .then((res) => res.json())
+      .catch(errorHandler || this.errorHandler);
+  post = (url, postData, errorHandler) =>
+    fetch(url, { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify(postData) })
+      .then((res) => res.json())
+      .catch(errorHandler || this.errorHandler);
+}
+const fetchData = new FetchData();
+
+export const getMapElems = ({ params: { year, category, id }, postData = null }) => {
+  const data = (async () => {
+    const assets = `${import.meta.env.BASE_URL}/assets/json`;
+    const server = `${import.meta.env.VITE_SERVER_URL}/api`;
+    return boothData({
+      elems: await fetchData.get(`${assets}/elems.json`),
+      boothInfo: postData === null ? await fetchData.get(import.meta.env.MODE === "development" ? `${server}/get/${category}/${year}` : `${assets}/${year}/${category}.json`) : await fetchData.post(`${server}/update/${category}/${year}/${id}`, postData),
+      boothPos: await fetchData.get(`${assets}/boothPos.json`),
+    });
+  })();
   return defer({ data });
 };
 
