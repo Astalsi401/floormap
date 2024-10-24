@@ -46,9 +46,10 @@ export const getMapElems = ({ params: { year, category, id }, postData = null })
   const data = (async () => {
     const assets = `${import.meta.env.BASE_URL}/assets/json`;
     const server = `${import.meta.env.VITE_SERVER_URL}/api`;
+    const route = `${year}/${category}`;
     return boothData({
       elems: await fetchData.get(`${assets}/elems.json`),
-      boothInfo: postData === null ? await fetchData.get(import.meta.env.MODE === "development" ? `${server}/get/${category}/${year}` : `${assets}/${year}/${category}.json`) : await fetchData.post(`${server}/update/${category}/${year}/${id}`, postData),
+      boothInfo: postData === null ? await fetchData.get(import.meta.env.MODE === "development" ? `${server}/${route}` : `${assets}/${route}.json`) : await fetchData.post(`${server}/${route}/${id}`, postData),
       boothPos: await fetchData.get(`${assets}/boothPos.json`),
     });
   })();
