@@ -28,30 +28,42 @@ export class ColorPicker {
 class FetchData {
   constructor() {
     this.errorHandler = (error) => {
-      console.error(error);
+      throw error;
     };
   }
-  get = async (url, errorHandler) =>
-    await fetch(url)
-      .then((res) => res.json())
-      .catch(errorHandler || this.errorHandler);
-  post = (url, postData, errorHandler) =>
-    fetch(url, { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify(postData) })
-      .then((res) => res.json())
-      .catch(errorHandler || this.errorHandler);
+  fetchWrapper = (url, options) =>
+    fetch(url, options)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else if (res.status === 403) {
+          throw new Error("Forbidden");
+        } else {
+          throw new Error(res.statusText);
+        }
+      })
+      .catch(this.errorHandler);
+  get = (url) => this.fetchWrapper(url);
+  post = (url, postData) => this.fetchWrapper(url, { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify(postData) });
 }
 const fetchData = new FetchData();
 
 export const getMapElems = ({ params: { year, category, id }, postData = null }) => {
   const data = (async () => {
-    const assets = `${import.meta.env.BASE_URL}/assets/json`;
-    const server = `${import.meta.env.VITE_SERVER_URL}/api`;
-    const route = `${year}/${category}`;
-    return boothData({
-      elems: await fetchData.get(`${assets}/elems.json`),
-      boothInfo: postData === null ? await fetchData.get(import.meta.env.MODE === "development" ? `${server}/${route}` : `${assets}/${route}.json`) : await fetchData.post(`${server}/${route}/${id}`, postData),
-      boothPos: await fetchData.get(`${assets}/boothPos.json`),
-    });
+    try {
+      const dev = import.meta.env.MODE === "development";
+      const assets = `${import.meta.env.BASE_URL}/assets/json`;
+      const server = `${import.meta.env.VITE_SERVER_URL}/api`;
+      const route = `${year}/${category}`;
+      const data = {
+        elems: await fetchData.get(`${assets}/elems.json`),
+        boothInfo: postData === null ? await fetchData.get(`${dev ? server : assets}/${route}${dev ? "" : ".json"}`) : await fetchData.post(`${server}/${route}/${id}`, postData),
+        boothPos: await fetchData.get(`${assets}/boothPos.json`),
+      };
+      return boothData(data);
+    } catch (error) {
+      throw error;
+    }
   })();
   return defer({ data });
 };
