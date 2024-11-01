@@ -1,12 +1,12 @@
-import store, { actions, defaultMapText, defaultFontSize, areas } from "./store";
+import store, { actions, defaultMapText, defaultFontSize, defaultString, areas } from "./store";
 import { ColorPicker, getMapElems, getFilterData } from "@functions";
 
 export default store;
-export { defaultMapText, defaultFontSize, areas };
+export { defaultMapText, defaultFontSize, defaultString, areas };
 export const { setFloorData, setSearchCondition, setElementStatus, setDragStatus, setStore, setTooltip, setEditForm } = actions;
 
 const mapTextLangChange = (lang) => Object.keys(defaultMapText).reduce((acc, key) => ({ ...acc, [key]: defaultMapText[key][lang] }), {});
-const hasActiveEvent = (time) => {
+const hasActiveEvent = ({ event, time }) => {
   const now = new Date();
   const start = new Date(time.start);
   const end = new Date(time.end);
@@ -17,7 +17,7 @@ const hasActiveEvent = (time) => {
   const endTime = new Date(`${nowDate} ${end.getHours()}:${end.getMinutes()}:${end.getSeconds()}`);
   return startDate < now && now < endDate && startTime < now && now < endTime && (event.title.tc.length > 0 || event.title.en.length > 0);
 };
-const eventFormat = (event) => ({ ...event, timeList: event.timeList.map((time) => ({ start: new Date(time.start), end: new Date(time.end) })), active: event.timeList.some(hasActiveEvent) });
+const eventFormat = (event) => ({ ...event, timeList: event.timeList.map((time) => ({ start: new Date(time.start), end: new Date(time.end) })), active: event.timeList.some((time) => hasActiveEvent({ event, time })) });
 export const dataFormat =
   ({ data }) =>
   (dispatch) => {
@@ -25,13 +25,12 @@ export const dataFormat =
       setFloorData({
         data: data.map((d, i) => {
           let eventTime = [],
-            textString = { tc: "", en: "" },
             tags = d.tag ? d.tag : { tc: [], en: [] };
           if (d.event) {
             eventTime = d.event.map(eventFormat);
             tags = eventTime.some((e) => e.active) ? { tc: [...tags.tc, mapText.event.tc], en: [...tags.en, mapText.event.en] } : tags;
           }
-          return { ...d, id: d.id || `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat || textString, topic: d.topic || textString, tag: tags, text: d.text || textString, size: d.size || { tc: defaultFontSize, en: defaultFontSize }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${d.id}-${i}` })) : [] };
+          return { ...d, id: d.id || `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: d.cat || defaultString, topic: d.topic || defaultString, tag: tags, text: d.text || defaultString, size: d.size || { tc: defaultFontSize, en: defaultFontSize }, event: eventTime, corps: d.corps ? d.corps.map((corp, i) => ({ ...corp, corpId: `${d.id}-${i}` })) : [] };
         }),
         loaded: true,
         saving: false,
@@ -63,7 +62,7 @@ export const searchChangeAsync =
     const { boothInfoData, colors } = store.getState().elementStatus;
     dispatch(setFloorData({ filterData }));
     dispatch(setStore({ mapText: mapTextLangChange(lang) }));
-    dispatch(setElementStatus({ boothInfoData: Object.keys(boothInfoData).length === 0 ? {} : filterData.find((d) => d.id === boothInfoData.id && d.corpId === boothInfoData.corpId), colors: colors.categories(store.getState().mapText.categories) }));
+    !boothInfoData?.corpId?.endsWith("-add") && dispatch(setElementStatus({ boothInfoData: Object.keys(boothInfoData).length === 0 ? {} : filterData.find((d) => d.id === boothInfoData.id && d.corpId === boothInfoData.corpId), colors: colors.categories(store.getState().mapText.categories) }));
     document.title = store.getState().mapText.title;
   };
 
@@ -75,7 +74,7 @@ export const initEditForm =
   ({ id }) =>
   (dispatch) => {
     const { booths, text, cat, corps, size } = store.getState().floorData.data.find((d) => d.id === id);
-    dispatch(setEditForm({ booths: booths?.length > 0 ? booths : [id], text, cat, corps, size }));
+    dispatch(setEditForm({ id, booths: booths?.length > 0 ? booths : [id], text, cat, corps, size }));
   };
 export const saveEditForm =
   ({ year, category, id, tag, lang, regex }) =>
@@ -84,7 +83,8 @@ export const saveEditForm =
       const {
         data: { data },
       } = await getMapElems({ params: { year, category, id }, postData: store.getState().editForm });
-      dataFormat({ data: await data })(dispatch);
+      const res = await data;
+      dataFormat({ data: res.data })(dispatch);
       searchChangeAsync({ filterData: getFilterData({ data: store.getState().floorData.data, tag, lang, regex }) })(dispatch);
     } catch (error) {
       dispatch(setFloorData({ saving: false }));

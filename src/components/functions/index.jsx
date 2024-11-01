@@ -25,7 +25,7 @@ export class ColorPicker {
   };
 }
 
-class FetchData {
+export class FetchData {
   constructor() {
     this.errorHandler = (error) => {
       throw error;
@@ -44,9 +44,15 @@ class FetchData {
       })
       .catch(this.errorHandler);
   get = (url) => this.fetchWrapper(url);
-  post = (url, postData) => this.fetchWrapper(url, { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8" }, body: JSON.stringify(postData) });
+  post = (url, postData = {}) => this.fetchWrapper(url, { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8", token: localStorage.getItem("token") }, body: JSON.stringify(postData) });
 }
-const fetchData = new FetchData();
+export const fetchData = new FetchData();
+
+const checkLogin = async () => {
+  if (!(getSearchParam("edit") === 1 && !store.getState().elementStatus.login)) return;
+  const { login } = await fetchData.post(`${import.meta.env.VITE_SERVER_URL}/login`);
+  return login;
+};
 
 export const getMapElems = ({ params: { year, category, id }, postData = null }) => {
   const data = (async () => {
@@ -60,7 +66,7 @@ export const getMapElems = ({ params: { year, category, id }, postData = null })
         boothInfo: postData === null ? await fetchData.get(`${dev ? server : assets}/${route}${dev ? "" : ".json"}`) : await fetchData.post(`${server}/${route}/${id}`, postData),
         boothPos: await fetchData.get(`${assets}/boothPos.json`),
       };
-      return boothData(data);
+      return { data: boothData(data), login: await checkLogin() };
     } catch (error) {
       throw error;
     }

@@ -22,14 +22,13 @@ export const BoothInfo = () => {
 const BoothInfoDetail = () => {
   const data = useSelector((state) => state.floorData.filterData).filter((d) => store.getState().types.includes(d.type));
   const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);
+  const corps = useSelector((state) => state.editForm.corps);
   const { type, text, org, id, floor, cat, topic, tag, info, event, note, corpId } = boothInfoData;
   const isEdit = getSearchParam("edit") === 1;
   const isHost = corpId ? corpId.endsWith("-0") : true;
   const isBooth = type === "booth";
   const loc = isBooth ? [cat, topic] : [note];
   const tags = Object.keys(boothInfoData).length === 0 ? [] : [...loc, ...tag].filter((d) => d !== "");
-  const booth = data.find((d) => d.id === id);
-  const corps = booth && booth.corps ? booth.corps : [];
   const events = event.filter((d) => d.title !== "");
   return (
     <div className="fp-info pb-5">

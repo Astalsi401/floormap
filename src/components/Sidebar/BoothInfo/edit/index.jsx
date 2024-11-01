@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ContentEditable from "react-contenteditable";
-import store, { setFloorData, setEditForm, saveEditForm, areas } from "@store";
+import store, { setFloorData, setElementStatus, setEditForm, saveEditForm, areas, defaultString } from "@store";
 import { BtnLoading } from "@components";
 
 const textToHTML = (string) => {
@@ -90,11 +90,18 @@ export const SelectedCategory = () => {
 
 export const AddCorp = () => {
   const dispatch = useDispatch();
-  const handleClick = () => {};
+  const corps = useSelector((state) => state.editForm.corps);
+  const handleClick = () => {
+    const current = store.getState().editForm;
+    dispatch(setEditForm({ corps: [...current.corps, { corpId: `${current.id}-add`, org: defaultString, info: defaultString }] }));
+    dispatch(setElementStatus({ boothInfoData: { ...store.getState().elementStatus.boothInfoData, corpId: `${current.id}-add`, org: "", info: "" } }));
+  };
   return (
-    <div className="fp-input-tag shadow text-small" style={{ "--cat": "rgb(207, 97, 97)" }} onClick={handleClick}>
-      +
-    </div>
+    !corps.some((d) => d.corpId.endsWith("-add")) && (
+      <div className="fp-input-tag shadow text-small" style={{ "--cat": "rgb(207, 97, 97)" }} onClick={handleClick}>
+        +
+      </div>
+    )
   );
 };
 

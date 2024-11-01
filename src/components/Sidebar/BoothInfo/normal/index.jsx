@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setSearchCondition, setElementStatus, initEditForm } from "@store";
+import store, { setSearchCondition, setElementStatus, initEditForm, defaultString } from "@store";
 import { getSearchParam } from "@functions";
+import { AddCorp } from "../edit";
 
 export const BoothTags = ({ tags, corpId }) => {
   const dispatch = useDispatch();
@@ -29,8 +30,12 @@ export const BoothCoprs = ({ id, corps, corpId, data }) => {
   const lang = useSelector((state) => state.searchCondition.lang);
   const isEdit = getSearchParam("edit") === 1;
   const handleCorpClick = ({ currentCorpId }) => {
-    dispatch(setElementStatus({ boothInfoData: data.find((d) => d.corpId === currentCorpId) }));
-    initEditForm({ id })(dispatch);
+    if (currentCorpId.endsWith("-add")) {
+      dispatch(setElementStatus({ boothInfoData: { ...store.getState().elementStatus.boothInfoData, corpId: currentCorpId, org: "", info: "" } }));
+    } else {
+      dispatch(setElementStatus({ boothInfoData: data.find((d) => d.corpId === currentCorpId) }));
+      initEditForm({ id })(dispatch);
+    }
   };
   return (
     <div className="p-2">
@@ -41,6 +46,7 @@ export const BoothCoprs = ({ id, corps, corpId, data }) => {
             {isEdit ? d.org[lang] : d.org}
           </div>
         ))}
+        {isEdit && <AddCorp />}
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import { createSlice, configureStore } from "@reduxjs/toolkit";
 import { ColorPicker } from "@functions";
 
 export const defaultFontSize = 0.45;
+export const defaultString = { tc: "", en: "" };
 export const areas = {
   tc: ["全齡健康展區", "年度主題館", "醫療機構展區", "智慧醫療展區", "精準醫療展區"],
   en: ["Consumer Health Products", "Featured Pavilions", "Medical Institutes & Hospitals", "Medical Devices & Equipment", "Diagnostics, Laboratory Equipment & Services"],
@@ -47,6 +48,7 @@ const counterSlice = createSlice({
       sidebar: true,
       advanced: false,
       boothInfo: false,
+      login: false,
       realSize: { w: 19830, h: 16950 },
       tagsHeight: 80,
       sidebarWidth: 40,
