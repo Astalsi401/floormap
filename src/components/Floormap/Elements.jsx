@@ -112,11 +112,12 @@ const BoothTextGroup = ({ d, size, textShift, opacity }) => {
   const boothInfoId = useSelector((state) => state.elementStatus.boothInfoData.id);
   const lang = useSelector((state) => state.searchCondition.lang);
   const editSize = useSelector((state) => state.editForm?.size?.[lang]);
+  const editText = useSelector((state) => state.editForm?.text?.[lang]);
   const fontSize = size * (boothInfoId === d.id ? editSize || d.size : d.size);
   const lineHeight = fontSize * 1.2;
   return (
     <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.split("\n").length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
-      {d.text.split("\n").map((t, j) => (
+      {(boothInfoId === d.id ? editText || d.text : d.text).split("\n").map((t, j) => (
         <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} fontSize={fontSize} opacity={opacity} boothWidth={d.w} />
       ))}
     </g>
