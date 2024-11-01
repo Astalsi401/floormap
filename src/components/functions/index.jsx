@@ -50,20 +50,20 @@ export const fetchData = new FetchData();
 
 const checkLogin = async () => {
   if (!(getSearchParam("edit") === 1 && !store.getState().elementStatus.login)) return;
-  const { login } = await fetchData.post(`${import.meta.env.VITE_SERVER_URL}/login`);
+  const { login } = await fetchData.post(`${import.meta.env.VITE_SERVER_URL}/login`).catch(() => ({ login: false }));
   return login;
 };
 
 export const getMapElems = ({ params: { year, category, id }, postData = null }) => {
   const data = (async () => {
     try {
-      const dev = import.meta.env.MODE === "development";
+      const prod = window.location.hostname !== "astalsi401.github.io";
       const assets = `${import.meta.env.BASE_URL}/assets/json`;
       const server = `${import.meta.env.VITE_SERVER_URL}/api`;
       const route = `${year}/${category}`;
       const data = {
         elems: await fetchData.get(`${assets}/elems.json`),
-        boothInfo: postData === null ? await fetchData.get(`${dev ? server : assets}/${route}${dev ? "" : ".json"}`) : await fetchData.post(`${server}/${route}/${id}`, postData),
+        boothInfo: postData === null ? await fetchData.get(`${prod ? server : assets}/${route}${prod ? "" : ".json"}`) : await fetchData.post(`${server}/${route}/${id}`, postData),
         boothPos: await fetchData.get(`${assets}/boothPos.json`),
       };
       return { data: boothData(data), login: await checkLogin() };
