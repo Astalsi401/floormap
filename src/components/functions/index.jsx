@@ -1,5 +1,5 @@
 import { defer } from "react-router-dom";
-import store, { defaultFontSize } from "@store";
+import store, { defaultFontSize, METHOD } from "@store";
 
 export class ColorPicker {
   constructor(colors_, categories_, unknow_) {
@@ -44,7 +44,8 @@ export class FetchData {
       })
       .catch(this.errorHandler);
   get = (url) => this.fetchWrapper(url);
-  post = (url, postData = {}) => this.fetchWrapper(url, { method: "POST", headers: { "Content-Type": "application/json; charset=utf-8", token: localStorage.getItem("token") }, body: JSON.stringify(postData) });
+  post = (url, postData = {}) => this.fetchWrapper(url, { method: METHOD.POST, headers: { "Content-Type": "application/json; charset=utf-8", token: localStorage.getItem("token") }, body: JSON.stringify(postData) });
+  delete = (url) => this.fetchWrapper(url, { method: METHOD.DELETE, headers: { token: localStorage.getItem("token") } });
 }
 export const fetchData = new FetchData();
 
@@ -54,18 +55,15 @@ const checkLogin = async () => {
   return login;
 };
 
-export const getMapElems = ({ params: { year, category, id }, postData = null }) => {
+export const getMapElems = ({ params: { year, category, id }, postData = {}, meth = "GET" }) => {
   const data = (async () => {
     try {
       const prod = window.location.hostname !== "astalsi401.github.io";
       const assets = `${import.meta.env.BASE_URL}/assets/json`;
       const server = `${import.meta.env.VITE_SERVER_URL}/api`;
       const route = `${year}/${category}`;
-      const data = {
-        elems: await fetchData.get(`${assets}/elems.json`),
-        boothInfo: postData === null ? await fetchData.get(`${prod ? server : assets}/${route}${prod ? "" : ".json"}`) : await fetchData.post(`${server}/${route}/${id}`, postData),
-        boothPos: await fetchData.get(`${assets}/boothPos.json`),
-      };
+      const boothInfo = meth === METHOD.POST ? await fetchData.post(`${server}/${route}/${id}`, postData) : meth === "DELETE" ? await fetchData.delete(`${server}/${route}/${id}`) : await fetchData.get(`${prod ? server : assets}/${route}${prod ? "" : ".json"}`);
+      const data = { elems: await fetchData.get(`${assets}/elems.json`), boothPos: await fetchData.get(`${assets}/boothPos.json`), boothInfo };
       return { data: boothData(data), login: await checkLogin() };
     } catch (error) {
       throw error;

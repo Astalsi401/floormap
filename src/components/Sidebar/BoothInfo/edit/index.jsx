@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import ContentEditable from "react-contenteditable";
-import store, { setFloorData, setElementStatus, setEditForm, saveEditForm, areas, defaultString } from "@store";
+import store, { setFloorData, setElementStatus, setEditForm, saveEditForm, areas, defaultString, defaultFontSize } from "@store";
 import { BtnLoading } from "@components";
 
 const textToHTML = (string) => {
@@ -109,7 +109,7 @@ export const AddCorp = () => {
   );
 };
 
-export const SaveBtn = ({ id }) => {
+export const SaveBtn = ({ id, meth }) => {
   const dispatch = useDispatch();
   const { regex, tag, lang } = useSelector((state) => state.searchCondition);
   const saving = useSelector((state) => state.floorData.saving);
@@ -117,7 +117,13 @@ export const SaveBtn = ({ id }) => {
   const handleSave = () => {
     if (saving) return;
     dispatch(setFloorData({ saving: true }));
-    saveEditForm({ year, category, id, tag, lang, regex })(dispatch);
+    saveEditForm({ year, category, id, tag, lang, regex, meth })(dispatch);
   };
-  return <BtnLoading loading={saving} onClick={handleSave} text="儲存變更" />;
+  return <BtnLoading loading={saving} onClick={handleSave} text={{ POST: "儲存", DELETE: "刪除" }[meth]} />;
+};
+
+export const ResetBtn = ({ id }) => {
+  const dispatch = useDispatch();
+  const handleReset = () => dispatch(setEditForm({ booths: [id], size: { tc: defaultFontSize, en: defaultFontSize }, cat: defaultString, topic: defaultString, tag: { tc: [], en: [] }, text: defaultString, corps: [], event: [], p: [] }));
+  return <BtnLoading loading={false} onClick={handleReset} text="重設" />;
 };

@@ -3,6 +3,12 @@ import { ColorPicker } from "@functions";
 
 export const defaultFontSize = 0.45;
 export const defaultString = { tc: "", en: "" };
+export const METHOD = {
+  GET: "GET",
+  POST: "POST",
+  PUT: "PUT",
+  DELETE: "DELETE",
+};
 export const areas = {
   tc: ["全齡健康展區", "年度主題館", "醫療機構展區", "智慧醫療展區", "精準醫療展區"],
   en: ["Consumer Health Products", "Featured Pavilions", "Medical Institutes & Hospitals", "Medical Devices & Equipment", "Diagnostics, Laboratory Equipment & Services"],

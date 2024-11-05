@@ -1,8 +1,8 @@
-import store, { actions, defaultMapText, defaultFontSize, defaultString, areas } from "./store";
+import store, { actions, defaultMapText, defaultFontSize, defaultString, METHOD, areas } from "./store";
 import { ColorPicker, getMapElems, getFilterData } from "@functions";
 
 export default store;
-export { defaultMapText, defaultFontSize, defaultString, areas };
+export { defaultMapText, defaultFontSize, defaultString, METHOD, areas };
 export const { setFloorData, setSearchCondition, setElementStatus, setDragStatus, setStore, setTooltip, setEditForm } = actions;
 
 const mapTextLangChange = (lang) => Object.keys(defaultMapText).reduce((acc, key) => ({ ...acc, [key]: defaultMapText[key][lang] }), {});
@@ -77,16 +77,17 @@ export const initEditForm =
     dispatch(setEditForm({ id, booths: booths?.length > 0 ? booths : [id], text, cat, corps, size }));
   };
 export const saveEditForm =
-  ({ year, category, id, tag, lang, regex }) =>
+  ({ year, category, id, tag, lang, regex, meth }) =>
   async (dispatch) => {
     try {
       const {
         data: { data },
-      } = await getMapElems({ params: { year, category, id }, postData: store.getState().editForm });
+      } = await getMapElems({ params: { year, category, id }, postData: store.getState().editForm, meth });
       const res = await data;
       dataFormat({ data: res.data })(dispatch);
       searchChangeAsync({ filterData: getFilterData({ data: store.getState().floorData.data, tag, lang, regex }) })(dispatch);
     } catch (error) {
+      console.error(error);
       dispatch(setFloorData({ saving: false }));
     }
   };
