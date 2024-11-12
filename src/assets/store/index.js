@@ -62,7 +62,8 @@ export const searchChangeAsync =
     const { boothInfoData, colors } = store.getState().elementStatus;
     dispatch(setFloorData({ filterData }));
     dispatch(setStore({ mapText: mapTextLangChange(lang) }));
-    !boothInfoData?.corpId?.endsWith("-add") && dispatch(setElementStatus({ boothInfoData: Object.keys(boothInfoData).length === 0 || !d.corpId || !d.id ? {} : filterData.find((d) => d.id === boothInfoData.id && d.corpId === boothInfoData.corpId), colors: colors.categories(store.getState().mapText.categories) }));
+    const currentBoothInfoData = filterData.find((d) => d.id === boothInfoData.id && d.corpId === boothInfoData.corpId);
+    !boothInfoData?.corpId?.endsWith("-add") && dispatch(setElementStatus({ boothInfoData: Object.keys(boothInfoData).length === 0 || !currentBoothInfoData ? {} : currentBoothInfoData, colors: colors.categories(store.getState().mapText.categories) }));
     document.title = store.getState().mapText.title;
   };
 
