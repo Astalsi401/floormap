@@ -33,7 +33,7 @@ export const defaultMapText = {
 };
 const regexEscape = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-const counterSlice = createSlice({
+const mapSlice = createSlice({
   name: "map",
   initialState: {
     searchCondition: {
@@ -94,9 +94,9 @@ const counterSlice = createSlice({
 });
 
 const store = configureStore({
-  reducer: counterSlice.reducer,
+  reducer: mapSlice.reducer,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });
 
 export default store;
-export const actions = counterSlice.actions;
+export const actions = mapSlice.actions;
