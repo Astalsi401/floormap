@@ -51,6 +51,7 @@ const BoothInfoDetail = () => {
         <>
           <SaveBtn id={id} meth={METHOD.POST} />
           <ResetBtn id={id} />
+          <SaveBtn className="btn-delete" id={id} meth={METHOD.DELETE} />
         </>
       )}
     </div>
