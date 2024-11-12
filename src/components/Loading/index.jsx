@@ -17,9 +17,9 @@ export const PageLoading = () => (
   </div>
 );
 
-export const BtnLoading = ({ loading, onClick, text }) => (
+export const BtnLoading = ({ className, loading, onClick, text }) => (
   <div className="fp-loading-btn p-2">
-    <button className={`fp-btn fp-save-btn d-flex align-items-center justify-content-center mx-auto shadow text-bold ${loading ? "saving" : ""}`} onClick={onClick}>
+    <button className={`fp-btn fp-save-btn d-flex align-items-center justify-content-center mx-auto shadow text-bold ${loading ? "saving" : ""} ${className || ""}`} onClick={onClick}>
       {text}
       <span style={{ "--i": 0 }}></span>
       <span style={{ "--i": 1 }}></span>

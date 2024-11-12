@@ -23,6 +23,15 @@
   width: 70px;
   aspect-ratio: 2 / 1;
   overflow: hidden;
+  &.btn-delete {
+    --bg: var(--fp-warning);
+    color: var(--fp-sidebar-bg);
+    background-color: var(--fp-warning);
+    &:hover {
+      color: var(--fp-warning);
+      background-color: var(--fp-sidebar-bg);
+    }
+  }
   span {
     --duration: 0.6s;
     position: absolute;
