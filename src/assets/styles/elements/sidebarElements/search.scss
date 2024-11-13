@@ -46,6 +46,7 @@
 }
 .fp-input-tag {
   cursor: pointer;
+  user-select: none;
   background-color: var(--cat);
   padding: 2px 5px;
   border-radius: 5px;
