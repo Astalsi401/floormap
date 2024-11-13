@@ -28,7 +28,7 @@ const BoothInfoDetail = () => {
   const isBooth = type === "booth";
   const loc = isBooth ? [cat, topic] : [note];
   const tags = Object.keys(boothInfoData).length === 0 ? [] : [...loc, ...tag].filter((d) => d !== "");
-  const events = event.filter((d) => d.title !== "");
+  const events = event?.filter((d) => d.title !== "");
   return (
     <div className="fp-info pb-5">
       <div className="fp-info-item d-flex align-items-center px-2 py-1">
@@ -46,7 +46,7 @@ const BoothInfoDetail = () => {
       {!isEdit && <BoothTags tags={tags} corpId={corpId} />}
       <BoothCoprs id={id} corps={corps} corpId={corpId} data={data} />
       {isBooth && isEdit && corps.length > 0 ? <BoothText className="p-2 text-small" name="info" value={info} placeholder="請輸入簡介" corpId={corpId} /> : info && <CorpDescribe info={info} corpId={corpId} />}
-      {events.length > 0 && <BoothEvents events={events} />}
+      {events && events.length > 0 && <BoothEvents events={events} />}
       {isEdit && (
         <>
           <SaveBtn id={id} meth={METHOD.POST} />

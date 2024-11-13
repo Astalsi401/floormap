@@ -86,6 +86,7 @@ export const saveEditForm =
       } = await getMapElems({ params: { year, category, id }, postData: store.getState().editForm, meth });
       const res = await data;
       dataFormat({ data: res.data })(dispatch);
+      initEditForm({ id })(dispatch);
       searchChangeAsync({ filterData: getFilterData({ data: store.getState().floorData.data, tag, lang, regex }) })(dispatch);
     } catch (error) {
       console.error(error);
