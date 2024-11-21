@@ -37,7 +37,6 @@ export const BoothCoprs = ({ id, corps, corpId, data }) => {
       initEditForm({ id })(dispatch);
     }
   };
-  console.log(currentCorps, corps);
   return (
     <div className="p-2">
       <div className="my-1 text-large">{exhibitor}</div>
