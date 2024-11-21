@@ -37,13 +37,14 @@ export const BoothCoprs = ({ id, corps, corpId, data }) => {
       initEditForm({ id })(dispatch);
     }
   };
+  console.log(currentCorps, corps);
   return (
     <div className="p-2">
       <div className="my-1 text-large">{exhibitor}</div>
       <div className="my-1 fp-booth-tags d-flex flex-wrap">
         {(isEdit ? currentCorps : corps).map((d) => (
           <div key={`BoothInfoDetail-${d.corpId}`} className="fp-input-tag shadow text-small" style={{ "--cat": d.corpId === corpId ? "rgb(0, 0, 128, 0.3)" : colors.scale("") }} onClick={() => handleCorpClick({ currentCorpId: d.corpId })}>
-            {isEdit ? d.org[lang] : d.org}
+            {d.org[lang]}
           </div>
         ))}
         {isEdit && <AddCorp />}
