@@ -42,7 +42,7 @@ export const FontSize = () => {
   return (
     <div className="fp-edit-fontsize p-2">
       字體大小: {size}
-      <input className="d-block w-100" type="range" min={0.25} max={1} step={0.05} value={size} onChange={handleChange} />
+      <input className="d-block w-100" type="range" min={0.05} max={1} step={0.05} value={size} onChange={handleChange} />
     </div>
   );
 };
