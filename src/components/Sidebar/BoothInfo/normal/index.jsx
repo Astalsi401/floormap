@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import store, { setSearchCondition, setElementStatus, initEditForm, defaultString } from "@store";
+import store, { setSearchCondition, setElementStatus, initEditForm } from "@store";
 import { getSearchParam } from "@functions";
 import { AddCorp } from "../edit";
 
