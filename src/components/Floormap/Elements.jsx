@@ -88,7 +88,7 @@ const Booth = ({ d, size, handleBoothClick }) => {
   const handleAreaPage = ({ clientX, clientY }) => {
     const isLeft = clientX < window.innerWidth / 2;
     const x = isLeft ? clientX + margin : clientX - width - margin;
-    dispatch(setTooltip({ x: x, y: clientY }));
+    dispatch(setTooltip({ x, y: clientY }));
   };
   const handleMouseMove = (e) => {
     edit && boothInfo && (e.ctrlKey || e.shiftKey) && handleBoothSelected(e);
@@ -115,9 +115,10 @@ const BoothTextGroup = ({ d, size, textShift, opacity }) => {
   const editText = useSelector((state) => state.editForm?.text?.[lang]);
   const fontSize = size * (boothInfoId === d.id ? editSize || d.size : d.size);
   const lineHeight = fontSize * 1.2;
+  const boothText = boothInfoId === d.id ? editText || d.text : d.text;
   return (
-    <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((d.text.split("\n").length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
-      {(boothInfoId === d.id ? editText || d.text : d.text).split("\n").map((t, j) => (
+    <g transform={`translate(${d.w / 2 + textShift.x},${d.h / 2 - ((boothText.split("\n").length - 1) * lineHeight) / 2 + textShift.y})`} fontSize={fontSize}>
+      {boothText.split("\n").map((t, j) => (
         <BoothText key={`${d.id}-${t}-${j}`} t={t} j={j} lineHeight={lineHeight} fontSize={fontSize} opacity={opacity} boothWidth={d.w} />
       ))}
     </g>
