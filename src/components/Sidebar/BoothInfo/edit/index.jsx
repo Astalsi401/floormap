@@ -98,9 +98,9 @@ export const AddCorp = () => {
   };
   return (
     !corps.some((d) => d.corpId.endsWith("-add")) && (
-      <div className="fp-input-tag shadow text-small" style={{ "--cat": "rgb(207, 97, 97)" }} onClick={handleClick}>
+      <button className="fp-input-tag shadow text-small add-corp" style={{ "--cat": "rgb(207, 97, 97)" }} onClick={handleClick}>
         +
-      </div>
+      </button>
     )
   );
 };
