@@ -24,7 +24,6 @@ const BoothInfoDetail = () => {
   const boothInfoData = useSelector((state) => state.elementStatus.boothInfoData);
   const corps = useSelector((state) => state.editForm.corps);
   const { type, text, org, id, floor, cat, topic, tag, info, event, note, corpId } = boothInfoData;
-  const infoText = info?.replace(/\\r|\r|\\/g, "").replace(/\\n/g, "\n");
   const isEdit = getSearchParam("edit") === 1;
   const isBooth = type === "booth";
   const loc = isBooth ? [cat, topic] : [note];
@@ -46,7 +45,7 @@ const BoothInfoDetail = () => {
       )}
       {!isEdit && <BoothTags tags={tags} corpId={corpId} />}
       <BoothCoprs id={id} corps={corps} corpId={corpId} data={data} />
-      {isBooth && isEdit && corps.length > 0 ? <BoothText className="p-2 text-small" name="info" value={infoText} placeholder="請輸入簡介" corpId={corpId} /> : info && <CorpDescribe info={infoText} corpId={corpId} />}
+      {isBooth && isEdit && corps.length > 0 ? <BoothText className="p-2 text-small" name="info" value={info} placeholder="請輸入簡介" corpId={corpId} /> : info && <CorpDescribe info={info} corpId={corpId} />}
       {events && events.length > 0 && <BoothEvents events={events} />}
       {isEdit && (
         <>
