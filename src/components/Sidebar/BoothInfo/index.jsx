@@ -32,7 +32,7 @@ const BoothInfoDetail = () => {
   return (
     <div className="fp-info pb-5">
       <div className="fp-info-item d-flex align-items-center px-2 py-1">
-        {isBooth && isEdit ? <BoothText className="fp-result-item-name text-x-large text-bold" name="text" value={text} placeholder="請輸入單位簡稱" /> : <div className="fp-result-item-name text-x-large text-bold">{text.replace("\n", "")}</div>}
+        {isBooth && isEdit ? <BoothText className="fp-result-item-name text-x-large text-bold" name="text" value={text} placeholder="請輸入單位簡稱" /> : <div className="fp-result-item-name text-x-large text-bold">{text.replace(/\n/g, "")}</div>}
         <div className="fp-result-item-loc text-small">{isBooth ? `${id} / ${floor}F` : `${floor}F`}</div>
       </div>
       {isBooth && isEdit && corps.length > 0 ? <BoothText className="p-2 text-large" name="org" value={org} placeholder="請輸入單位全名" corpId={corpId} /> : <div className="p-2 text-large">{org}</div>}

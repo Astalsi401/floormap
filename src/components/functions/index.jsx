@@ -73,7 +73,7 @@ export const getMapElems = ({ params: { year, category, id }, postData = {}, met
 };
 
 const prevTranslateScale = (svg) => {
-  const [prevx, prevy] = svg.style.translate.replace("px", "").split(" ");
+  const [prevx, prevy] = svg.style.translate.replace(/px/g, "").split(" ");
   return { prevx: parseFloat(prevx || 0), prevy: parseFloat(prevy || 0), prevScale: parseFloat(svg.style.scale || 1) };
 };
 
@@ -186,7 +186,7 @@ const addPath = (path, val, prev, boothLen) => {
   return val === prev ? [...path, { node: "L", x: prevPath.x, y: prevPath.y + boothLen }] : [...path, { node: "L", x: prevPath.x + (val - prev), y: prevPath.y }, { node: "L", x: prevPath.x + (val - prev), y: prevPath.y + boothLen }];
 };
 
-const checkText = (targetElements, regex) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace("臺", "台"));
+const checkText = (targetElements, regex) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace(/臺/g, "台"));
 export const getFilterData = ({ data, tag, lang, regex }) =>
   data.reduce((res, d) => {
     const tags = d.tag ? d.tag[lang] : [];
@@ -195,7 +195,7 @@ export const getFilterData = ({ data, tag, lang, regex }) =>
     const text = d.text ? d.text[lang] : "";
     const cat = d.cat ? d.cat[lang] : "";
     const topic = d.topic ? d.topic[lang] : "";
-    const targets = [d.id, text.replace("\n", ""), cat, topic, ...tags];
+    const targets = [d.id, text.replace(/\n/g, ""), cat, topic, ...tags];
     const isType = store.getState().types.includes(d.type);
     const hasTag = isType && tag.length === 0 ? true : [d.id, cat, topic, ...tags].includes(tag);
     let hasText = isType && checkText([...targets, ...infos, ...corps], regex);

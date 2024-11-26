@@ -9,14 +9,16 @@ const textToHTML = (string) => {
   const res = string.replace(/\n$/, "<br>").split("\n");
   return res.length > 1 ? res.map((d) => (d === "" ? "" : `<div>${d}</div>`)).join("") : res[0];
 };
-const htmlToText = (string) =>
-  string
+const htmlToText = (string) => {
+  const res = string
     .replace(/^<div>|<\/div>$/g, "")
     .replace(/<\/div><div>|<br>/g, "\n")
     .replace(/&nbsp;/g, " ")
     .replace(/&amp;/g, "&")
     .replace(/\n+\s*$/g, "")
-    .replace(/\n+$/g, "\n");
+    .replace(/\n+/g, "\n");
+  return res;
+};
 const getCurrentText = ({ name, lang, corpId }) => (corpId ? store.getState()?.editForm.corps.find((d) => d.corpId === corpId)?.[name]?.[lang] : store.getState()?.editForm?.[name]?.[lang]);
 const updateText = ({ name, lang, corpId, content }) => (corpId ? { corps: store.getState().editForm.corps.map((d) => (d.corpId === corpId ? { ...d, [name]: { ...d[name], [lang]: htmlToText(content.current[lang]) } } : d)) } : { [name]: { ...store.getState().editForm?.[name], [lang]: htmlToText(content.current[lang]) } });
 
