@@ -53,6 +53,8 @@
   transition: filter var(--fp-time);
   float: left;
   max-width: 100%;
+  min-width: 3em;
+  min-height: 1em;
   filter: opacity(0.8);
   &:hover {
     filter: opacity(1);
