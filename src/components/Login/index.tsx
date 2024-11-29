@@ -2,11 +2,11 @@ import { useDispatch } from "react-redux";
 import { setElementStatus } from "@store";
 import { fetchData } from "@functions";
 
-export const Login = () => {
+export const Login: React.FC = () => {
   const dispatch = useDispatch();
-  const submit = async (e) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { username, password } = e.target;
+    const { username, password } = e.currentTarget;
     const { login, token } = await fetchData.post(`${import.meta.env.VITE_SERVER_URL}/login`, { username: username.value, password: password.value });
     localStorage.setItem("token", token);
     dispatch(setElementStatus({ login }));

@@ -1,21 +1,20 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import store, { setElementStatus, setSearchCondition, regexAsync, searchChangeAsync } from "@store";
+import store, { setElementStatus, setSearchCondition, regexAsync, searchChangeAsync, useAppDispatch, useAppSelector } from "@store";
 import { getFilterData } from "@functions";
 
-export const Search = () => {
-  const dispatch = useDispatch();
-  const { string, regex, tag, floor, lang } = useSelector((state) => state.searchCondition);
-  const sidebar = useSelector((state) => state.elementStatus.sidebar);
-  const advanced = useSelector((state) => state.elementStatus.advanced);
-  const colors = useSelector((state) => state.elementStatus.colors);
-  const mapText = useSelector((state) => state.mapText);
-  const data = useSelector((state) => state.floorData.data);
+export const Search: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { string, regex, tag, floor, lang } = useAppSelector((state) => state.searchCondition);
+  const sidebar = useAppSelector((state) => state.elementStatus.sidebar);
+  const advanced = useAppSelector((state) => state.elementStatus.advanced);
+  const colors = useAppSelector((state) => state.elementStatus.colors);
+  const mapText = useAppSelector((state) => state.mapText);
+  const data = useAppSelector((state) => state.floorData.data);
   const searched = string.length === 0 && tag.length === 0;
-  const [inputTimer, setInputTimer] = useState(null);
-  const handleInput = ({ target: { name, value } }) => {
+  const [inputTimer, setInputTimer] = useState<undefined | NodeJS.Timeout>(undefined);
+  const handleInput = ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement>) => {
     clearTimeout(inputTimer);
-    const timer = setTimeout(() => setInputTimer(null), 500);
+    const timer = setTimeout(() => setInputTimer(undefined), 500);
     setInputTimer(timer);
     dispatch(setElementStatus({ advanced: false }));
     dispatch(setSearchCondition({ [name]: value }));
@@ -39,7 +38,7 @@ export const Search = () => {
       </div>
       <div className="fp-input d-flex flex-wrap align-items-center px-1">
         {tag.length !== 0 && (
-          <div className="fp-input-tag shadow text-small" title={mapText.remove} onClick={() => dispatch(setSearchCondition({ tag: "" }))} style={{ "--cat": colors.scale(tag) }}>
+          <div className="fp-input-tag shadow text-small" title={mapText.remove} onClick={() => dispatch(setSearchCondition({ tag: "" }))} style={{ "--cat": colors.scale(tag) } as React.CSSProperties}>
             {tag}
           </div>
         )}
@@ -52,7 +51,7 @@ export const Search = () => {
   );
 };
 
-const FilterIcon = () => (
+const FilterIcon: React.FC = () => (
   <>
     <span />
     <svg width="100%" height="100%" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

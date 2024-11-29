@@ -1,20 +1,20 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import store, { setSearchCondition, setElementStatus, initEditForm } from "@store";
+import store, { setSearchCondition, setElementStatus, initEditForm, useAppDispatch, useAppSelector } from "@store";
 import { getSearchParam } from "@functions";
 import { AddCorp } from "../edit";
+import type { FilterBooth, FilterEvent, FilterRoom, OriginalCorp } from "@types";
 
-export const BoothTags = ({ tags, corpId }) => {
-  const dispatch = useDispatch();
-  const colors = useSelector((state) => state.elementStatus.colors);
-  const handleTagClick = (value) => {
+export const BoothTags: React.FC<{ tags: string[]; corpId: string }> = ({ tags, corpId }) => {
+  const dispatch = useAppDispatch();
+  const colors = useAppSelector((state) => state.elementStatus.colors);
+  const handleTagClick = (value: string) => {
     dispatch(setSearchCondition({ tag: value, string: "" }));
     dispatch(setElementStatus({ boothInfo: false }));
   };
   return (
     <div className="fp-booth-tags d-flex flex-wrap p-2">
       {tags.map((tag) => (
-        <div key={`BoothInfoDetail-${corpId}-${tag}`} className="fp-input-tag shadow text-small" style={{ "--cat": colors.scale(tag) }} onClick={() => handleTagClick(tag)}>
+        <div key={`BoothInfoDetail-${corpId}-${tag}`} className="fp-input-tag shadow text-small" style={{ "--cat": colors.scale(tag) } as React.CSSProperties} onClick={() => handleTagClick(tag)}>
           {tag}
         </div>
       ))}
@@ -22,14 +22,14 @@ export const BoothTags = ({ tags, corpId }) => {
   );
 };
 
-export const BoothCoprs = ({ id, corps, corpId, data }) => {
-  const dispatch = useDispatch();
-  const exhibitor = useSelector((state) => state.mapText.exhibitor);
-  const colors = useSelector((state) => state.elementStatus.colors);
-  const currentCorps = useSelector((state) => state.editForm.corps);
-  const lang = useSelector((state) => state.searchCondition.lang);
+export const BoothCoprs: React.FC<{ id: string; corps: OriginalCorp[]; corpId: string; data: FilterBooth[] | FilterRoom[] }> = ({ id, corps, corpId, data }) => {
+  const dispatch = useAppDispatch();
+  const exhibitor = useAppSelector((state) => state.mapText.exhibitor);
+  const colors = useAppSelector((state) => state.elementStatus.colors);
+  const currentCorps = useAppSelector((state) => state.editForm.corps);
+  const lang = useAppSelector((state) => state.searchCondition.lang);
   const isEdit = getSearchParam("edit") === 1;
-  const handleCorpClick = ({ currentCorpId }) => {
+  const handleCorpClick = ({ currentCorpId }: { currentCorpId: string }) => {
     if (currentCorpId.endsWith("-add")) {
       dispatch(setElementStatus({ boothInfoData: { ...store.getState().elementStatus.boothInfoData, corpId: currentCorpId, org: "", info: "" } }));
     } else {
@@ -42,7 +42,7 @@ export const BoothCoprs = ({ id, corps, corpId, data }) => {
       <div className="my-1 text-large">{exhibitor}</div>
       <div className="my-1 fp-booth-tags d-flex flex-wrap">
         {(isEdit ? currentCorps : corps).map((d) => (
-          <div key={`BoothInfoDetail-${d.corpId}`} className="fp-input-tag shadow text-small" style={{ "--cat": d.corpId === corpId ? "rgb(0, 0, 128, 0.3)" : colors.scale("") }} onClick={() => handleCorpClick({ currentCorpId: d.corpId })}>
+          <div key={`BoothInfoDetail-${d.corpId}`} className="fp-input-tag shadow text-small" style={{ "--cat": d.corpId === corpId ? "rgb(0, 0, 128, 0.3)" : colors.scale("") } as React.CSSProperties} onClick={() => handleCorpClick({ currentCorpId: d.corpId })}>
             {d.org[lang]}
           </div>
         ))}
@@ -52,7 +52,7 @@ export const BoothCoprs = ({ id, corps, corpId, data }) => {
   );
 };
 
-export const CorpDescribe = ({ info, corpId }) => (
+export const CorpDescribe: React.FC<{ info: string; corpId: string }> = ({ info, corpId }) => (
   <div className="p-2 text-small">
     {info.split("\n").map((d, i) => (
       <div key={`BoothInfoDetail-describe-${corpId}-${d}-${i}`}>{d}</div>
@@ -60,8 +60,8 @@ export const CorpDescribe = ({ info, corpId }) => (
   </div>
 );
 
-export const BoothEvents = ({ events }) => {
-  const activity = useSelector((state) => state.mapText.activity);
+export const BoothEvents: React.FC<{ events: FilterEvent[] }> = ({ events }) => {
+  const activity = useAppSelector((state) => state.mapText.activity);
   return (
     <div className="p-2">
       <div className="my-1 text-large">{activity}</div>
@@ -74,13 +74,13 @@ export const BoothEvents = ({ events }) => {
   );
 };
 
-const Event = ({ timeList, title, topic, active }) => {
+const Event: React.FC<FilterEvent> = ({ timeList, title, topic, active }) => {
   const [showEventInfo, setShowEventInfo] = useState(false);
-  const format = (datetime) => (Array(2).join("0") + datetime).slice(-2);
+  const format = (datetime: number) => (Array(2).join("0") + datetime).slice(-2);
   return (
     <div className={`fp-event my-1 p-1 ${active ? "active" : ""}`} onClick={() => setShowEventInfo(!showEventInfo)}>
-      <span style={{ "--i": 0 }}></span>
-      <span style={{ "--i": 2 }}></span>
+      <span style={{ "--i": 0 } as React.CSSProperties}></span>
+      <span style={{ "--i": 2 } as React.CSSProperties}></span>
       <div className="text-small">{topic}</div>
       <div>{title}</div>
       <div className={`${timeList.length > 1 ? "time-list" : ""} ${showEventInfo ? "active" : ""}`}>

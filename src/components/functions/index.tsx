@@ -1,37 +1,42 @@
-import { defer } from "react-router-dom";
+import _ from "lodash";
 import store, { defaultFontSize, METHOD } from "@store";
+import type { Params } from "react-router-dom";
+import type { BoothPos, FilterData, GetMapElemsResponse, Method, OriginalData, PathType, ResBooth, ResData, ResPillar, ResRoom, ResText, ResWall } from "@types";
 
 export class ColorPicker {
-  constructor(colors_, categories_, unknow_) {
+  private colors_: string[];
+  private categories_: string[];
+  private unknow_: string;
+  constructor(colors_: string[], categories_: string[], unknow_: string) {
     this.colors_ = colors_;
     this.categories_ = categories_ || [];
     this.unknow_ = unknow_;
   }
-  colors = (colors_) => {
+  public colors = (colors_: string[]) => {
     this.colors_ = colors_;
     return this;
   };
-  categories = (categories_) => {
+  public categories = (categories_: string[]) => {
     this.categories_ = categories_ || [];
     return this;
   };
-  unknow = (unknow_) => {
+  public unknow = (unknow_: string) => {
     this.unknow_ = unknow_;
     return this;
   };
-  scale = (category) => {
+  public scale = (category: string) => {
     const i = this.categories_.indexOf(category);
     return this.colors_[i] || this.unknow_;
   };
 }
 
 export class FetchData {
-  constructor() {
-    this.errorHandler = (error) => {
-      throw error;
-    };
-  }
-  fetchWrapper = (url, options) =>
+  constructor() {}
+  private errorHandler = (error: Error) => {
+    throw error;
+  };
+  private getToken = () => localStorage.getItem("token") || "";
+  public fetchWrapper = (url: string, options?: RequestInit) =>
     fetch(url, options)
       .then((res) => {
         if (res.ok) {
@@ -43,20 +48,19 @@ export class FetchData {
         }
       })
       .catch(this.errorHandler);
-  get = (url) => this.fetchWrapper(url);
-  post = (url, postData = {}) => this.fetchWrapper(url, { method: METHOD.POST, headers: { "Content-Type": "application/json; charset=utf-8", token: localStorage.getItem("token") }, body: JSON.stringify(postData) });
-  delete = (url) => this.fetchWrapper(url, { method: METHOD.DELETE, headers: { token: localStorage.getItem("token") } });
+  public get = (url: string) => this.fetchWrapper(url);
+  public post = (url: string, postData = {}) => this.fetchWrapper(url, { method: METHOD.POST, headers: { "Content-Type": "application/json; charset=utf-8", token: this.getToken() }, body: JSON.stringify(postData) });
+  public delete = (url: string) => this.fetchWrapper(url, { method: METHOD.DELETE, headers: { token: this.getToken() } });
 }
 export const fetchData = new FetchData();
-
-const checkLogin = async () => {
-  if (!(getSearchParam("edit") === 1 && !store.getState().elementStatus.login)) return;
-  const { login } = await fetchData.post(`${import.meta.env.VITE_SERVER_URL}/login`).catch(() => ({ login: false }));
+const checkLogin = async (): Promise<boolean> => {
+  if (!(getSearchParam("edit") === 1 && !store.getState().elementStatus.login)) return true;
+  const { login }: { login: boolean } = await fetchData.post(`${import.meta.env.VITE_SERVER_URL}/login`).catch(() => ({ login: false }));
   return login;
 };
 
-export const getMapElems = ({ params: { year, category, id }, postData = {}, meth = "GET" }) => {
-  const data = (async () => {
+export const getMapElems = ({ params: { year, category, id }, postData = {}, meth = "GET" }: { params: Params; postData?: any; meth?: Method }): { data: Promise<GetMapElemsResponse> } => ({
+  data: (async (): Promise<GetMapElemsResponse> => {
     try {
       const prod = window.location.hostname !== "astalsi401.github.io";
       const assets = `${import.meta.env.BASE_URL}/assets/json`;
@@ -68,23 +72,22 @@ export const getMapElems = ({ params: { year, category, id }, postData = {}, met
     } catch (error) {
       throw error;
     }
-  })();
-  return defer({ data });
-};
+  })(),
+});
 
-const prevTranslateScale = (svg) => {
+const prevTranslateScale = (svg: SVGSVGElement) => {
   const [prevx, prevy] = svg.style.translate.replace(/px/g, "").split(" ");
-  return { prevx: parseFloat(prevx || 0), prevy: parseFloat(prevy || 0), prevScale: parseFloat(svg.style.scale || 1) };
+  return { prevx: Number(prevx) || 0, prevy: Number(prevy) || 0, prevScale: Number(svg.style.scale) || 1 };
 };
 
-const animation = (elem) => {
+const animation = (elem: SVGSVGElement) => {
   elem.style.transition = "0.4s";
-  setTimeout(() => (elem.style.transition = null), 400);
+  setTimeout(() => (elem.style.transition = ""), 400);
 };
 
-const round = (n, d) => Math.round(n * 10 ** d) / 10 ** d;
+const round = (n: number, d: number) => Math.round(n * 10 ** d) / 10 ** d;
 
-export const zoomCalculator = ({ clientX, clientY, graph, svg, r, rMax = 10, animate = false }) => {
+export const zoomCalculator = ({ clientX, clientY, graph, svg, r, rMax = 10, animate = false }: { clientX: number; clientY: number; graph: HTMLDivElement; svg: SVGSVGElement; r: number; rMax?: number; animate?: boolean }) => {
   const box = graph.getBoundingClientRect(),
     { prevx, prevy, prevScale } = prevTranslateScale(svg);
   let scale = prevScale * r;
@@ -100,59 +103,63 @@ export const zoomCalculator = ({ clientX, clientY, graph, svg, r, rMax = 10, ani
   animate && animation(svg);
   Object.assign(svg.style, { scale, translate: `${xNew}px ${yNew}px` });
 };
-export const dragCalculator = ({ x, y, svg, animate = false }) => {
+export const dragCalculator = ({ x, y, svg, animate = false }: { x: number; y: number; svg: SVGSVGElement; animate?: boolean }) => {
   const { prevx, prevy } = prevTranslateScale(svg);
   animate && animation(svg);
   svg.style.translate = `${prevx + x}px ${prevy + y}px`;
 };
-export const resetViewbox = ({ svg, animate = false }) => {
+export const resetViewbox = ({ svg, animate = false }: { svg: SVGSVGElement; animate?: boolean }) => {
   animate && animation(svg);
   Object.assign(svg.style, { scale: "1", translate: "0px 0px" });
 };
 
-export const getSearchParam = (name) => Number(new URL(window.location.href).searchParams.get(name));
+export const getSearchParam = (name: string) => Number(new URL(window.location.href).searchParams.get(name));
 
-export const boothData = ({ boothInfo, elems, boothPos }) => {
+export const boothData = ({ boothInfo, elems, boothPos }: { boothInfo: ResBooth[]; elems: ResPillar[] | ResWall[] | ResRoom[] | ResText[]; boothPos: BoothPos[] }): ResData[] => {
   const edit = getSearchParam("edit");
-  const filter = [];
+  const filter: string[] = [];
   return [
     ...boothPos
       .map((d1) => {
         const info = boothInfo.find((d2) => d1.id === d2.id);
         const { pos, path } = pathDraw(boothPos, info);
-        const yGroup = Object.groupBy(pos, (d) => d.y);
-        const xGroup = Object.groupBy(pos, (d) => d.x);
+        const yGroup = _.groupBy(pos, (d) => d.y);
+        const xGroup = _.groupBy(pos, (d) => d.x);
         const { key: rowMode } = boothMode(yGroup);
         const { key: colMode } = boothMode(xGroup);
         const w = info?.w || (pos.length > 1 ? rowMode * 300 : d1.w);
         const h = info?.h || (pos.length > 1 ? colMode * 300 : d1.h);
         const minY = pos.length > 1 ? Math.min(...pos.map((d) => d.y)) : d1.y;
-        const start = pos.find((d) => d.x === Math.min(...pos.filter((d) => d.y === minY).map((d) => d.x)) && d.y === minY);
+        const start = pos.find((d) => d.x === Math.min(...pos.filter((d) => d.y === minY).map((d) => d.x)) && d.y === minY) || { x: 0, y: 0 };
         filter.push(...(info?.booths?.filter((d) => d !== d1.id) || []));
-        return { ...d1, ...info, w, h, x: info?.x || (pos.length > 1 ? start.x : d1.x), y: info?.y || (pos.length > 1 ? start.y : d1.y), p: path };
+        return { ...d1, ...info, floor: String(d1.floor), w, h, x: info?.x || (pos.length > 1 ? start?.x : d1.x), y: info?.y || (pos.length > 1 ? start?.y : d1.y), p: path };
       })
-      .filter((d) => !filter.includes(d.id) && (edit === 1 || d?.cat?.tc?.length > 0 || d?.booths?.length > 0)), //   刪除已包含在其他攤位的攤位、非編輯模式下隱藏未設定展區(cat)與booths的攤位
+      .filter((d) => !filter.includes(d.id) && (edit === 1 || (d.cat && d.cat.tc.length > 0) || (d.booths && d.booths.length > 0))), // 刪除已包含在其他攤位的攤位、非編輯模式下隱藏未設定展區(cat)與booths的攤位
     ...elems,
   ];
 };
 
-const boothMode = (posGroup) => Object.entries(Object.entries(posGroup).reduce((acc, [k, v]) => ({ ...acc, [v.length]: (acc[v.length] || 0) + 1 }), {})).reduce((acc, [k, v]) => ({ max: acc.max > v ? acc.max : v, key: acc.max > v ? acc.key : k }), { max: 0 });
+const boothMode = (posGroup: { [key: number]: { x: number; y: number }[] }): { key: number; max: number; [key: string]: number } => {
+  const countMap = Object.entries(posGroup).reduce<Record<number, number>>((acc, [_, p]) => ({ ...acc, [p.length]: (acc[p.length] || 0) + 1 }), {});
+  return Object.entries(countMap).reduce<{ key: number; max: number; [key: string]: number }>((acc, [lengthStr, count]) => (count > acc.max ? { key: parseInt(lengthStr, 10), max: count } : acc), { key: 0, max: 0 });
+};
 
-const pathDraw = (boothPos, info) => {
-  const defaultPath = [
+const pathDraw = (boothPos: BoothPos[], info: ResBooth | undefined): { pos: { x: number; y: number }[]; path: PathType[] } => {
+  const defaultPath: PathType[] = [
     { node: "L", x: 300, y: 0 },
     { node: "L", x: 300, y: 300 },
     { node: "L", x: 0, y: 300 },
   ];
-  const pos = boothPos.filter((d) => info?.booths?.includes(d.id)).map((d) => ({ x: d.x, y: d.y }));
-  const path = info?.p?.length > 0 ? info.p : pos.length > 1 ? boothPath(pos) : defaultPath;
+  if (!info) return { pos: [], path: defaultPath };
+  const pos = boothPos.filter((d) => info.booths.includes(d.id)).map((d) => ({ x: d.x, y: d.y }));
+  const path = info.p.length > 0 ? info.p : pos.length > 1 ? boothPath(pos) : defaultPath;
   return { pos, path };
 };
 
-const boothPath = (pos) => {
-  let path = [];
-  const posGroup = Object.groupBy(pos, (d) => d.y);
-  let prevMin, prevMax, prevPath;
+const boothPath = (pos: { x: number; y: number }[]): PathType[] => {
+  let path: PathType[] = [];
+  const posGroup = _.groupBy(pos, (d) => d.y);
+  let prevMin: number, prevMax: number, prevPath: PathType;
   Object.keys(posGroup)
     .sort((a, b) => Number(a) - Number(b))
     .forEach((key, i) => {
@@ -174,21 +181,21 @@ const boothPath = (pos) => {
   return path;
 };
 
-const currentValue = (pos, key) => {
+const currentValue = (pos: { x: number; y: number }[], key: string | number) => {
   const row = pos.filter((d) => d.y === Number(key));
   const min = Math.min(...row.map((d) => d.x));
   const max = Math.max(...row.map((d) => d.x));
   return { row, min, max };
 };
 
-const addPath = (path, val, prev, boothLen) => {
+const addPath = (path: PathType[], val: number, prev: number, boothLen: number): PathType[] => {
   const prevPath = path[path.length - 1];
   return val === prev ? [...path, { node: "L", x: prevPath.x, y: prevPath.y + boothLen }] : [...path, { node: "L", x: prevPath.x + (val - prev), y: prevPath.y }, { node: "L", x: prevPath.x + (val - prev), y: prevPath.y + boothLen }];
 };
 
-const checkText = (targetElements, regex) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace(/臺/g, "台"));
-export const getFilterData = ({ data, tag, lang, regex }) =>
-  data.reduce((res, d) => {
+const checkText = (targetElements: string[], regex: RegExp) => regex.test(targetElements.join(" ").replace(/\r|\n/g, "").replace(/臺/g, "台"));
+export const getFilterData = ({ data, tag, lang, regex }: { data: OriginalData[]; tag: string; lang: string; regex: RegExp }) =>
+  data.reduce<FilterData[]>((res, d) => {
     const tags = d.tag ? d.tag[lang] : [];
     const corps = d.corps ? d.corps.map((corp) => corp.org[lang]) : [];
     const infos = d.corps ? d.corps.map((corp) => corp.info[lang]) : [];
@@ -204,10 +211,10 @@ export const getFilterData = ({ data, tag, lang, regex }) =>
     if (d.corps && d.corps.length > 0) {
       d.corps.forEach((corp, i) => {
         hasText = checkText([...targets, corp.info[lang], corp.org[lang]], regex);
-        res.push({ ...d, ...corp, text, size: d?.size?.[lang] || defaultFontSize, cat, topic, corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity, draw: i === 0, sidebar: hasText && hasTag });
+        res.push({ ...d, ...corp, text, size: d.size[lang] || defaultFontSize, cat, topic, corps: d.corps.map((c) => ({ ...c, org: c.org[lang], info: c.info[lang] })), org: corp.org[lang], info: corp.info[lang], tag: tags, event: events, opacity, draw: i === 0, sidebar: hasText && hasTag });
       });
     } else {
-      res.push({ ...d, text, size: d?.size?.[lang] || defaultFontSize, cat, topic, tag: tags, event: events, opacity, draw: true, sidebar: isType });
+      res.push({ ...d, corps: [], text, size: d.size[lang] || defaultFontSize, cat, topic, tag: tags, event: events, opacity, draw: true, sidebar: isType });
     }
     return res;
   }, []);
