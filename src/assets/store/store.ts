@@ -21,7 +21,7 @@ export const defaultMapText: MapText = {
   title: { tc: "展場平面圖", en: "Floor Plan" },
   event: { tc: "活動進行中", en: "Event in progress" },
   header: { tc: "重點必看", en: "Highlights" },
-  headerTags: { tc: ["重要活動", "健康大檢測", "醫師力大挑戰"], en: ["Key Events"] },
+  headerTags: { tc: ["重要活動", "健康大檢測", "臨床技能訓練教室"], en: ["Key Events"] },
   download: { tc: "下載", en: "Download" },
   searchPlaceholder: { tc: "關鍵字搜索", en: "Search" },
   remove: { tc: "清除標籤", en: "Clear all" },
