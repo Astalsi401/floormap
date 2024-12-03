@@ -41,7 +41,7 @@ const Pillar: React.FC<{ d: ResPillar }> = ({ d }) => <path fill="rgba(0, 0, 0, 
 const Text: React.FC<{ d: { x: number; y: number; text: string; color: string; size: number } }> = ({ d }) => (
   <g>
     {d.text.split("\n").map((t, j) => (
-      <text textAnchor="middle" fontWeight="bold" fill={d.color} fontSize={400 * d.size} x={d.x} y={d.y + 400 * d.size * j}>
+      <text key={`text-${j}`} textAnchor="middle" fontWeight="bold" fill={d.color} fontSize={400 * d.size} x={d.x} y={d.y + 400 * d.size * j}>
         {t}
       </text>
     ))}
