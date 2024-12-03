@@ -1,1 +1,2112 @@
-[{"id": "WALL001", "type": "wall", "floor": 1, "fill": "rgba(0,0,0,0.2)", "strokeWidth": 0, "x": 500, "y": 0, "p": [{"node": "L", "x": 500, "y": 10090}, {"node": "L", "x": 280, "y": 10090}, {"node": "L", "x": 280, "y": 11830}, {"node": "L", "x": 2000, "y": 11970}, {"node": "C", "x1": 2000, "y1": 14120, "x2": 4430, "y2": 14610, "x": 5500, "y": 13400}, {"node": "L", "x": 5800, "y": 13400}, {"node": "L", "x": 5800, "y": 14520}, {"node": "L", "x": 19730, "y": 14520}, {"node": "L", "x": 19730, "y": 12250}, {"node": "L", "x": 19450, "y": 12250}, {"node": "L", "x": 19450, "y": 11160}, {"node": "L", "x": 19150, "y": 11160}, {"node": "L", "x": 19150, "y": 0}]}, {"id": "WALL002", "type": "wall", "floor": 1, "fill": "rgb(255,255,255)", "strokeWidth": 10, "x": 900, "y": 0, "p": [{"node": "L", "x": 900, "y": 10110}, {"node": "L", "x": 300, "y": 10110}, {"node": "L", "x": 300, "y": 11810}, {"node": "L", "x": 2400, "y": 11950}, {"node": "C", "x1": 2400, "y1": 13900, "x2": 4700, "y2": 14000, "x": 5300, "y": 13000}, {"node": "L", "x": 6200, "y": 13000}, {"node": "L", "x": 6200, "y": 13900}, {"node": "L", "x": 16200, "y": 13900}, {"node": "L", "x": 16200, "y": 12250}, {"node": "L", "x": 19130, "y": 12250}, {"node": "L", "x": 19130, "y": 10110}, {"node": "L", "x": 18830, "y": 10110}, {"node": "L", "x": 18830, "y": 0}, {"node": "L", "x": 900, "y": 0}]}, {"id": "WALL003", "type": "wall", "floor": 1, "strokeWidth": 10, "fill": "none", "x": 4390, "y": 10110, "p": [{"node": "L", "x": 8500, "y": 10110}]}, {"id": "WALL004", "type": "wall", "floor": 1, "strokeWidth": 10, "fill": "none", "x": 11230, "y": 10110, "p": [{"node": "L", "x": 14400, "y": 10110}]}, {"id": "WALL005", "type": "wall", "floor": 1, "strokeWidth": 10, "fill": "none", "x": 5300, "y": 12450, "p": [{"node": "L", "x": 6200, "y": 12450}]}, {"id": "WALL006", "type": "wall", "floor": 4, "fill": "rgba(0,0,0,0.2)", "strokeWidth": 0, "x": 500, "y": 0, "p": [{"node": "L", "x": 500, "y": 12480}, {"node": "L", "x": 280, "y": 12480}, {"node": "L", "x": 280, "y": 14170}, {"node": "L", "x": 2280, "y": 14320}, {"node": "C", "x1": 2280, "y1": 16220, "x2": 4650, "y2": 16950, "x": 5630, "y": 15350}, {"node": "L", "x": 6180, "y": 15350}, {"node": "L", "x": 6180, "y": 16620}, {"node": "L", "x": 18050, "y": 16620}, {"node": "L", "x": 18050, "y": 15320}, {"node": "L", "x": 19450, "y": 15470}, {"node": "L", "x": 19450, "y": 13530}, {"node": "L", "x": 19230, "y": 13530}, {"node": "L", "x": 19230, "y": 0}, {"node": "L", "x": 500, "y": 0}]}, {"id": "WALL007", "type": "wall", "floor": 4, "fill": "rgb(255,255,255)", "strokeWidth": 10, "x": 900, "y": 0, "p": [{"node": "L", "x": 900, "y": 12500}, {"node": "L", "x": 300, "y": 12500}, {"node": "L", "x": 300, "y": 14150}, {"node": "L", "x": 2300, "y": 14300}, {"node": "C", "x1": 2300, "y1": 16200, "x2": 4600, "y2": 16900, "x": 5650, "y": 15330}, {"node": "L", "x": 6200, "y": 15330}, {"node": "L", "x": 6200, "y": 16600}, {"node": "L", "x": 18030, "y": 16600}, {"node": "L", "x": 18030, "y": 15320}, {"node": "L", "x": 19430, "y": 15450}, {"node": "L", "x": 19430, "y": 13550}, {"node": "L", "x": 19210, "y": 13550}, {"node": "L", "x": 19210, "y": 12500}, {"node": "L", "x": 18930, "y": 12500}, {"node": "L", "x": 18930, "y": 0}, {"node": "L", "x": 900, "y": 0}]}, {"id": "WALL008", "type": "wall", "floor": 4, "strokeWidth": 10, "fill": "none", "x": 6500, "y": 12500, "p": [{"node": "L", "x": 7300, "y": 12500}]}, {"id": "WALL009", "type": "wall", "floor": 4, "strokeWidth": 10, "fill": "none", "x": 12500, "y": 12500, "p": [{"node": "L", "x": 13300, "y": 12500}]}, {"id": "PILLAR001", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 1685, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR002", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 1685, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR003", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 1685, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR004", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 1685, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR005", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 1685, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR006", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 3485, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR007", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 3485, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR008", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 3485, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR009", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 3485, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR010", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 3485, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR011", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 5295, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR012", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 5295, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR013", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 5295, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR014", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 5295, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR015", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 5295, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR016", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 7095, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR017", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 7095, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR018", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 7095, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR019", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 7095, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR020", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 7095, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR021", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 8895, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR022", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 8895, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR023", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 8895, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR024", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 8895, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR025", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 8895, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR026", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 10705, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR027", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 10705, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR028", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 10705, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR029", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 10705, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR030", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 10705, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR031", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 12505, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR032", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 12505, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR033", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 12505, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR034", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 12505, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR035", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 12505, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR036", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 14305, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR037", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 14305, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR038", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 14305, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR039", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 14305, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR040", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 14305, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR041", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 16105, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR042", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 16105, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR043", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 16105, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR044", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 16105, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR045", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 16105, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR046", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 17905, "y": 1100, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR047", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 17905, "y": 2900, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR048", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 17905, "y": 4700, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR049", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 17905, "y": 6500, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "PILLAR050", "type": "pillar", "floor": 1, "w": 215, "h": 235, "x": 17905, "y": 8300, "p": [{"node": "L", "x": 215, "y": 0}, {"node": "L", "x": 215, "y": 235}, {"node": "L", "x": 0, "y": 235}]}, {"id": "ICON001", "type": "icon", "floor": 1, "w": 500, "h": 500, "x": 3750, "y": 10900, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "arrow_up"}, {"id": "ICON002", "type": "icon", "floor": 1, "w": 500, "h": 500, "x": 9650, "y": 10900, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "arrow_up"}, {"id": "ICON003", "type": "icon", "floor": 1, "w": 500, "h": 500, "x": 14550, "y": 10900, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "arrow_up"}, {"id": "ICON004", "type": "icon", "floor": 1, "w": 710, "h": 1050, "x": 6490, "y": 10110, "p": [{"node": "L", "x": 710, "y": 0}, {"node": "L", "x": 710, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "elevator"}, {"id": "ICON005", "type": "icon", "floor": 1, "w": 700, "h": 1050, "x": 12530, "y": 10110, "p": [{"node": "L", "x": 700, "y": 0}, {"node": "L", "x": 700, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "elevator"}, {"id": "ICON006", "type": "icon", "floor": 4, "w": 800, "h": 1050, "x": 6500, "y": 12500, "p": [{"node": "L", "x": 800, "y": 0}, {"node": "L", "x": 800, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "elevator"}, {"id": "ICON007", "type": "icon", "floor": 4, "w": 700, "h": 1050, "x": 12600, "y": 12500, "p": [{"node": "L", "x": 700, "y": 0}, {"node": "L", "x": 700, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "elevator"}, {"id": "ICON008", "type": "icon", "floor": 1, "w": 500, "h": 500, "x": 400, "y": 0, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_up"}, {"id": "ICON009", "type": "icon", "floor": 1, "w": 500, "h": 500, "x": 18830, "y": 0, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_up"}, {"id": "ICON010", "type": "icon", "floor": 1, "w": 500, "h": 500, "x": 400, "y": 7600, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_down"}, {"id": "ICON011", "type": "icon", "floor": 1, "w": 500, "h": 500, "x": 18830, "y": 7600, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_down"}, {"id": "ICON012", "type": "icon", "floor": 1, "w": 500, "h": 500, "x": 6100, "y": 11950, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_up_down_black"}, {"id": "ICON013", "type": "icon", "floor": 1, "w": 500, "h": 500, "x": 14600, "y": 11950, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_up_down_black"}, {"id": "ICON014", "type": "icon", "floor": 4, "w": 500, "h": 500, "x": 3850, "y": 13400, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "arrow_up"}, {"id": "ICON015", "type": "icon", "floor": 4, "w": 500, "h": 500, "x": 9650, "y": 13400, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "arrow_up"}, {"id": "ICON016", "type": "icon", "floor": 4, "w": 500, "h": 500, "x": 14550, "y": 13400, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "arrow_up"}, {"id": "ICON017", "type": "icon", "floor": 4, "w": 500, "h": 500, "x": 400, "y": 6000, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_up_down_red"}, {"id": "ICON018", "type": "icon", "floor": 4, "w": 500, "h": 500, "x": 18930, "y": 6000, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_up_down_red"}, {"id": "ICON019", "type": "icon", "floor": 4, "w": 500, "h": 500, "x": 6100, "y": 14300, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_up_down_black"}, {"id": "ICON020", "type": "icon", "floor": 4, "w": 500, "h": 500, "x": 14600, "y": 14300, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 500}, {"node": "L", "x": 0, "y": 500}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 0, "icon": "escalator_up_down_black"}, {"id": "ICON021", "type": "icon", "floor": 1, "w": 1900, "h": 1450, "x": 6200, "y": 12450, "p": [{"node": "L", "x": 1900, "y": 0}, {"node": "L", "x": 1900, "y": 1450}, {"node": "L", "x": 0, "y": 1450}], "text": {"tc": "咖啡簡餐", "en": "Cafe"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ICON022", "type": "icon", "floor": 1, "w": 1000, "h": 1450, "x": 11600, "y": 12450, "p": [{"node": "L", "x": 1000, "y": 0}, {"node": "L", "x": 1000, "y": 1450}, {"node": "L", "x": 0, "y": 1450}], "text": {"tc": "麵包店", "en": "Bakery"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ICON023", "type": "icon", "floor": 1, "w": 900, "h": 1450, "x": 12600, "y": 12450, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1450}, {"node": "L", "x": 0, "y": 1450}], "text": {"tc": "速食店", "en": "Fast\nFood \nRestaurant"}, "size": {"tc": 1, "en": 0.8}, "strokeWidth": 10, "icon": ""}, {"id": "ICON024", "type": "icon", "floor": 1, "w": 800, "h": 1450, "x": 13500, "y": 12450, "p": [{"node": "L", "x": 800, "y": 0}, {"node": "L", "x": 800, "y": 1450}, {"node": "L", "x": 0, "y": 1450}], "text": {"tc": "咖啡\n簡餐", "en": "Cafe"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ICON025", "type": "icon", "floor": 1, "w": 1900, "h": 1050, "x": 14300, "y": 12850, "p": [{"node": "L", "x": 1900, "y": 0}, {"node": "L", "x": 1900, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "便利商店", "en": "Convenience\nStore"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ICON026", "type": "icon", "floor": 4, "w": 1000, "h": 1050, "x": 2700, "y": 12500, "p": [{"node": "L", "x": 1000, "y": 0}, {"node": "L", "x": 1000, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "祈禱室", "en": "Prayer\nRoom"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ICON027", "type": "icon", "floor": 1, "w": 400, "h": 350, "x": 18000, "y": 10810, "p": [{"node": "L", "x": 400, "y": 0}, {"node": "L", "x": 400, "y": 350}, {"node": "L", "x": 0, "y": 350}], "text": {"tc": "", "en": ""}, "size": {"tc": 1.5, "en": 1.5}, "strokeWidth": 10, "icon": "first_aid"}, {"id": "ICON028", "type": "icon", "floor": 4, "w": 400, "h": 400, "x": 16800, "y": 13550, "p": [{"node": "L", "x": 400, "y": 0}, {"node": "L", "x": 400, "y": 400}, {"node": "L", "x": 0, "y": 400}], "text": {"tc": "", "en": ""}, "size": {"tc": 1.5, "en": 1.5}, "strokeWidth": 10, "icon": "first_aid"}, {"id": "ICON029", "type": "icon", "floor": 1, "w": 870, "h": 1050, "x": 1800, "y": 10110, "p": [{"node": "L", "x": 870, "y": 0}, {"node": "L", "x": 870, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": "toilet"}, {"id": "ICON030", "type": "icon", "floor": 1, "w": 1300, "h": 1050, "x": 17100, "p": [{"node": "L", "x": 1300, "y": 0}, {"node": "L", "x": 1300, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "y": 10110, "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": "toilet"}, {"id": "ICON031", "type": "icon", "floor": 4, "w": 800, "h": 1050, "x": 1900, "y": 12500, "p": [{"node": "L", "x": 800, "y": 0}, {"node": "L", "x": 800, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": "toilet"}, {"id": "ICON032", "type": "icon", "floor": 4, "w": 800, "h": 1450, "x": 17200, "y": 12500, "p": [{"node": "L", "x": 800, "y": 0}, {"node": "L", "x": 800, "y": 1450}, {"node": "L", "x": 0, "y": 1450}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": "toilet"}, {"id": "ROOM001", "type": "room", "floor": 1, "w": 600, "h": 1050, "x": 300, "y": 10110, "p": [{"node": "L", "x": 600, "y": 0}, {"node": "L", "x": 600, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM002", "type": "room", "floor": 1, "w": 900, "h": 1050, "x": 900, "y": 10110, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM003", "type": "room", "floor": 1, "w": 930, "h": 1050, "x": 2670, "y": 10110, "p": [{"node": "L", "x": 930, "y": 0}, {"node": "L", "x": 930, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "VIP \nRoom 1", "en": "VIP \nRoom 1"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM004", "type": "room", "floor": 1, "w": 650, "h": 1050, "x": 4390, "y": 10110, "p": [{"node": "L", "x": 650, "y": 0}, {"node": "L", "x": 650, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "I區\n辦公室", "en": "Office\n of \nArea I"}, "size": {"tc": 0.8, "en": 0.8}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM005", "type": "room", "floor": 1, "w": 350, "h": 1050, "x": 5040, "y": 10110, "p": [{"node": "L", "x": 350, "y": 0}, {"node": "L", "x": 350, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM006", "type": "room", "floor": 1, "w": 1100, "h": 1050, "x": 5390, "y": 10110, "p": [{"node": "L", "x": 1100, "y": 0}, {"node": "L", "x": 1100, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM007", "type": "room", "floor": 1, "w": 1300, "h": 1050, "x": 7200, "y": 10110, "p": [{"node": "L", "x": 1300, "y": 0}, {"node": "L", "x": 1300, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "VIP \nRoom 5", "en": "VIP \nRoom 5"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM008", "type": "room", "floor": 1, "w": 400, "h": 1050, "x": 11230, "y": 10110, "p": [{"node": "L", "x": 400, "y": 0}, {"node": "L", "x": 400, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM009", "type": "room", "floor": 1, "w": 900, "h": 1050, "x": 11630, "y": 10110, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "行李\n寄放處", "en": "Luggage\n Room"}, "size": {"tc": 1, "en": 0.8}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM010", "type": "room", "floor": 1, "w": 1200, "h": 1050, "x": 13230, "y": 10110, "p": [{"node": "L", "x": 1200, "y": 0}, {"node": "L", "x": 1200, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM011", "type": "room", "floor": 1, "w": 1000, "h": 1050, "x": 15200, "y": 10110, "p": [{"node": "L", "x": 1000, "y": 0}, {"node": "L", "x": 1000, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "民眾\n換票區", "en": "Entry badge\n pick-up for\n the public"}, "size": {"tc": 1, "en": 0.8}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM012", "type": "room", "floor": 1, "w": 900, "h": 1050, "x": 16200, "y": 10110, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "VIP \nRoom 2", "en": "VIP \nRoom 2"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM013", "type": "room", "floor": 1, "w": 730, "h": 1050, "x": 18400, "y": 10110, "p": [{"node": "L", "x": 730, "y": 0}, {"node": "L", "x": 730, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM014", "type": "room", "floor": 1, "w": 630, "h": 1090, "x": 18500, "y": 11160, "p": [{"node": "L", "x": 630, "y": 0}, {"node": "L", "x": 630, "y": 1090}, {"node": "L", "x": 0, "y": 1090}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM015", "type": "room", "floor": 1, "w": 900, "h": 1450, "x": 8100, "y": 12450, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1450}, {"node": "L", "x": 0, "y": 1450}], "text": {"tc": "專業人\n士換證\n區", "en": "Entry\n badge\n pick-up\n for \npro."}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM016", "type": "room", "floor": 1, "w": 900, "h": 1450, "x": 10700, "y": 12450, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1450}, {"node": "L", "x": 0, "y": 1450}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM017", "type": "room", "floor": 4, "w": 600, "h": 1050, "x": 300, "y": 12500, "p": [{"node": "L", "x": 600, "y": 0}, {"node": "L", "x": 600, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM018", "type": "room", "floor": 4, "w": 1000, "h": 1050, "x": 900, "y": 12500, "p": [{"node": "L", "x": 1000, "y": 0}, {"node": "L", "x": 1000, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM019", "type": "room", "floor": 4, "w": 1000, "h": 1050, "x": 4500, "y": 12500, "p": [{"node": "L", "x": 1000, "y": 0}, {"node": "L", "x": 1000, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "L區\n辦公室", "en": "Office of\n Area L"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM020", "type": "room", "floor": 4, "w": 1000, "h": 1050, "x": 5500, "y": 12500, "p": [{"node": "L", "x": 1000, "y": 0}, {"node": "L", "x": 1000, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM021", "type": "room", "floor": 4, "w": 600, "h": 1050, "x": 7300, "y": 12500, "p": [{"node": "L", "x": 600, "y": 0}, {"node": "L", "x": 600, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "434 \nRoom", "en": "434 \nRoom"}, "size": {"tc": 0.8, "en": 0.8}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM022", "type": "room", "floor": 4, "w": 600, "h": 1050, "x": 7900, "y": 12500, "p": [{"node": "L", "x": 600, "y": 0}, {"node": "L", "x": 600, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "435 \nRoom", "en": "435 \nRoom"}, "size": {"tc": 0.8, "en": 0.8}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM023", "type": "room", "floor": 4, "w": 600, "h": 1050, "x": 8500, "y": 12500, "p": [{"node": "L", "x": 600, "y": 0}, {"node": "L", "x": 600, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "VIP \nRoom 3", "en": "VIP \nRoom 3"}, "size": {"tc": 0.8, "en": 0.8}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM024", "type": "room", "floor": 4, "w": 900, "h": 1050, "x": 10800, "y": 12500, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "439 \nRoom", "en": "439 \nRoom"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM025", "type": "room", "floor": 4, "w": 900, "h": 1050, "x": 11700, "y": 12500, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "441 \nRoom", "en": "441 \nRoom"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM026", "type": "room", "floor": 4, "w": 1000, "h": 1050, "x": 13300, "y": 12500, "p": [{"node": "L", "x": 1000, "y": 0}, {"node": "L", "x": 1000, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM027", "type": "room", "floor": 4, "w": 1000, "h": 1050, "x": 15300, "y": 12500, "p": [{"node": "L", "x": 1000, "y": 0}, {"node": "L", "x": 1000, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "N區\n辦公室", "en": "Office of\n Area N"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM028", "type": "room", "floor": 4, "w": 900, "h": 1050, "x": 16300, "y": 12500, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1050}, {"node": "L", "x": 0, "y": 1050}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM029", "type": "room", "floor": 4, "w": 1210, "h": 1450, "x": 18000, "y": 12500, "p": [{"node": "L", "x": 1210, "y": 0}, {"node": "L", "x": 1210, "y": 1050}, {"node": "L", "x": 1430, "y": 1050}, {"node": "L", "x": 1430, "y": 1450}, {"node": "L", "x": 0, "y": 1450}], "text": {"tc": "", "en": ""}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM030", "type": "room", "floor": 4, "w": 1000, "h": 1770, "x": 6200, "y": 14830, "p": [{"node": "L", "x": 1000, "y": 0}, {"node": "L", "x": 1000, "y": 1770}, {"node": "L", "x": 0, "y": 1770}], "text": {"tc": "新聞中心", "en": "Press \nCenter"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM031", "type": "room", "floor": 4, "w": 1400, "h": 1400, "x": 7200, "y": 14830, "p": [{"node": "L", "x": 1400, "y": 0}, {"node": "L", "x": 1400, "y": 1400}, {"node": "L", "x": 0, "y": 1400}], "text": {"tc": "VIP簡報室", "en": "VIP \nBriefing\n Room"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM032", "type": "room", "floor": 4, "w": 500, "h": 1900, "x": 8600, "y": 14330, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 1900}, {"node": "L", "x": 0, "y": 1900}], "text": {"tc": "專業\n人士\n換證\n區", "en": "Entry \nbadge\n pick-up\n for \npro."}, "size": {"tc": 1, "en": 0.7}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM033", "type": "room", "floor": 4, "w": 500, "h": 1900, "x": 10800, "y": 14330, "p": [{"node": "L", "x": 500, "y": 0}, {"node": "L", "x": 500, "y": 1900}, {"node": "L", "x": 0, "y": 1900}], "text": {"tc": "專業\n人士\n換證\n區", "en": "Entry \nbadge\n pick-up\n for \npro."}, "size": {"tc": 1, "en": 0.7}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM034", "type": "room", "floor": 4, "w": 2230, "h": 1900, "x": 11300, "y": 14330, "p": [{"node": "L", "x": 2230, "y": 0}, {"node": "L", "x": 2230, "y": 1900}, {"node": "L", "x": 0, "y": 1900}], "text": {"tc": "401 Room", "en": "401 Room"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM035", "type": "room", "floor": 4, "w": 900, "h": 1400, "x": 13530, "y": 14830, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1400}, {"node": "L", "x": 0, "y": 1400}], "text": {"tc": "402a \nRoom", "en": "402a \nRoom"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM036", "type": "room", "floor": 4, "w": 900, "h": 1400, "x": 14430, "y": 14830, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1400}, {"node": "L", "x": 0, "y": 1400}], "text": {"tc": "402b \nRoom", "en": "402b \nRoom"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM037", "type": "room", "floor": 4, "w": 900, "h": 1400, "x": 15330, "y": 14830, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1400}, {"node": "L", "x": 0, "y": 1400}], "text": {"tc": "402c \nRoom", "en": "402c \nRoom"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM038", "type": "room", "floor": 4, "w": 900, "h": 1770, "x": 16230, "y": 14830, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1770}, {"node": "L", "x": 0, "y": 1770}], "text": {"tc": "403 \nRoom", "en": "403 \nRoom"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM039", "type": "room", "floor": 4, "w": 900, "h": 1770, "x": 17130, "y": 14830, "p": [{"node": "L", "x": 900, "y": 0}, {"node": "L", "x": 900, "y": 1770}, {"node": "L", "x": 0, "y": 1770}], "text": {"tc": "404 \nRoom", "en": "404 \nRoom"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "ROOM040", "type": "room", "floor": 4, "w": 1400, "h": 1370, "x": 18030, "y": 13950, "p": [{"node": "L", "x": 1400, "y": 0}, {"node": "L", "x": 1400, "y": 1500}, {"node": "L", "x": 0, "y": 1370}], "text": {"tc": "TAITRA\n Lounge", "en": "TAITRA\n Lounge"}, "size": {"tc": 1, "en": 1}, "strokeWidth": 10, "icon": ""}, {"id": "TEXT001", "type": "text", "floor": 1, "x": 4005, "y": 3650, "text": {"tc": "I", "en": "I"}, "size": {"tc": 1, "en": 1}, "color": "red"}, {"id": "TEXT002", "type": "text", "floor": 1, "x": 9715, "y": 3650, "text": {"tc": "J", "en": "J"}, "size": {"tc": 1, "en": 1}, "color": "red"}, {"id": "TEXT003", "type": "text", "floor": 1, "x": 15125, "y": 3650, "text": {"tc": "K", "en": "K"}, "size": {"tc": 1, "en": 1}, "color": "red"}, {"id": "TEXT004", "type": "text", "floor": 4, "x": 4205, "y": 5905, "text": {"tc": "L", "en": "L"}, "size": {"tc": 1, "en": 1}, "color": "red"}, {"id": "TEXT005", "type": "text", "floor": 4, "x": 9915, "y": 5905, "text": {"tc": "M", "en": "M"}, "size": {"tc": 1, "en": 1}, "color": "red"}, {"id": "TEXT006", "type": "text", "floor": 4, "x": 15025, "y": 5905, "text": {"tc": "N", "en": "N"}, "size": {"tc": 1, "en": 1}, "color": "red"}]
+[
+  {
+    "id": "WALL001",
+    "type": "wall",
+    "floor": 1,
+    "fill": "rgba(0,0,0,0.2)",
+    "strokeWidth": 0,
+    "x": 500,
+    "y": 0,
+    "p": [
+      { "node": "L", "x": 500, "y": 10090 },
+      { "node": "L", "x": 280, "y": 10090 },
+      { "node": "L", "x": 280, "y": 11830 },
+      { "node": "L", "x": 2000, "y": 11970 },
+      { "node": "C", "x1": 2000, "y1": 14120, "x2": 4430, "y2": 14610, "x": 5500, "y": 13400 },
+      { "node": "L", "x": 5800, "y": 13400 },
+      { "node": "L", "x": 5800, "y": 14520 },
+      { "node": "L", "x": 19730, "y": 14520 },
+      { "node": "L", "x": 19730, "y": 12250 },
+      { "node": "L", "x": 19450, "y": 12250 },
+      { "node": "L", "x": 19450, "y": 11160 },
+      { "node": "L", "x": 19150, "y": 11160 },
+      { "node": "L", "x": 19150, "y": 0 }
+    ]
+  },
+  {
+    "id": "WALL002",
+    "type": "wall",
+    "floor": 1,
+    "fill": "rgb(255,255,255)",
+    "strokeWidth": 10,
+    "x": 900,
+    "y": 0,
+    "p": [
+      { "node": "L", "x": 900, "y": 10110 },
+      { "node": "L", "x": 300, "y": 10110 },
+      { "node": "L", "x": 300, "y": 11810 },
+      { "node": "L", "x": 2400, "y": 11950 },
+      { "node": "C", "x1": 2400, "y1": 13900, "x2": 4700, "y2": 14000, "x": 5300, "y": 13000 },
+      { "node": "L", "x": 6200, "y": 13000 },
+      { "node": "L", "x": 6200, "y": 13900 },
+      { "node": "L", "x": 16200, "y": 13900 },
+      { "node": "L", "x": 16200, "y": 12250 },
+      { "node": "L", "x": 19130, "y": 12250 },
+      { "node": "L", "x": 19130, "y": 10110 },
+      { "node": "L", "x": 18830, "y": 10110 },
+      { "node": "L", "x": 18830, "y": 0 },
+      { "node": "L", "x": 900, "y": 0 }
+    ]
+  },
+  { "id": "WALL003", "type": "wall", "floor": 1, "strokeWidth": 10, "fill": "none", "x": 4390, "y": 10110, "p": [{ "node": "L", "x": 8500, "y": 10110 }] },
+  { "id": "WALL004", "type": "wall", "floor": 1, "strokeWidth": 10, "fill": "none", "x": 11230, "y": 10110, "p": [{ "node": "L", "x": 14400, "y": 10110 }] },
+  { "id": "WALL005", "type": "wall", "floor": 1, "strokeWidth": 10, "fill": "none", "x": 5300, "y": 12450, "p": [{ "node": "L", "x": 6200, "y": 12450 }] },
+  {
+    "id": "WALL006",
+    "type": "wall",
+    "floor": 4,
+    "fill": "rgba(0,0,0,0.2)",
+    "strokeWidth": 0,
+    "x": 500,
+    "y": 0,
+    "p": [
+      { "node": "L", "x": 500, "y": 12480 },
+      { "node": "L", "x": 280, "y": 12480 },
+      { "node": "L", "x": 280, "y": 14170 },
+      { "node": "L", "x": 2280, "y": 14320 },
+      { "node": "C", "x1": 2280, "y1": 16220, "x2": 4650, "y2": 16950, "x": 5630, "y": 15350 },
+      { "node": "L", "x": 6180, "y": 15350 },
+      { "node": "L", "x": 6180, "y": 16620 },
+      { "node": "L", "x": 18050, "y": 16620 },
+      { "node": "L", "x": 18050, "y": 15320 },
+      { "node": "L", "x": 19450, "y": 15470 },
+      { "node": "L", "x": 19450, "y": 13530 },
+      { "node": "L", "x": 19230, "y": 13530 },
+      { "node": "L", "x": 19230, "y": 0 },
+      { "node": "L", "x": 500, "y": 0 }
+    ]
+  },
+  {
+    "id": "WALL007",
+    "type": "wall",
+    "floor": 4,
+    "fill": "rgb(255,255,255)",
+    "strokeWidth": 10,
+    "x": 900,
+    "y": 0,
+    "p": [
+      { "node": "L", "x": 900, "y": 12500 },
+      { "node": "L", "x": 300, "y": 12500 },
+      { "node": "L", "x": 300, "y": 14150 },
+      { "node": "L", "x": 2300, "y": 14300 },
+      { "node": "C", "x1": 2300, "y1": 16200, "x2": 4600, "y2": 16900, "x": 5650, "y": 15330 },
+      { "node": "L", "x": 6200, "y": 15330 },
+      { "node": "L", "x": 6200, "y": 16600 },
+      { "node": "L", "x": 18030, "y": 16600 },
+      { "node": "L", "x": 18030, "y": 15320 },
+      { "node": "L", "x": 19430, "y": 15450 },
+      { "node": "L", "x": 19430, "y": 13550 },
+      { "node": "L", "x": 19210, "y": 13550 },
+      { "node": "L", "x": 19210, "y": 12500 },
+      { "node": "L", "x": 18930, "y": 12500 },
+      { "node": "L", "x": 18930, "y": 0 },
+      { "node": "L", "x": 900, "y": 0 }
+    ]
+  },
+  { "id": "WALL008", "type": "wall", "floor": 4, "strokeWidth": 10, "fill": "none", "x": 6500, "y": 12500, "p": [{ "node": "L", "x": 7300, "y": 12500 }] },
+  { "id": "WALL009", "type": "wall", "floor": 4, "strokeWidth": 10, "fill": "none", "x": 12500, "y": 12500, "p": [{ "node": "L", "x": 13300, "y": 12500 }] },
+  {
+    "id": "PILLAR001",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 1685,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR002",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 1685,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR003",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 1685,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR004",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 1685,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR005",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 1685,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR006",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 3485,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR007",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 3485,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR008",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 3485,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR009",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 3485,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR010",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 3485,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR011",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 5295,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR012",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 5295,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR013",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 5295,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR014",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 5295,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR015",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 5295,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR016",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 7095,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR017",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 7095,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR018",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 7095,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR019",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 7095,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR020",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 7095,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR021",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 8895,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR022",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 8895,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR023",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 8895,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR024",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 8895,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR025",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 8895,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR026",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 10705,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR027",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 10705,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR028",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 10705,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR029",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 10705,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR030",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 10705,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR031",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 12505,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR032",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 12505,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR033",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 12505,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR034",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 12505,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR035",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 12505,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR036",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 14305,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR037",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 14305,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR038",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 14305,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR039",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 14305,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR040",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 14305,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR041",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 16105,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR042",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 16105,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR043",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 16105,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR044",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 16105,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR045",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 16105,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR046",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 17905,
+    "y": 1100,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR047",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 17905,
+    "y": 2900,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR048",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 17905,
+    "y": 4700,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR049",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 17905,
+    "y": 6500,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "PILLAR050",
+    "type": "pillar",
+    "floor": 1,
+    "w": 215,
+    "h": 235,
+    "x": 17905,
+    "y": 8300,
+    "p": [
+      { "node": "L", "x": 215, "y": 0 },
+      { "node": "L", "x": 215, "y": 235 },
+      { "node": "L", "x": 0, "y": 235 }
+    ]
+  },
+  {
+    "id": "ICON001",
+    "type": "icon",
+    "floor": 1,
+    "w": 500,
+    "h": 500,
+    "x": 3750,
+    "y": 10900,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "arrow_up"
+  },
+  {
+    "id": "ICON002",
+    "type": "icon",
+    "floor": 1,
+    "w": 500,
+    "h": 500,
+    "x": 9650,
+    "y": 10900,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "arrow_up"
+  },
+  {
+    "id": "ICON003",
+    "type": "icon",
+    "floor": 1,
+    "w": 500,
+    "h": 500,
+    "x": 14550,
+    "y": 10900,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "arrow_up"
+  },
+  {
+    "id": "ICON004",
+    "type": "icon",
+    "floor": 1,
+    "w": 710,
+    "h": 1050,
+    "x": 6490,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 710, "y": 0 },
+      { "node": "L", "x": 710, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "elevator"
+  },
+  {
+    "id": "ICON005",
+    "type": "icon",
+    "floor": 1,
+    "w": 700,
+    "h": 1050,
+    "x": 12530,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 700, "y": 0 },
+      { "node": "L", "x": 700, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "elevator"
+  },
+  {
+    "id": "ICON006",
+    "type": "icon",
+    "floor": 4,
+    "w": 800,
+    "h": 1050,
+    "x": 6500,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 800, "y": 0 },
+      { "node": "L", "x": 800, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "elevator"
+  },
+  {
+    "id": "ICON007",
+    "type": "icon",
+    "floor": 4,
+    "w": 700,
+    "h": 1050,
+    "x": 12600,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 700, "y": 0 },
+      { "node": "L", "x": 700, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "elevator"
+  },
+  {
+    "id": "ICON008",
+    "type": "icon",
+    "floor": 1,
+    "w": 500,
+    "h": 500,
+    "x": 400,
+    "y": 0,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_up"
+  },
+  {
+    "id": "ICON009",
+    "type": "icon",
+    "floor": 1,
+    "w": 500,
+    "h": 500,
+    "x": 18830,
+    "y": 0,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_up"
+  },
+  {
+    "id": "ICON010",
+    "type": "icon",
+    "floor": 1,
+    "w": 500,
+    "h": 500,
+    "x": 400,
+    "y": 7600,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_down"
+  },
+  {
+    "id": "ICON011",
+    "type": "icon",
+    "floor": 1,
+    "w": 500,
+    "h": 500,
+    "x": 18830,
+    "y": 7600,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_down"
+  },
+  {
+    "id": "ICON012",
+    "type": "icon",
+    "floor": 1,
+    "w": 500,
+    "h": 500,
+    "x": 6100,
+    "y": 11950,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_up_down_black"
+  },
+  {
+    "id": "ICON013",
+    "type": "icon",
+    "floor": 1,
+    "w": 500,
+    "h": 500,
+    "x": 14600,
+    "y": 11950,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_up_down_black"
+  },
+  {
+    "id": "ICON014",
+    "type": "icon",
+    "floor": 4,
+    "w": 500,
+    "h": 500,
+    "x": 3850,
+    "y": 13400,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "arrow_up"
+  },
+  {
+    "id": "ICON015",
+    "type": "icon",
+    "floor": 4,
+    "w": 500,
+    "h": 500,
+    "x": 9650,
+    "y": 13400,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "arrow_up"
+  },
+  {
+    "id": "ICON016",
+    "type": "icon",
+    "floor": 4,
+    "w": 500,
+    "h": 500,
+    "x": 14550,
+    "y": 13400,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "arrow_up"
+  },
+  {
+    "id": "ICON017",
+    "type": "icon",
+    "floor": 4,
+    "w": 500,
+    "h": 500,
+    "x": 400,
+    "y": 6000,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_up_down_red"
+  },
+  {
+    "id": "ICON018",
+    "type": "icon",
+    "floor": 4,
+    "w": 500,
+    "h": 500,
+    "x": 18930,
+    "y": 6000,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_up_down_red"
+  },
+  {
+    "id": "ICON019",
+    "type": "icon",
+    "floor": 4,
+    "w": 500,
+    "h": 500,
+    "x": 6100,
+    "y": 14300,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_up_down_black"
+  },
+  {
+    "id": "ICON020",
+    "type": "icon",
+    "floor": 4,
+    "w": 500,
+    "h": 500,
+    "x": 14600,
+    "y": 14300,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 500 },
+      { "node": "L", "x": 0, "y": 500 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 0,
+    "icon": "escalator_up_down_black"
+  },
+  {
+    "id": "ICON021",
+    "type": "icon",
+    "floor": 1,
+    "w": 1900,
+    "h": 1450,
+    "x": 6200,
+    "y": 12450,
+    "p": [
+      { "node": "L", "x": 1900, "y": 0 },
+      { "node": "L", "x": 1900, "y": 1450 },
+      { "node": "L", "x": 0, "y": 1450 }
+    ],
+    "text": { "tc": "咖啡簡餐", "en": "Cafe" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ICON022",
+    "type": "icon",
+    "floor": 1,
+    "w": 1000,
+    "h": 1450,
+    "x": 11600,
+    "y": 12450,
+    "p": [
+      { "node": "L", "x": 1000, "y": 0 },
+      { "node": "L", "x": 1000, "y": 1450 },
+      { "node": "L", "x": 0, "y": 1450 }
+    ],
+    "text": { "tc": "麵包店", "en": "Bakery" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ICON023",
+    "type": "icon",
+    "floor": 1,
+    "w": 900,
+    "h": 1450,
+    "x": 12600,
+    "y": 12450,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1450 },
+      { "node": "L", "x": 0, "y": 1450 }
+    ],
+    "text": { "tc": "速食店", "en": "Fast\nFood \nRestaurant" },
+    "size": { "tc": 1, "en": 0.8 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ICON024",
+    "type": "icon",
+    "floor": 1,
+    "w": 800,
+    "h": 1450,
+    "x": 13500,
+    "y": 12450,
+    "p": [
+      { "node": "L", "x": 800, "y": 0 },
+      { "node": "L", "x": 800, "y": 1450 },
+      { "node": "L", "x": 0, "y": 1450 }
+    ],
+    "text": { "tc": "咖啡\n簡餐", "en": "Cafe" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ICON025",
+    "type": "icon",
+    "floor": 1,
+    "w": 1900,
+    "h": 1050,
+    "x": 14300,
+    "y": 12850,
+    "p": [
+      { "node": "L", "x": 1900, "y": 0 },
+      { "node": "L", "x": 1900, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "便利商店", "en": "Convenience\nStore" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ICON026",
+    "type": "icon",
+    "floor": 4,
+    "w": 1000,
+    "h": 1050,
+    "x": 2700,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 1000, "y": 0 },
+      { "node": "L", "x": 1000, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "祈禱室", "en": "Prayer\nRoom" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ICON027",
+    "type": "icon",
+    "floor": 1,
+    "w": 400,
+    "h": 350,
+    "x": 18000,
+    "y": 10810,
+    "p": [
+      { "node": "L", "x": 400, "y": 0 },
+      { "node": "L", "x": 400, "y": 350 },
+      { "node": "L", "x": 0, "y": 350 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1.5, "en": 1.5 },
+    "strokeWidth": 10,
+    "icon": "first_aid"
+  },
+  {
+    "id": "ICON028",
+    "type": "icon",
+    "floor": 4,
+    "w": 400,
+    "h": 400,
+    "x": 16800,
+    "y": 13550,
+    "p": [
+      { "node": "L", "x": 400, "y": 0 },
+      { "node": "L", "x": 400, "y": 400 },
+      { "node": "L", "x": 0, "y": 400 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1.5, "en": 1.5 },
+    "strokeWidth": 10,
+    "icon": "first_aid"
+  },
+  {
+    "id": "ICON029",
+    "type": "icon",
+    "floor": 1,
+    "w": 870,
+    "h": 1050,
+    "x": 1800,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 870, "y": 0 },
+      { "node": "L", "x": 870, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": "toilet"
+  },
+  {
+    "id": "ICON030",
+    "type": "icon",
+    "floor": 1,
+    "w": 1300,
+    "h": 1050,
+    "x": 17100,
+    "p": [
+      { "node": "L", "x": 1300, "y": 0 },
+      { "node": "L", "x": 1300, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "y": 10110,
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": "toilet"
+  },
+  {
+    "id": "ICON031",
+    "type": "icon",
+    "floor": 4,
+    "w": 800,
+    "h": 1050,
+    "x": 1900,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 800, "y": 0 },
+      { "node": "L", "x": 800, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": "toilet"
+  },
+  {
+    "id": "ICON032",
+    "type": "icon",
+    "floor": 4,
+    "w": 800,
+    "h": 1450,
+    "x": 17200,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 800, "y": 0 },
+      { "node": "L", "x": 800, "y": 1450 },
+      { "node": "L", "x": 0, "y": 1450 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": "toilet"
+  },
+  {
+    "id": "ROOM001",
+    "type": "room",
+    "floor": 1,
+    "w": 600,
+    "h": 1050,
+    "x": 300,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 600, "y": 0 },
+      { "node": "L", "x": 600, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM002",
+    "type": "room",
+    "floor": 1,
+    "w": 900,
+    "h": 1050,
+    "x": 900,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM003",
+    "type": "room",
+    "floor": 1,
+    "w": 930,
+    "h": 1050,
+    "x": 2670,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 930, "y": 0 },
+      { "node": "L", "x": 930, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "VIP \nRoom 1", "en": "VIP \nRoom 1" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM004",
+    "type": "room",
+    "floor": 1,
+    "w": 650,
+    "h": 1050,
+    "x": 4390,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 650, "y": 0 },
+      { "node": "L", "x": 650, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "I區\n辦公室", "en": "Office\n of \nArea I" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM005",
+    "type": "room",
+    "floor": 1,
+    "w": 350,
+    "h": 1050,
+    "x": 5040,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 350, "y": 0 },
+      { "node": "L", "x": 350, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM006",
+    "type": "room",
+    "floor": 1,
+    "w": 1100,
+    "h": 1050,
+    "x": 5390,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 1100, "y": 0 },
+      { "node": "L", "x": 1100, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM007",
+    "type": "room",
+    "floor": 1,
+    "w": 1300,
+    "h": 1050,
+    "x": 7200,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 1300, "y": 0 },
+      { "node": "L", "x": 1300, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "VIP \nRoom 5", "en": "VIP \nRoom 5" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM008",
+    "type": "room",
+    "floor": 1,
+    "w": 400,
+    "h": 1050,
+    "x": 11230,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 400, "y": 0 },
+      { "node": "L", "x": 400, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM009",
+    "type": "room",
+    "floor": 1,
+    "w": 900,
+    "h": 1050,
+    "x": 11630,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "行李\n寄放處", "en": "Luggage\n Room" },
+    "size": { "tc": 1, "en": 0.8 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM010",
+    "type": "room",
+    "floor": 1,
+    "w": 1200,
+    "h": 1050,
+    "x": 13230,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 1200, "y": 0 },
+      { "node": "L", "x": 1200, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM011",
+    "type": "room",
+    "floor": 1,
+    "w": 1000,
+    "h": 1050,
+    "x": 15200,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 1000, "y": 0 },
+      { "node": "L", "x": 1000, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "民眾\n換票區", "en": "Entry badge\n pick-up for\n the public" },
+    "size": { "tc": 1, "en": 0.8 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM012",
+    "type": "room",
+    "floor": 1,
+    "w": 900,
+    "h": 1050,
+    "x": 16200,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "VIP \nRoom 2", "en": "VIP \nRoom 2" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM013",
+    "type": "room",
+    "floor": 1,
+    "w": 730,
+    "h": 1050,
+    "x": 18400,
+    "y": 10110,
+    "p": [
+      { "node": "L", "x": 730, "y": 0 },
+      { "node": "L", "x": 730, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM014",
+    "type": "room",
+    "floor": 1,
+    "w": 630,
+    "h": 1090,
+    "x": 18500,
+    "y": 11160,
+    "p": [
+      { "node": "L", "x": 630, "y": 0 },
+      { "node": "L", "x": 630, "y": 1090 },
+      { "node": "L", "x": 0, "y": 1090 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM015",
+    "type": "room",
+    "floor": 1,
+    "w": 900,
+    "h": 1450,
+    "x": 8100,
+    "y": 12450,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1450 },
+      { "node": "L", "x": 0, "y": 1450 }
+    ],
+    "text": { "tc": "專業人\n士換證\n區", "en": "Entry\n badge\n pick-up\n for \npro." },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM016",
+    "type": "room",
+    "floor": 1,
+    "w": 900,
+    "h": 1450,
+    "x": 10700,
+    "y": 12450,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1450 },
+      { "node": "L", "x": 0, "y": 1450 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM017",
+    "type": "room",
+    "floor": 4,
+    "w": 600,
+    "h": 1050,
+    "x": 300,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 600, "y": 0 },
+      { "node": "L", "x": 600, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM018",
+    "type": "room",
+    "floor": 4,
+    "w": 1000,
+    "h": 1050,
+    "x": 900,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 1000, "y": 0 },
+      { "node": "L", "x": 1000, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM019",
+    "type": "room",
+    "floor": 4,
+    "w": 1000,
+    "h": 1050,
+    "x": 4500,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 1000, "y": 0 },
+      { "node": "L", "x": 1000, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "L區\n辦公室", "en": "Office of\n Area L" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM020",
+    "type": "room",
+    "floor": 4,
+    "w": 1000,
+    "h": 1050,
+    "x": 5500,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 1000, "y": 0 },
+      { "node": "L", "x": 1000, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM021",
+    "type": "room",
+    "floor": 4,
+    "w": 600,
+    "h": 1050,
+    "x": 7300,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 600, "y": 0 },
+      { "node": "L", "x": 600, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "434 \nRoom", "en": "434 \nRoom" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM022",
+    "type": "room",
+    "floor": 4,
+    "w": 600,
+    "h": 1050,
+    "x": 7900,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 600, "y": 0 },
+      { "node": "L", "x": 600, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "435 \nRoom", "en": "435 \nRoom" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM023",
+    "type": "room",
+    "floor": 4,
+    "w": 600,
+    "h": 1050,
+    "x": 8500,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 600, "y": 0 },
+      { "node": "L", "x": 600, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "VIP \nRoom 3", "en": "VIP \nRoom 3" },
+    "size": { "tc": 0.8, "en": 0.8 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM024",
+    "type": "room",
+    "floor": 4,
+    "w": 900,
+    "h": 1050,
+    "x": 10800,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "439 \nRoom", "en": "439 \nRoom" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM025",
+    "type": "room",
+    "floor": 4,
+    "w": 900,
+    "h": 1050,
+    "x": 11700,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "441 \nRoom", "en": "441 \nRoom" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM026",
+    "type": "room",
+    "floor": 4,
+    "w": 1000,
+    "h": 1050,
+    "x": 13300,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 1000, "y": 0 },
+      { "node": "L", "x": 1000, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM027",
+    "type": "room",
+    "floor": 4,
+    "w": 1000,
+    "h": 1050,
+    "x": 15300,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 1000, "y": 0 },
+      { "node": "L", "x": 1000, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "N區\n辦公室", "en": "Office of\n Area N" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM028",
+    "type": "room",
+    "floor": 4,
+    "w": 900,
+    "h": 1050,
+    "x": 16300,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1050 },
+      { "node": "L", "x": 0, "y": 1050 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM029",
+    "type": "room",
+    "floor": 4,
+    "w": 1210,
+    "h": 1450,
+    "x": 18000,
+    "y": 12500,
+    "p": [
+      { "node": "L", "x": 1210, "y": 0 },
+      { "node": "L", "x": 1210, "y": 1050 },
+      { "node": "L", "x": 1430, "y": 1050 },
+      { "node": "L", "x": 1430, "y": 1450 },
+      { "node": "L", "x": 0, "y": 1450 }
+    ],
+    "text": { "tc": "", "en": "" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM030",
+    "type": "room",
+    "floor": 4,
+    "w": 1000,
+    "h": 1770,
+    "x": 6200,
+    "y": 14830,
+    "p": [
+      { "node": "L", "x": 1000, "y": 0 },
+      { "node": "L", "x": 1000, "y": 1770 },
+      { "node": "L", "x": 0, "y": 1770 }
+    ],
+    "text": { "tc": "新聞中心", "en": "Press \nCenter" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM031",
+    "type": "room",
+    "floor": 4,
+    "w": 1400,
+    "h": 1400,
+    "x": 7200,
+    "y": 14830,
+    "p": [
+      { "node": "L", "x": 1400, "y": 0 },
+      { "node": "L", "x": 1400, "y": 1400 },
+      { "node": "L", "x": 0, "y": 1400 }
+    ],
+    "text": { "tc": "VIP簡報室", "en": "VIP \nBriefing\n Room" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM032",
+    "type": "room",
+    "floor": 4,
+    "w": 500,
+    "h": 1900,
+    "x": 8600,
+    "y": 14330,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 1900 },
+      { "node": "L", "x": 0, "y": 1900 }
+    ],
+    "text": { "tc": "專業\n人士\n換證\n區", "en": "Entry \nbadge\n pick-up\n for \npro." },
+    "size": { "tc": 1, "en": 0.7 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM033",
+    "type": "room",
+    "floor": 4,
+    "w": 500,
+    "h": 1900,
+    "x": 10800,
+    "y": 14330,
+    "p": [
+      { "node": "L", "x": 500, "y": 0 },
+      { "node": "L", "x": 500, "y": 1900 },
+      { "node": "L", "x": 0, "y": 1900 }
+    ],
+    "text": { "tc": "專業\n人士\n換證\n區", "en": "Entry \nbadge\n pick-up\n for \npro." },
+    "size": { "tc": 1, "en": 0.7 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM034",
+    "type": "room",
+    "floor": 4,
+    "w": 2230,
+    "h": 1900,
+    "x": 11300,
+    "y": 14330,
+    "p": [
+      { "node": "L", "x": 2230, "y": 0 },
+      { "node": "L", "x": 2230, "y": 1900 },
+      { "node": "L", "x": 0, "y": 1900 }
+    ],
+    "text": { "tc": "401 Room", "en": "401 Room" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM035",
+    "type": "room",
+    "floor": 4,
+    "w": 900,
+    "h": 1400,
+    "x": 13530,
+    "y": 14830,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1400 },
+      { "node": "L", "x": 0, "y": 1400 }
+    ],
+    "text": { "tc": "402a \nRoom", "en": "402a \nRoom" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM036",
+    "type": "room",
+    "floor": 4,
+    "w": 900,
+    "h": 1400,
+    "x": 14430,
+    "y": 14830,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1400 },
+      { "node": "L", "x": 0, "y": 1400 }
+    ],
+    "text": { "tc": "402b \nRoom", "en": "402b \nRoom" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM037",
+    "type": "room",
+    "floor": 4,
+    "w": 900,
+    "h": 1400,
+    "x": 15330,
+    "y": 14830,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1400 },
+      { "node": "L", "x": 0, "y": 1400 }
+    ],
+    "text": { "tc": "402c \nRoom", "en": "402c \nRoom" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM038",
+    "type": "room",
+    "floor": 4,
+    "w": 900,
+    "h": 1770,
+    "x": 16230,
+    "y": 14830,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1770 },
+      { "node": "L", "x": 0, "y": 1770 }
+    ],
+    "text": { "tc": "403 \nRoom", "en": "403 \nRoom" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM039",
+    "type": "room",
+    "floor": 4,
+    "w": 900,
+    "h": 1770,
+    "x": 17130,
+    "y": 14830,
+    "p": [
+      { "node": "L", "x": 900, "y": 0 },
+      { "node": "L", "x": 900, "y": 1770 },
+      { "node": "L", "x": 0, "y": 1770 }
+    ],
+    "text": { "tc": "404 \nRoom", "en": "404 \nRoom" },
+    "size": { "tc": 1, "en": 1 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  {
+    "id": "ROOM040",
+    "type": "room",
+    "floor": 1,
+    "w": 650,
+    "h": 300,
+    "x": 4390,
+    "y": 11160,
+    "p": [
+      { "node": "L", "x": 650, "y": 0 },
+      { "node": "L", "x": 650, "y": 300 },
+      { "node": "L", "x": 0, "y": 300 }
+    ],
+    "text": { "tc": "多元學習/產業見習\n報到處", "en": "" },
+    "size": { "tc": 0.35, "en": 0.35 },
+    "strokeWidth": 10,
+    "icon": ""
+  },
+  { "id": "TEXT001", "type": "text", "floor": 1, "x": 4005, "y": 3650, "text": { "tc": "I", "en": "I" }, "size": { "tc": 1, "en": 1 }, "color": "red" },
+  { "id": "TEXT002", "type": "text", "floor": 1, "x": 9715, "y": 3650, "text": { "tc": "J", "en": "J" }, "size": { "tc": 1, "en": 1 }, "color": "red" },
+  { "id": "TEXT003", "type": "text", "floor": 1, "x": 15125, "y": 3650, "text": { "tc": "K", "en": "K" }, "size": { "tc": 1, "en": 1 }, "color": "red" },
+  { "id": "TEXT004", "type": "text", "floor": 4, "x": 4205, "y": 5905, "text": { "tc": "L", "en": "L" }, "size": { "tc": 1, "en": 1 }, "color": "red" },
+  { "id": "TEXT005", "type": "text", "floor": 4, "x": 9915, "y": 5905, "text": { "tc": "M", "en": "M" }, "size": { "tc": 1, "en": 1 }, "color": "red" },
+  { "id": "TEXT006", "type": "text", "floor": 4, "x": 15025, "y": 5905, "text": { "tc": "N", "en": "N" }, "size": { "tc": 1, "en": 1 }, "color": "red" }
+]
