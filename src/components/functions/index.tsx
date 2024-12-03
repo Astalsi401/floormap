@@ -59,14 +59,14 @@ const checkLogin = async (): Promise<boolean> => {
   return login;
 };
 
-export const getMapElems = ({ params: { year, category, id }, postData = {}, meth = "GET" }: { params: Params; postData?: EditForm | {}; meth?: Method }): { data: Promise<GetMapElemsResponse> } => ({
+export const getMapElems = ({ params: { year, category, id }, postData, meth = "GET" }: { params: Params; postData?: EditForm; meth?: Method }): { data: Promise<GetMapElemsResponse> } => ({
   data: (async (): Promise<GetMapElemsResponse> => {
     try {
       const prod = window.location.hostname !== "astalsi401.github.io";
       const assets = `${import.meta.env.BASE_URL}/assets/json`;
       const server = `${import.meta.env.VITE_SERVER_URL}/api`;
       const route = `${year}/${category}`;
-      const boothInfo = meth === METHOD.POST ? await fetchData.post(`${server}/${route}/${id}`, postData) : meth === METHOD.DELETE ? await fetchData.delete(`${server}/${route}/${id}`) : await fetchData.get(`${prod ? server : assets}/${route}${prod ? "" : ".json"}`);
+      const boothInfo = meth === METHOD.POST && postData ? await fetchData.post(`${server}/${route}/${id}`, { ...postData, corps: postData.corps.map(({ org, info }) => ({ org, info })) }) : meth === METHOD.DELETE ? await fetchData.delete(`${server}/${route}/${id}`) : await fetchData.get(`${prod ? server : assets}/${route}${prod ? "" : ".json"}`);
       const data = { elems: await fetchData.get(`${assets}/elems.json`), boothPos: await fetchData.get(`${assets}/boothPos.json`), boothInfo };
       return { data: boothData(data), login: await checkLogin() };
     } catch (error) {
