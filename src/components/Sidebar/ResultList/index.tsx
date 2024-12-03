@@ -8,7 +8,7 @@ type ResultProps = ResultListProps & { d: FilterBooth | FilterRoom };
 
 export const ResultList: React.FC<ResultListProps> = ({ svgRef, graphRef }) => {
   const types = useAppSelector((state) => state.types);
-  const data = useAppSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type) && d.sidebar && d.opacity > 0.1 && (d.text.length > 0 || getSearchParam("edit"))) as FilterBooth[] | FilterRoom[];
+  const data = useAppSelector((state) => state.floorData.filterData).filter((d) => types.includes(d.type) && d.cat.length > 0 && d.sidebar && d.opacity > 0.1 && (d.text.length > 0 || getSearchParam("edit"))) as FilterBooth[] | FilterRoom[];
   return (
     <div className="fp-result pb-5">
       {data.map((d) => (

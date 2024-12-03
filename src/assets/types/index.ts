@@ -28,6 +28,7 @@ export type ResBooth = DataBasic & {
   corps: ResCorp[];
   event: ResEvent[];
   shift?: { x: number; y: number };
+  icon: string;
 };
 export type ResWall = DataBasic & { fill: string; strokeWidth: number };
 export type ResPillar = DataBasic & { w: number; h: number };
@@ -45,6 +46,7 @@ type OriginalBasic = DataBasic & {
   text: DefaultText;
   corps: OriginalCorp[];
   event: OriginalEvent[];
+  icon: string;
 };
 export type OriginalBooth = OriginalBasic & { w: number; h: number; booths: string[]; shift?: { x: number; y: number } };
 export type OriginalWall = OriginalBasic & { fill: string; strokeWidth: number };
@@ -73,7 +75,7 @@ type FilterBasic = {
   draw: boolean;
   sidebar: boolean;
 };
-export type FilterBooth = FilterBasic & { w: number; h: number; booths: string[]; org: string; info: string; _id: string; corpId: string; shift?: { x: number; y: number } };
+export type FilterBooth = FilterBasic & { w: number; h: number; booths: string[]; org: string; info: string; _id: string; corpId: string; shift?: { x: number; y: number }; icon: string };
 export type FilterWall = FilterBasic & { fill: string; strokeWidth: number };
 export type FilterPillar = FilterBasic & { w: number; h: number };
 export type FilterRoom = FilterBasic & { w: number; h: number; strokeWidth: number; icon: string; booths?: string[]; org?: string; info?: string; _id?: string; corpId?: string };

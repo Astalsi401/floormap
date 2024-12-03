@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useParams } from "react-router-dom";
-import { icon_base64 } from "@icons";
+import { icon_base64, icon_colors } from "@icons";
 import { getSearchParam } from "@functions";
 import store, { setElementStatus, setTooltip, setEditForm, initEditForm, useAppDispatch, useAppSelector } from "@store";
 import { FilterBooth, FilterPillar, FilterRoom, FilterText, FilterWall, PathType, ResPillar, ResWall } from "@types";
@@ -26,7 +26,7 @@ export const Elements: React.FC<{ type: string; size?: number }> = ({ type, size
     text: ({ d }) => <Text key={d.id} d={d} />,
     room: ({ d, i }) => <Room key={d.id} d={d} i={i || 0} size={size} handleBoothClick={handleBoothClick} />,
     icon: ({ d, i }) => <Room key={d.id} d={d} i={i || 0} size={size} />,
-    booth: ({ d }) => <Booth key={d.id} d={d} size={size} handleBoothClick={handleBoothClick} />,
+    booth: ({ d, i }) => <Booth key={d.id} d={d} i={i || 0} size={size} handleBoothClick={handleBoothClick} />,
   };
   const handleBoothClick = (d: FilterBooth | FilterRoom) => {
     if (store.getState().elementStatus.dragStatus.distance !== 0) return;
@@ -61,30 +61,32 @@ const Room: React.FC<RoomProps> = ({ d, i, size, handleBoothClick }) => {
           </text>
         ))}
       </g>
-      {d.icon.length > 0 && (
+      {d?.icon && d.icon.length > 0 && (
         <>
           <clipPath id={`${d.type}-${d.floor}-${i}`}>
             <rect className="icon" width={icon_l} height={icon_l} x={(d.w - icon_l) / 2} y={(d.h - icon_l) / 2} />
           </clipPath>
-          <image width={icon_l} height={icon_l} x={(d.w - icon_l) / 2} y={(d.h - icon_l) / 2} visibility="visible" clipPath={`url(#icon-${d.floor}-${i})`} xlinkHref={icon_base64[d.icon]} opacity={1} />
+          <image width={icon_l} height={icon_l} x={(d.w - icon_l) / 2} y={(d.h - icon_l) / 2} visibility="visible" clipPath={`url(#icon-${d.floor}-${i})`} style={{ filter: icon_colors[d.icon] }} xlinkHref={icon_base64[d.icon]} opacity={1} />
         </>
       )}
     </g>
   );
 };
-type BoothProps = { d: FilterBooth; size: number; handleBoothClick: (d: FilterBooth) => void };
-const Booth: React.FC<BoothProps> = ({ d, size, handleBoothClick }) => {
+type BoothProps = { d: FilterBooth; i: number; size: number; handleBoothClick: (d: FilterBooth) => void };
+const Booth: React.FC<BoothProps> = ({ d, i, size, handleBoothClick }) => {
   const dispatch = useAppDispatch();
   const boothInfo = useAppSelector((state) => state.elementStatus.boothInfo);
   const boothInfoId = useAppSelector((state) => state.elementStatus.boothInfoData.id);
   const colors = useAppSelector((state) => state.elementStatus.colors);
   const width = useAppSelector((state) => state.tooltip.width);
   const margin = useAppSelector((state) => state.tooltip.margin);
+  const { category } = useParams();
   const edit = getSearchParam("edit") === 1;
   const [selected, setSelected] = useState(false);
   const textShift = { x: d?.shift?.x || 0, y: d?.shift?.y || 0 };
   const opacity = boothInfo && boothInfoId === d.id ? 1 : d.opacity;
-  const { category } = useParams();
+  const icon_l = Math.min(d.w, d.h);
+  const hasIcon = d?.icon && d.icon.length > 0;
   const handleBoothSelected = ({ ctrlKey, shiftKey }: React.MouseEvent) => {
     const prev = store.getState().editForm.booths || [];
     if (ctrlKey) {
@@ -113,9 +115,19 @@ const Booth: React.FC<BoothProps> = ({ d, size, handleBoothClick }) => {
     <g key={d.id} id={d.id} className={`booth ${opacity === 1 ? "active" : ""}`} transform={`translate(${d.x},${d.y})`} onClick={handleClick} onMouseMove={handleMouseMove} onMouseEnter={activeTooltip} onMouseLeave={initialTooltip}>
       <path stroke={selected && boothInfo ? "rgb(207, 97, 97)" : "black"} fill={selected && boothInfo ? "rgb(207, 97, 97)" : colors.scale(d.cat)} strokeWidth={selected && boothInfo ? 5 : 1} fillOpacity={opacity} d={`M0 0${drawPath(d.p)}`} />
       <BoothTextGroup d={d} size={size} textShift={textShift} opacity={opacity} />
-      <text className="booth-id" fill="black" fillOpacity={opacity} fontSize={size * 0.3} x={20 + textShift.x} y={d.h - 20 + textShift.y}>
-        {d.id}
-      </text>
+      {hasIcon && (
+        <>
+          <clipPath id={`${d.type}-${d.floor}-${i}`}>
+            <rect className="icon" width={icon_l} height={icon_l} x={(d.w - icon_l) / 2} y={(d.h - icon_l) / 2} />
+          </clipPath>
+          <image width={icon_l} height={icon_l} x={(d.w - icon_l) / 2} y={(d.h - icon_l) / 2} visibility="visible" clipPath={`url(#icon-${d.floor}-${i})`} style={{ filter: icon_colors[d.icon] }} xlinkHref={icon_base64[d.icon]} opacity={1} />
+        </>
+      )}
+      {!hasIcon && (
+        <text className="booth-id" fill="black" fillOpacity={opacity} fontSize={size * 0.3} x={20 + textShift.x} y={d.h - 20 + textShift.y}>
+          {d.id}
+        </text>
+      )}
     </g>
   );
 };

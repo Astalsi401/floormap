@@ -12,3 +12,13 @@ export const icon_base64: { [key: string]: string } = {
   arrow_up: "data:image/svg+xml;base64,PHN2ZyBpZD0i5ZyW5bGkXzEiIGRhdGEtbmFtZT0i5ZyW5bGkIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDkzIDk5Ij48cGF0aCBkPSJNNTUsNDMuMDh2OS43OGMwLDYuNTkuMDYsMTMuMTMsMCwxOS43M0M1NSw3OC4xNyw1MS4yNiw4Miw0Ni4xNyw4MnMtOC42MS0zLjg5LTguNjYtOS41NWMwLTkuMTksMC0xOC40NSwwLTI3LjY4YTEwLjI2LDEwLjI2LDAsMCwwLS40MS0xLjE4Yy0yLjc3LDMuMzgtNS4yOCw2LjYtOCw5LjY3YTcuODksNy44OSwwLDAsMS05LjI4LDEuOTIsNy4yOSw3LjI5LDAsMCwxLTQuMTEtNy44OCwxMC4zMiwxMC4zMiwwLDAsMSwyLjA3LTQuNHExMC42LTEzLDIxLjQ1LTI1Ljg3YzQuMjUtNS4wNSwxMC4wNi01LDE0LjMxLjIxLDcsOC40MSwxNCwxNi45LDIxLDI1LjMzLDMuMzUsNC4wOSwzLjE5LDguNjgtLjQyLDExLjYzLTMuMzYsMi44NS03LjkyLDIuMTItMTEuMjktMS42OS0xLjIxLTEuNDEtMi4zNi0yLjg5LTMuNTctNC4zUzU2Ljg1LDQ1LjMyLDU1LDQzLjA4WiIgc3R5bGU9ImZpbGw6I2U2MWYxOTtmaWxsLXJ1bGU6ZXZlbm9kZCIvPjwvc3ZnPg==",
   first_aid: "data:image/svg+xml;base64,PHN2ZyBpZD0i5ZyW5bGkXzEiIGRhdGEtbmFtZT0i5ZyW5bGkIDEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDkzIDk5Ij48cG9seWdvbiBwb2ludHM9IjY4Ljc2IDQxLjMgNTIuOSA0MS4zIDUyLjkgMjYuMzIgNDAuNjQgMjYuMzIgNDAuNjQgNDEuMyAyNC43OCA0MS4zIDI0Ljc4IDUzLjU0IDQwLjY0IDUzLjU0IDQwLjY0IDcwLjMgNTIuOSA3MC4zIDUyLjkgNTMuNTQgNjguNzYgNTMuNTQgNjguNzYgNDEuMyIgc3R5bGU9ImZpbGw6IzNlM2EzOSIvPjxyZWN0IHg9IjE2LjM0IiB5PSIxNS41OSIgd2lkdGg9IjYwLjUzIiBoZWlnaHQ9IjY3LjQxIiBzdHlsZT0iZmlsbDpub25lO3N0cm9rZTojM2UzYTM5O3N0cm9rZS1taXRlcmxpbWl0OjEwO3N0cm9rZS13aWR0aDowLjVweCIvPjwvc3ZnPg==",
 };
+export const icon_colors: { [key: string]: string } = {
+  first_aid: "invert(20%) sepia(94%) saturate(7479%) hue-rotate(359deg) brightness(112%) contrast(118%)",
+  escalator_up: "",
+  escalator_down: "",
+  escalator_up_down_black: "",
+  escalator_up_down_red: "",
+  elevator: "",
+  toilet: "",
+  arrow_up: "",
+};
