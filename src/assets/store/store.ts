@@ -6,7 +6,7 @@ export const defaultFontSize = 0.45;
 export const defaultString: DefaultText = { tc: "", en: "" };
 export const defaultNumber: DefaultNumber = { tc: defaultFontSize, en: defaultFontSize };
 export const defaultTags: DefaultTags = { tc: [], en: [] };
-export const defaultBoothInfoData: FilterBooth = { floor: "1", w: 0, h: 0, x: 0, y: 0, id: "", type: "booth", size: 1, cat: "", topic: "", tag: [], text: "", booths: [], corps: [], event: [], p: [], org: "", info: "", _id: "", corpId: "", opacity: 0.8, draw: true, sidebar: true };
+export const defaultBoothInfoData: FilterBooth = { floor: "1", w: 0, h: 0, x: 0, y: 0, id: "", type: "booth", size: 1, cat: "", topic: "", tag: [], text: "", booths: [], corps: [], event: [], p: [], org: "", info: "", _id: "", corpId: "", opacity: 0.8, draw: true, sidebar: true, icon: "" };
 export const METHOD: { GET: Get; POST: Post; PUT: Put; DELETE: Delete; [key: string]: Method } = { GET: "GET", POST: "POST", PUT: "PUT", DELETE: "DELETE" };
 export const areas: DefaultTags = {
   tc: ["全齡健康展區", "年度主題館", "醫療機構展區", "智慧醫療展區", "精準醫療展區"],
