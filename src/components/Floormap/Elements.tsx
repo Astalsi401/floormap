@@ -39,9 +39,13 @@ const drawPath = (path: PathType[]) => path.map((p) => (p.node === "L" ? `${p.no
 const Wall: React.FC<{ d: ResWall }> = ({ d }) => <path stroke="black" fill={d.fill} strokeWidth={d.strokeWidth} d={`M${d.x} ${d.y}${drawPath(d.p)}`} />;
 const Pillar: React.FC<{ d: ResPillar }> = ({ d }) => <path fill="rgba(0, 0, 0, 0.2)" d={`M${d.x} ${d.y}${drawPath(d.p.map((p) => ({ node: p.node, x: p.x + d.x, y: p.y + d.y })))}`} />;
 const Text: React.FC<{ d: { x: number; y: number; text: string; color: string; size: number } }> = ({ d }) => (
-  <text textAnchor="middle" fontWeight="bold" fill={d.color} fontSize={400 * d.size} x={d.x} y={d.y}>
-    {d.text.replace("\n", "")}
-  </text>
+  <g>
+    {d.text.split("\n").map((t, j) => (
+      <text textAnchor="middle" fontWeight="bold" fill={d.color} fontSize={400 * d.size} x={d.x} y={d.y + 400 * d.size * j}>
+        {t}
+      </text>
+    ))}
+  </g>
 );
 type RoomProps = { d: FilterRoom; i: number; size: number; handleBoothClick?: (d: FilterRoom) => void };
 const Room: React.FC<RoomProps> = ({ d, i, size, handleBoothClick }) => {
