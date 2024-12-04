@@ -7,9 +7,10 @@ import { FilterBooth, FilterRoom } from "@types";
 export const BoothInfo: React.FC = () => {
   const dispatch = useAppDispatch();
   const boothInfo = useAppSelector((state) => state.elementStatus.boothInfo);
+  const handleBackBtnClick = () => dispatch(setElementStatus({ boothInfo: false }));
   return (
     <div className={`fp-booth-info ${boothInfo ? "active" : ""}`}>
-      <div className="fp-back-btn shadow" onClick={() => dispatch(setElementStatus({ boothInfo: false }))}>
+      <div className="fp-back-btn shadow" onClick={handleBackBtnClick}>
         <div className="fp-back d-flex align-items-center justify-content-center mx-auto active">
           <span />
         </div>
