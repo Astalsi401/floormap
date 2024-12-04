@@ -28,7 +28,7 @@ export const Search: React.FC = () => {
   }, [tag, floor, lang, regex]);
   useEffect(() => {
     const url = new URL(window.location.href);
-    Object.keys({ string, tag, floor, lang }).forEach((key) => (eval(key).length === 0 ? url.searchParams.delete(key) : url.searchParams.set(key, eval(key))));
+    Object.entries({ string, tag, floor, lang }).forEach(([key, value]) => (value.length === 0 ? url.searchParams.delete(key) : url.searchParams.set(key, value)));
     history.pushState(null, "", url.href);
   }, [string, tag, floor, lang]);
   return (
