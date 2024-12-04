@@ -34,7 +34,7 @@ export const dataFormat =
           const eventTime = (d as ResBooth)?.event?.map(eventFormat) || [];
           let tags = (d as ResBooth)?.tag || { tc: [], en: [] };
           if ((d as ResBooth)?.event) tags = eventTime.some((e) => e.active) ? { tc: [...tags.tc, defaultMapText.event.tc], en: [...tags.en, defaultMapText.event.en] } : tags;
-          return { ...d, id: d.id || `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: (d as ResBooth)?.cat || defaultString, topic: (d as ResBooth)?.topic || defaultString, tag: tags, text: (d as ResBooth | ResRoom)?.text || defaultString, size: (d as ResBooth | ResRoom)?.size || { tc: defaultFontSize, en: defaultFontSize }, event: eventTime, corps: (d as ResBooth)?.corps ? (d as ResBooth)?.corps.map((corp, i) => ({ ...corp, corpId: `${d.id}-${i}` })) : [] };
+          return { ...d, id: d.id || `${d.type}-${d.floor}-${i}`, floor: d.floor.toString(), cat: (d as ResBooth)?.cat || defaultString, topic: (d as ResBooth)?.topic || defaultString, tag: tags, text: (d as ResBooth | ResRoom)?.text || defaultString, size: (d as ResBooth | ResRoom)?.size || { tc: defaultFontSize, en: defaultFontSize }, event: eventTime, corps: (d as ResBooth)?.corps ? (d as ResBooth)?.corps.map((corp, i) => ({ ...corp, corpId: `${d.id}-${i}` })) : [], icon: (d as ResBooth)?.icon || "" };
         }),
         loaded: true,
         saving: false,
