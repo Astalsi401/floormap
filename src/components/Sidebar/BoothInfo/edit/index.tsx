@@ -25,7 +25,7 @@ const updateText = ({ name, lang, corpId, content }: { name: "org" | "info" | "t
 export const BoothText: React.FC<{ className?: string; name: "org" | "info" | "text"; value?: string; placeholder?: string; corpId?: string }> = ({ className, name, value, placeholder, corpId }) => {
   const dispatch = useAppDispatch();
   const lang = useAppSelector((state) => state.searchCondition.lang);
-  const content = useRef({ [lang]: textToHTML(value || "") });
+  const content = useRef<{ [lang: string]: string }>({ [lang]: textToHTML(value || "") });
   content.current[lang] = textToHTML(getCurrentText({ name, lang, corpId }) ?? value ?? ""); // 確保語言切換重新渲染後優先使用已編輯但未儲存的文字
   const handleChange = (e: ContentEditableEvent) => {
     content.current[lang] = e.target.value === "<br>" ? "" : e.target.value;

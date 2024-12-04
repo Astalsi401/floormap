@@ -24,8 +24,8 @@ const FloormapApp: React.FC = () => {
   const sidebar = useAppSelector((state) => state.elementStatus.sidebar);
   const loaded = useAppSelector((state) => state.floorData.loaded);
   const currentLogin = useAppSelector((state) => state.elementStatus.login);
-  const graphRef = useRef(null);
-  const svgRef = useRef(null);
+  const graphRef = useRef<null | HTMLDivElement>(null);
+  const svgRef = useRef<null | SVGSVGElement>(null);
   const { data, login } = useAsyncValue() as GetMapElemsResponse;
   const { category } = useParams();
   const isEdit = getSearchParam("edit") == 1;
