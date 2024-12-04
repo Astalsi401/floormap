@@ -1,8 +1,11 @@
+@use "sass:list";
+@use "./variables.scss" as *;
+
 .fp-zoom,
 .fp-select-lang,
 .fp-select-floor {
   position: absolute;
-  z-index: index($list: $index, $value: tools);
+  z-index: list.index($list: $index, $value: tools);
   label {
     display: block;
   }

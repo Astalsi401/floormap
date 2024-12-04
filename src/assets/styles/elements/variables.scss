@@ -1,0 +1,17 @@
+$font-size-base: 16px;
+$font-size: (
+  "xx-large": 1.5 * $font-size-base,
+  "x-large": 1.2 * $font-size-base,
+  "large": 1.08 * $font-size-base,
+  "medium": 1 * $font-size-base,
+  "small": 0.8 * $font-size-base,
+);
+$font-weight: (
+  "thin ": 100,
+  "light": 300,
+  "normal": 400,
+  "medium": 500,
+  "bold": 700,
+  "bolder": 900,
+);
+$index: (tools, tags, sidebar);

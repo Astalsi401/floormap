@@ -1,12 +1,4 @@
-$font-size-base: 16px;
-$font-size: (
-  "xx-large": 1.5 * $font-size-base,
-  "x-large": 1.2 * $font-size-base,
-  "large": 1.08 * $font-size-base,
-  "medium": 1 * $font-size-base,
-  "small": 0.8 * $font-size-base,
-);
-$index: (tools, tags, sidebar);
+@use "./variables.scss" as *;
 
 :root {
   --fp-sidebar-bg: #f1f1f1;
@@ -136,6 +128,7 @@ body {
   font-size: $font-size-base;
   position: relative;
   touch-action: none;
+  font-family: "Roboto", "Noto Sans TC", serif;
 }
 
 p {

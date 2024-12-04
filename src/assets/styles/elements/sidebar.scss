@@ -1,3 +1,10 @@
+@use "sass:list";
+@use "./variables.scss" as *;
+@use "./sidebarElements/search.scss";
+@use "./sidebarElements/edit.scss";
+@use "./sidebarElements/info.scss";
+@use "./sidebarElements/advanced.scss";
+
 .fp-sidebar {
   height: 100%;
   width: 300px;
@@ -5,7 +12,7 @@
   top: 0;
   background-color: var(--fp-sidebar-bg);
   position: fixed;
-  z-index: index($list: $index, $value: sidebar);
+  z-index: list.index($list: $index, $value: sidebar);
   overflow: hidden;
   transform: translateX(calc(-100% + var(--sidebar-width)));
   transition: transform var(--fp-time);
@@ -17,10 +24,6 @@
     transform: translate(0, calc(var(--sidebar-width)));
   }
 }
-@import "./sidebarElements/search.scss";
-@import "./sidebarElements/edit.scss";
-@import "./sidebarElements/info.scss";
-@import "./sidebarElements/advanced.scss";
 
 .fp-advanced,
 .fp-booth-info {

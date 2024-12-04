@@ -1,6 +1,9 @@
+@use "sass:list";
+@use "./variables.scss" as *;
+
 .fp-tags {
   position: absolute;
-  z-index: index($list: $index, $value: tags);
+  z-index: list.index($list: $index, $value: tags);
   overflow-x: auto;
   top: 0;
   right: 0;

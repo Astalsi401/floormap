@@ -18,4 +18,11 @@ export default defineConfig({
   },
   plugins: [react()],
   base: "/floormap",
+  css: {
+    preprocessorOptions: {
+      scss: {
+        api: "modern-compiler",
+      },
+    },
+  },
 });
