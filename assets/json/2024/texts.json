@@ -1,0 +1,9 @@
+[
+  { "id": "TEXTM001", "type": "text", "floor": 1, "x": 13920, "y": 7060, "text": { "tc": "台北市生物技術服務商業同業公會", "en": "Taipei Biotechnology Service and \nBusiness Trade Association" }, "size": { "tc": 0.3, "en": 0.3 }, "color": "black" },
+  { "id": "TEXTM002", "type": "text", "floor": 1, "x": 16630, "y": 6160, "text": { "tc": "無齡健康生活館", "en": "" }, "size": { "tc": 0.3, "en": 0.3 }, "color": "black" },
+  { "id": "TEXTM003", "type": "text", "floor": 1, "x": 16630, "y": 7060, "text": { "tc": "體育用品公會", "en": "Taiwan Sporting Goods Manufacturers Association" }, "size": { "tc": 0.3, "en": 0.3 }, "color": "black" },
+  { "id": "TEXTM004", "type": "text", "floor": 4, "x": 6910, "y": 9360, "text": { "tc": "2024年台灣醫療科技展-精準檢測暨大健康主題館\n(台灣微生物學會、台灣人工智慧檢驗醫學學會)", "en": "2024 Health+ Care Expo Taiwan- Precise Big Health Theme Pavilon\n(Taiwan Society of Microbiology, Taiwan Society for artificial intrlligence in Laboratory Medicine)" }, "size": { "tc": 0.3, "en": 0.3 }, "color": "black" },
+  { "id": "TEXTM005", "type": "text", "floor": 4, "x": 13820, "y": 9360, "text": { "tc": "新北市生技產業發展聯盟", "en": "New Taipei Biotechnology Alliance" }, "size": { "tc": 0.3, "en": 0.3 }, "color": "black" },
+  { "id": "TEXTM006", "type": "text", "floor": 4, "x": 16230, "y": 12060, "text": { "tc": "科學園區主題館", "en": "" }, "size": { "tc": 0.3, "en": 0.3 }, "color": "black" },
+  { "id": "TEXTM007", "type": "text", "floor": 4, "x": 8410, "y": 4850, "text": { "tc": "國際精準檢測產業聯盟", "en": "International Laboratory Developed \nTests and Services Industry Alliance" }, "size": { "tc": 0.3, "en": 0.3 }, "color": "black" }
+]
