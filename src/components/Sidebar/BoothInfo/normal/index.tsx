@@ -23,12 +23,12 @@ export const BoothTags: React.FC<{ tags: string[]; corpId: string }> = ({ tags, 
 };
 
 export const BoothCoprs: React.FC<{ id: string; corps: OriginalCorp[]; corpId: string; data: FilterBooth[] | FilterRoom[] }> = ({ id, corps, corpId, data }) => {
+  const isEdit = getSearchParam("edit") === 1;
   const dispatch = useAppDispatch();
   const exhibitor = useAppSelector((state) => state.mapText.exhibitor);
   const colors = useAppSelector((state) => state.elementStatus.colors);
-  const currentCorps = useAppSelector((state) => state.editForm.corps);
+  const currentCorps = isEdit ? useAppSelector((state) => state.editForm.corps) : corps;
   const lang = useAppSelector((state) => state.searchCondition.lang);
-  const isEdit = getSearchParam("edit") === 1;
   const handleCorpClick = ({ currentCorpId }: { currentCorpId: string }) => {
     if (currentCorpId.endsWith("-add")) {
       dispatch(setElementStatus({ boothInfoData: { ...store.getState().elementStatus.boothInfoData, corpId: currentCorpId, org: "", info: "" } }));
@@ -39,9 +39,9 @@ export const BoothCoprs: React.FC<{ id: string; corps: OriginalCorp[]; corpId: s
   };
   return (
     <div className="p-2">
-      <div className="my-1 text-large">{exhibitor}</div>
+      {currentCorps.length > 0 && <div className="my-1 text-large">{exhibitor}</div>}
       <div className="my-1 fp-booth-tags d-flex flex-wrap">
-        {(isEdit ? currentCorps : corps).map((d) => (
+        {currentCorps.map((d) => (
           <div key={`BoothInfoDetail-${d.corpId}`} className="fp-input-tag shadow text-small" style={{ "--cat": d.corpId === corpId ? "rgb(0, 0, 128, 0.3)" : colors.scale("") } as React.CSSProperties} onClick={() => handleCorpClick({ currentCorpId: d.corpId })}>
             {d.org[lang]}
           </div>
