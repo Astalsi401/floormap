@@ -14,7 +14,7 @@ export const BoothInfo: React.FC = () => {
           <span />
         </div>
       </div>
-      {boothInfo && <BoothInfoDetail />}
+      <BoothInfoDetail />
     </div>
   );
 };
