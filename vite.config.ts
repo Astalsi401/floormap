@@ -18,6 +18,14 @@ export default defineConfig({
   },
   plugins: [react()],
   base: "/floormap",
+  server: {
+    host: true,
+    port: 4000,
+    watch: {
+      usePolling: true,
+      interval: 500,
+    },
+  },
   css: {
     preprocessorOptions: {
       scss: {
