@@ -66,7 +66,7 @@ export const getMapElems = ({ params: { year, category, id }, postData, meth = "
       const assets = `${import.meta.env.BASE_URL}/assets/json`;
       const server = `${import.meta.env.VITE_SERVER_URL}/api`;
       const route = `${year}/${category}`;
-      const boothInfo = meth === METHOD.POST && postData ? await fetchData.post(`${server}/${route}/${id}`, { ...postData, corps: postData.corps.map(({ org, info }) => ({ org, info })) }) : meth === METHOD.DELETE ? await fetchData.delete(`${server}/${route}/${id}`) : await fetchData.get(`${prod ? server : assets}/${route}${prod ? "" : ".json"}`);
+      const boothInfo = meth === METHOD.POST && postData ? await fetchData.post(`${server}/${route}/${id}`, { ...postData, corps: postData.corps.map(({ org, info }) => ({ org, info })) }) : meth === METHOD.DELETE ? await fetchData.delete(`${server}/${route}/${id}`) : await fetchData.get(`${prod ? server : assets}/${route}${prod ? "" : ".json"}`).catch(() => []);
       const elems = await fetchData.get(`${assets}/elems.json`).catch(() => []);
       const texts = await fetchData.get(`${assets}/${year}/texts.json`).catch(() => []);
       const data = { elems: [...elems, ...texts], boothPos: await fetchData.get(`${assets}/boothPos.json`), boothInfo };
