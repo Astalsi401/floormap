@@ -1,37 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import store from "@store";
 import { getMapElems } from "@functions";
-import { App, ErrorPage } from "@routes";
+import { App, Home, ErrorPage } from "@routes";
 import "@styles/floormap-main.scss";
 
 const routes = [
   {
     path: "/floormap/",
-    element: (
-      <>
-        <div>
-          <Link to={`/floormap/tai-nex/2023/booths`}>醫療展 2023 Booths</Link>
-        </div>
-        <div>
-          <Link to={`/floormap/tai-nex/2024/areas`}>醫療展 2024 Area</Link>
-        </div>
-        <div>
-          <Link to={`/floormap/tai-nex/2024/booths`}>醫療展 2024 booths</Link>
-        </div>
-        <div>
-          <Link to={`/floormap/tai-nex/2024/booths?edit=1`}>醫療展 2024 Booths edit</Link>
-        </div>
-        <div>
-          <Link to={`/floormap/tai-nex/2025/areas?edit=1`}>醫療展 2025 Area edit</Link>
-        </div>
-        <div>
-          <Link to={`/floormap/twtc/2025/areas?edit=1`}>高齡展 2025 Area edit</Link>
-        </div>
-      </>
-    ),
+    element: <Home />,
     errorElement: <ErrorPage />,
   },
   {
