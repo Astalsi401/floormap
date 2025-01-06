@@ -118,12 +118,12 @@ export const SaveBtn: React.FC<{ id: string; meth: Post | Delete; className?: st
   const dispatch = useAppDispatch();
   const { regex, tag, lang } = useAppSelector((state) => state.searchCondition);
   const saving = useAppSelector((state) => state.floorData.saving);
-  const { year, category } = useParams() as { year: string; category: string };
+  const { exhibition, year, category } = useParams() as { exhibition: string; year: string; category: string };
   const handleSave = () => {
     if (saving) return;
     dispatch(setFloorData({ saving: true }));
     if (meth === METHOD.DELETE) dispatch(setEditForm({ booths: [id], size: { tc: defaultFontSize, en: defaultFontSize }, cat: defaultString, topic: defaultString, tag: defaultTags, text: defaultString, corps: [], event: [], p: [] }));
-    saveEditForm({ year, category, id, tag, lang, regex, meth })(dispatch);
+    saveEditForm({ exhibition, year, category, id, tag, lang, regex, meth })(dispatch);
   };
   return <BtnLoading className={className} loading={saving} onClick={handleSave} text={{ POST: "儲存", DELETE: "刪除" }[meth]} />;
 };

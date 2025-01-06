@@ -82,10 +82,10 @@ export const initEditForm =
     dispatch(setEditForm({ id, booths: booths?.length > 0 ? booths : [id], text, cat, corps, size }));
   };
 export const saveEditForm =
-  ({ year, category, id, tag, lang, regex, meth }: { year: string; category: string; id: string; tag: string; lang: string; regex: RegExp; meth: Post | Delete }) =>
+  ({ exhibition, year, category, id, tag, lang, regex, meth }: { exhibition: string; year: string; category: string; id: string; tag: string; lang: string; regex: RegExp; meth: Post | Delete }) =>
   async (dispatch: AppDispatch) => {
     try {
-      const { data } = getMapElems({ params: { year, category, id }, postData: store.getState().editForm, meth });
+      const { data } = getMapElems({ params: { exhibition, year, category, id }, postData: store.getState().editForm, meth });
       const res: { data: ResData[]; login: boolean } = await data;
       dataFormat({ data: res.data })(dispatch);
       initEditForm({ id })(dispatch);
