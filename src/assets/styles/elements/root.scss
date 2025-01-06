@@ -30,10 +30,14 @@
   }
 }
 
-@each $value in (flex, block, none) {
+@each $value in (flex, grid, block, none) {
   .d-#{$value} {
     display: #{$value};
   }
+}
+
+.place-content-center {
+  place-content: center;
 }
 
 .flex-wrap {
@@ -100,8 +104,10 @@
   }
 }
 
-.gap-1 {
-  gap: 5px;
+@for $i from 1 through 5 {
+  .g-#{$i} {
+    gap: calc($i * var(--fp-sidebar-px));
+  }
 }
 
 .shadow {

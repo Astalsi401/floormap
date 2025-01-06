@@ -12,11 +12,11 @@ export const Login: React.FC = () => {
     dispatch(setElementStatus({ login }));
   };
   return (
-    <div className="fp-login">
-      <form onSubmit={submit}>
-        <input type="text" name="username" placeholder="username" />
-        <input type="password" name="password" placeholder="password" />
-        <input type="submit" />
+    <div className="fp-login d-grid place-content-center">
+      <form className="d-flex flex-wrap g-3" onSubmit={submit}>
+        <input className="d-block mx-auto p-1 w-75" type="text" name="username" placeholder="username" />
+        <input className="d-block mx-auto p-1 w-75" type="password" name="password" placeholder="password" />
+        <button className="fp-btn d-block mx-auto p-1 w-50">Login</button>
       </form>
     </div>
   );
