@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { setElementStatus } from "@store";
 import { fetchData } from "@functions";
+import { FpInput } from "@components";
 
 export const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -14,9 +15,9 @@ export const Login: React.FC = () => {
   return (
     <div className="fp-login d-grid place-content-center">
       <form className="d-flex flex-wrap g-3" onSubmit={submit}>
-        <input className="d-block mx-auto p-1 w-75" type="text" name="username" placeholder="username" />
-        <input className="d-block mx-auto p-1 w-75" type="password" name="password" placeholder="password" />
-        <button className="fp-btn d-block mx-auto p-1 w-50">Login</button>
+        <FpInput className="d-block mx-auto p-1 w-75" type="text" name="username" placeholder="username" />
+        <FpInput className="d-block mx-auto p-1 w-75" type="password" name="password" placeholder="password" />
+        <button className="fp-btn d-block mx-auto p-2 w-50">Login</button>
       </form>
     </div>
   );
